@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Next.js
+bali-water-activity/.next/
+bali-water-activity/out/
+
+# Production build
+bali-water-activity/build/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
