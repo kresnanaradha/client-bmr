@@ -23,7 +23,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
@@ -36,8 +36,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-white/75 backdrop-blur-md border-gray-200/40 shadow-lg shadow-blue-900/5 py-2"
-          : "bg-transparent border-white/10 py-3"
+          ? "bg-white/75 backdrop-blur-md border-gray-200/40 shadow-lg shadow-blue-900/5 py-3"
+          : "bg-transparent border-white/10 py-2"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -57,38 +57,38 @@ export default function Navbar() {
             />
           ) : (
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 gradient-card rounded-xl flex items-center justify-center">
-                <Waves size={18} className="text-white" />
-              </div>
-              <span className={`font-bold text-base leading-tight ${scrolled ? "text-[#0F1419]" : "text-white"}`}>
-                Bali Water<br />Activity
-              </span>
+              <h1 className={`font-bold text-base leading-tight ${scrolled ? "text-[#0F1419]" : "text-white"}`}>
+                Bali Water Activity
+              </h1>
             </div>
           )}
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className={`hidden md:flex items-center gap-7 font-semibold ${scrolled ? "text-[#0F1419]" : "text-white"}`}>
           {navLinks.map((link) =>
             link.children ? (
               <div
                 key={link.label}
                 className="relative"
-                onMouseEnter={() => setDropdown(true)}
-                onMouseLeave={() => setDropdown(false)}
+                onMouseEnter={() => setActiveDropdown(link.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className={`flex items-center gap-1 font-semibold text-sm transition-colors duration-200 cursor-pointer ${
-                    scrolled ? "text-[#0F1419]" : "text-white"
-                  } hover:text-[#FFD700]`}
+                  className={`flex items-center gap-1 cursor-pointer transition-colors hover:text-[#D4AF37]`}
                 >
                   {link.label}
-                  <ChevronDown size={13} className={`transition-transform duration-200 ${dropdown ? "rotate-180" : ""}`} />
+                  <ChevronDown
+                    size={13}
+                    className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180" : ""}`}
+                  />
                 </button>
                 {/* Invisible bridge + dropdown — pt-3 keeps hover continuous (no dead zone) */}
                 <div
                   className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 transition-all duration-200 ${
-                    dropdown ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
+                    activeDropdown === link.label
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-1 pointer-events-none"
                   }`}
                 >
                   <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl shadow-blue-900/10 border border-white/30 p-2 overflow-hidden">
@@ -96,19 +96,22 @@ export default function Navbar() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        onClick={() => setDropdown(false)}
+                        onClick={() => setActiveDropdown(null)}
                         className="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/40 transition-colors duration-150 cursor-pointer"
                       >
                         <span className="w-9 h-9 rounded-lg gradient-card flex items-center justify-center shrink-0">
                           <child.icon size={16} className="text-white" />
                         </span>
                         <span className="flex-1 min-w-0">
-                          <span className="block text-sm font-semibold text-[#0F1419] group-hover/item:text-[#0052CC] transition-colors">
+                          <span className="block text-sm font-semibold text-[#0F1419] group-hover/item:text-primary-blue transition-colors">
                             {child.label}
                           </span>
                           <span className="block text-[11px] text-[#64748B] truncate">{child.desc}</span>
                         </span>
-                        <ArrowUpRight size={14} className="text-[#64748B] group-hover/item:text-[#0052CC] opacity-0 group-hover/item:opacity-100 transition-all shrink-0" />
+                        <ArrowUpRight
+                          size={14}
+                          className="text-[#64748B] group-hover/item:text-primary-blue opacity-0 group-hover/item:opacity-100 transition-all shrink-0"
+                        />
                       </Link>
                     ))}
                   </div>
@@ -118,9 +121,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-semibold text-sm transition-colors duration-200 ${
-                  scrolled ? "text-[#0F1419]" : "text-white"
-                } hover:text-[#FFD700]`}
+                className={`transition-colors ${scrolled ? "text-[#0F1419]" : "text-white"} hover:text-[#D4AF37]!`}
               >
                 {link.label}
               </Link>
@@ -141,8 +142,13 @@ export default function Navbar() {
           className={`md:hidden cursor-pointer p-1.5 rounded-xl transition-all ${
             scrolled ? "text-[#0F1419] hover:bg-gray-100" : "text-white hover:bg-white/10"
           }`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => {
+            setMenuOpen(!menuOpen);
+            setActiveDropdown(null);
+          }}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -150,11 +156,14 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-100 px-4 py-4 flex flex-col gap-1 shadow-xl">
+        <div
+          id="mobile-navigation"
+          className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-100 px-4 py-4 flex flex-col gap-1 shadow-xl"
+        >
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label}>
-                <p className="text-[10px] uppercase tracking-widest text-[#FF9500] font-bold mt-3 mb-1 px-1">
+                <p className="text-[10px] uppercase tracking-widest text-orange font-bold mt-3 mb-1 px-1">
                   {link.label}
                 </p>
                 {link.children.map((child) => (
@@ -162,7 +171,7 @@ export default function Navbar() {
                     key={child.href}
                     href={child.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block pl-3 py-2.5 text-[#0F1419] text-sm font-medium hover:text-[#0052CC] hover:bg-gray-50 rounded-xl transition-all cursor-pointer"
+                    className="block pl-3 py-2.5 text-[#0F1419] text-sm font-medium hover:text-primary-blue hover:bg-gray-50 rounded-xl transition-all cursor-pointer"
                   >
                     {child.label}
                   </Link>
@@ -173,7 +182,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block py-2.5 px-1 text-[#0F1419] font-medium text-sm hover:text-[#0052CC] cursor-pointer"
+                className="block py-2.5 px-1 text-[#0F1419] font-medium text-sm hover:text-primary-blue cursor-pointer"
               >
                 {link.label}
               </Link>

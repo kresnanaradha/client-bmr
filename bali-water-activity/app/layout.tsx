@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
+import { Nunito, Pacifico } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://baliwateractivity.com"),
@@ -47,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
       <head>
         <script
           async
@@ -59,7 +73,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className={nunito.className}>
         <LenisProvider />
         <Navbar />
         <main>{children}</main>
