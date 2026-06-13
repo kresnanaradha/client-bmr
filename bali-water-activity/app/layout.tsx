@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import LenisProvider from "@/app/providers/LenisProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://baliwateractivity.com"),
@@ -59,6 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <LenisProvider />
         <Navbar />
         <main>{children}</main>
         <Footer />
