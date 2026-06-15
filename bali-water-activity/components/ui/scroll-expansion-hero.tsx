@@ -9,7 +9,6 @@ import {
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import WaterBubbles from './WaterBubbles';
-import WaveAnimation from './WaveAnimation';
 
 
 interface ScrollExpandMediaProps {
@@ -248,11 +247,6 @@ const ScrollExpandMedia = ({
               
               <div className="relative z-10 w-full">
                 {children}
-              </div>
-
-              {/* Wave animation footer */}
-              <div className="absolute bottom-0 left-0 right-0 z-10 text-white/10 pointer-events-none">
-                <WaveAnimation className="w-full h-20 text-white/5" />
               </div>
             </motion.section>
           </div>

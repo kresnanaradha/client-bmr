@@ -75,7 +75,7 @@ export default function Navbar() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className={`flex items-center gap-1 cursor-pointer transition-colors hover:text-[#D4AF37]`}
+                  className={`flex items-center gap-1 cursor-pointer transition-colors ${scrolled ? "hover:text-primary-blue!" : "hover:text-[#D4AF37]!"}`}
                 >
                   {link.label}
                   <ChevronDown
@@ -121,7 +121,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors ${scrolled ? "text-[#0F1419]" : "text-white"} hover:text-[#D4AF37]!`}
+                className={`transition-colors ${scrolled ? "text-[#0F1419] hover:text-primary-blue!" : "text-white hover:text-[#D4AF37]!"}`}
               >
                 {link.label}
               </Link>

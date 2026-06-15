@@ -30,7 +30,7 @@ export default function HeroContent() {
       {/* Badge */}
       <div className="glass border-white/20 inline-block mb-6 px-4 py-2 rounded-full shadow-lg">
         <div className="flex items-center gap-2 text-white text-xs font-semibold uppercase tracking-wider">
-          <span className="text-[#FFD700] animate-pulse">✨</span>
+          <span className="text-golden animate-pulse">✨</span>
           <span>Trusted by 10,000+ tourists worldwide</span>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function HeroContent() {
       <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
         Experience Bali&apos;s
         <br />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] animate-pulse">
+        <span className="text-transparent bg-clip-text bg-linear-to-r from-golden via-[#FFA500] to-golden animate-pulse">
           Best Water Adventures
         </span>
       </h1>
@@ -54,7 +54,7 @@ export default function HeroContent() {
         {stats.map((s) => (
           <div key={s.label} className="text-center">
             <div className="flex items-center justify-center gap-1.5 mb-1">
-              <s.icon size={16} className="text-[#FFD700] drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]" />
+              <s.icon size={16} className="text-golden drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]" />
               <span className="text-xl md:text-2xl font-extrabold text-white">{s.value}</span>
             </div>
             <p className="text-xs text-blue-200 font-medium">{s.label}</p>
@@ -94,7 +94,7 @@ export default function HeroContent() {
               href={act.href}
               className="glass border-white/10 rounded-2xl p-4 flex flex-col items-center gap-3 hover:border-white/30 hover:bg-white/15 hover:scale-105 transition-all duration-300 cursor-pointer text-white"
             >
-              <act.icon size={22} strokeWidth={1.75} className="text-[#FFD700] drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]" />
+              <act.icon size={22} strokeWidth={1.75} className="text-golden drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]" />
               <span className="text-[11px] font-bold text-center leading-tight">{act.label}</span>
             </Link>
           ))}

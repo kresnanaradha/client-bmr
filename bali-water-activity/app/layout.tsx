@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Pacifico } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -63,15 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`,
-          }}
-        />
+        <GoogleTagManager gtmId="GTM-XXXXXXX" />
       </head>
       <body className={nunito.className}>
         <LenisProvider />
