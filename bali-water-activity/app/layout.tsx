@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Pacifico } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
@@ -8,16 +8,16 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
 
-const nunito = Nunito({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const pacifico = Pacifico({
+const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-heading",
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -63,11 +63,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         <GoogleTagManager gtmId="GTM-XXXXXXX" />
       </head>
-      <body className={nunito.className}>
+      <body className={inter.className}>
         <SplashScreen />
         <LenisProvider />
         <Navbar />

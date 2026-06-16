@@ -112,12 +112,12 @@ button {
 
 /* ─── Display Font (Point 02) ───────────────────────────────── */
 .font-display {
-  font-family: var(--font-heading), cursive;
+  font-family: var(--font-heading), sans-serif;
   font-weight: 400;
   letter-spacing: 0;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), cursive; letter-spacing: 0; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), sans-serif; letter-spacing: 0; }
 
 /* ─── Gradients (Point 03 ─── 5 colors only) ──────────────────── */
 .gradient-hero   { background: linear-gradient(135deg, #0F1419 0%, #1A3D8C 50%, #0052CC 100%); }

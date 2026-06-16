@@ -36,7 +36,7 @@ export default function HeroContent() {
       </div>
 
       {/* Headline */}
-      <h1 className="mb-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-6xl">
+      <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white md:text-6xl">
         Experience Bali&apos;s
         <br />
         <span className="bg-linear-to-r from-golden to-orange bg-clip-text text-transparent">
@@ -45,19 +45,19 @@ export default function HeroContent() {
       </h1>
 
       {/* Description */}
-      <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-700 md:text-lg">
+      <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
         From heart-pumping Jet Ski rides to serene Sea Walker adventures — book Bali&apos;s best water activities instantly via WhatsApp. Pay on arrival.
       </p>
 
       {/* Stats */}
-      <div className="flex justify-center gap-8 md:gap-12 mb-10">
+      <div className="flex justify-center gap-8 md:gap-12 mb-10 text-white/60">
         {stats.map((s) => (
           <div key={s.label} className="text-center">
-            <div className="flex items-center justify-center gap-1.5 mb-1">
+            <div className="flex items-center justify-center gap-1.5 mb-1  text-white/60">
               <s.icon size={16} className="text-[#0f6d8c]" />
-              <span className="text-xl md:text-2xl font-extrabold text-slate-900">{s.value}</span>
+              <span className="text-xl md:text-2xl font-extrabold text-white">{s.value}</span>
             </div>
-            <p className="text-xs font-medium text-slate-600">{s.label}</p>
+            <p className="text-xs font-medium text-white/70">{s.label}</p>
           </div>
         ))}
       </div>
@@ -84,7 +84,7 @@ export default function HeroContent() {
 
       {/* Activity grid with Lucide icons */}
       <div>
-        <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-slate-600">
+        <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-slate-600 text-white/60">
           8 Activities Available
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
@@ -103,10 +103,10 @@ export default function HeroContent() {
 
       {/* Trust note */}
       <p className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-600">
-        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> No upfront payment</span>
-        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Pay on arrival</span>
-        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Instant confirmation</span>
-        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Insurance included</span>
+        <span className="flex items-center gap-1.5 text-white/80"><Shield size={13} className="text-green-400" /> No upfront payment</span>
+        <span className="flex items-center gap-1.5 text-white/80"><Shield size={13} className="text-green-400" /> Pay on arrival</span>
+        <span className="flex items-center gap-1.5 text-white/80"><Shield size={13} className="text-green-400" /> Instant confirmation</span>
+        <span className="flex items-center gap-1.5 text-white/80"><Shield size={13} className="text-green-400" /> Insurance included</span>
       </p>
     </div>
   );
