@@ -49,9 +49,9 @@ const ScrollExpandMedia = ({
 
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const expansionDistance = Math.max(viewportHeight * 0.9, 1);
-      const traveled = Math.min(Math.max(-rect.top, 0), expansionDistance);
-      const nextProgress = traveled / expansionDistance;
+      const expansionDistancePx = Math.max(viewportHeight * 1, 1);
+      const traveled = Math.min(Math.max(-rect.top, 0), expansionDistancePx);
+      const nextProgress = traveled / expansionDistancePx;
 
       setScrollProgress(nextProgress);
     };
@@ -80,18 +80,20 @@ const ScrollExpandMedia = ({
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
-  const showContent = scrollProgress >= 0.75;
+  const showContent = scrollProgress >= 0.95;
+  const expansionDistance = '100vh';
 
   const firstWord = title ? title.split(' ')[0] : '';
   const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
 
   return (
-    <div
-      ref={sectionRef}
-      className='transition-colors duration-700 ease-in-out overflow-x-hidden'
-    >
-      <section className='relative flex flex-col items-center justify-start min-h-dvh'>
-        <div className='relative w-full flex flex-col items-center min-h-dvh'>
+    <>
+      <div
+        ref={sectionRef}
+        className='relative w-full transition-colors duration-700 ease-in-out'
+        style={{ height: `calc(100vh + ${expansionDistance})` }}
+      >
+        <div className='sticky top-0 h-screen w-full overflow-hidden'>
           <motion.div
             className='absolute inset-0 z-0 h-full'
             initial={{ opacity: 0 }}
@@ -113,10 +115,10 @@ const ScrollExpandMedia = ({
             <div className='absolute inset-0 bg-black/10' />
           </motion.div>
 
-          <div className='container mx-auto flex flex-col items-center justify-start relative z-10'>
-            <div className='flex flex-col items-center justify-center w-full h-dvh relative'>
+          <div className='container relative z-10 mx-auto h-full'>
+            <div className='relative flex h-screen w-full flex-col items-center justify-center'>
               <div
-                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl'
+                className='absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl'
                 style={{
                   width: `${mediaWidth}px`,
                   height: `${mediaHeight}px`,
@@ -217,7 +219,7 @@ const ScrollExpandMedia = ({
               </div>
 
               <div
-                className={`flex items-center justify-center text-center gap-4 w-full relative z-10 transition-none flex-col ${
+                className={`relative z-10 flex w-full flex-col items-center justify-center gap-4 text-center transition-none ${
                   textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
                 }`}
               >
@@ -235,24 +237,23 @@ const ScrollExpandMedia = ({
                 </motion.h2>
               </div>
             </div>
-
-            <motion.section
-              className='flex flex-col w-full px-8 py-10 md:px-16 lg:py-20 relative min-h-screen justify-center'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {/* Aquatic elements */}
-              <WaterBubbles />
-              
-              <div className="relative z-10 w-full">
-                {children}
-              </div>
-            </motion.section>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <motion.section
+        className='relative z-10 flex min-h-screen w-full flex-col justify-center px-8 py-10 md:px-16 lg:py-20'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showContent ? 1 : 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <WaterBubbles />
+
+        <div className='relative z-10 w-full'>
+          {children}
+        </div>
+      </motion.section>
+    </>
   );
 };
 

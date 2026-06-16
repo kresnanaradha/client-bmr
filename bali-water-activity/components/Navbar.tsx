@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown, Waves, Ship, Mountain, MapPin, ArrowUpRight } from "lucide-react";
@@ -25,12 +26,19 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      // Use 100vh on the home page so it waits for the video to expand fully + 10px buffer
+      const threshold = pathname === '/' ? window.innerHeight - 10 : 20;
+      setScrolled(window.scrollY > threshold);
+    };
+
+    onScroll(); // initial check
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <header
