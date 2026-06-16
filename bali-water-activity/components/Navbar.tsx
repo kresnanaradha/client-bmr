@@ -135,14 +135,6 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <a
-            href="https://wa.me/628XXXXXXXXXX?text=Hi%2C%20I%20want%20to%20book%20an%20activity"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass-btn text-xs uppercase tracking-wider flex items-center gap-1.5"
-          >
-            <span>📱</span> Book Now
-          </a>
         </nav>
 
         {/* Mobile Toggle */}

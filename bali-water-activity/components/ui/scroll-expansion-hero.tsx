@@ -8,6 +8,7 @@ import {
 } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import WaterBubbles from './WaterBubbles';
 
 
@@ -17,7 +18,7 @@ interface ScrollExpandMediaProps {
   posterSrc?: string;
   bgImageSrc: string;
   title?: string;
-  date?: string;
+  location?: string;
   scrollToExpand?: string;
   textBlend?: boolean;
   children?: ReactNode;
@@ -29,7 +30,7 @@ const ScrollExpandMedia = ({
   posterSrc,
   bgImageSrc,
   title,
-  date,
+  location,
   scrollToExpand,
   textBlend,
   children,
@@ -40,7 +41,7 @@ const ScrollExpandMedia = ({
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const updateScrollState = (): void => {
+    const uplocationScrollState = (): void => {
       const section = sectionRef.current;
 
       if (!section) {
@@ -56,13 +57,13 @@ const ScrollExpandMedia = ({
       setScrollProgress(nextProgress);
     };
 
-    updateScrollState();
-    window.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', updateScrollState);
+    uplocationScrollState();
+    window.addEventListener('scroll', uplocationScrollState, { passive: true });
+    window.addEventListener('resize', uplocationScrollState);
 
     return () => {
-      window.removeEventListener('scroll', updateScrollState);
-      window.removeEventListener('resize', updateScrollState);
+      window.removeEventListener('scroll', uplocationScrollState);
+      window.removeEventListener('resize', uplocationScrollState);
     };
   }, []);
 
@@ -80,6 +81,7 @@ const ScrollExpandMedia = ({
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
+  const scrollHintOpacity = Math.max(1 - scrollProgress * 8, 0);
   const showContent = scrollProgress >= 0.95;
   const expansionDistance = '100vh';
 
@@ -199,21 +201,29 @@ const ScrollExpandMedia = ({
                 )}
 
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
-                  {date && (
+                  {location && (
                     <p
-                      className='text-2xl text-blue-200'
+                      className='text-2xl text-white'
                       style={{ transform: `translateX(-${textTranslateX}vw)` }}
                     >
-                      {date}
+                      {location}
                     </p>
                   )}
                   {scrollToExpand && (
-                    <p
-                      className='text-blue-200 font-medium text-center'
-                      style={{ transform: `translateX(${textTranslateX}vw)` }}
+                    <motion.div
+                      className='flex flex-col items-center text-center text-white'
+                      style={{
+                        transform: `translateX(${textTranslateX}vw)`,
+                        opacity: scrollHintOpacity,
+                        pointerEvents: scrollHintOpacity === 0 ? 'none' : 'auto',
+                      }}
+                      animate={{ y: [0, 8, 0] }}
+                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                      aria-hidden={scrollHintOpacity === 0}
                     >
-                      {scrollToExpand}
-                    </p>
+                      <p className='font-medium'>{scrollToExpand}</p>
+                      <ChevronDown className='mt-2 h-5 w-5' aria-hidden='true' />
+                    </motion.div>
                   )}
                 </div>
               </div>

@@ -39,7 +39,7 @@ function FooterLogo() {
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#0F1419] to-black text-white relative overflow-hidden pt-12 border-t border-white/5">
+    <footer className="bg-linear-to-b from-[#0F1419] to-dark-navy text-white relative overflow-hidden pt-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -118,7 +118,7 @@ export default function Footer() {
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-white/10">
                   <MapPin size={13} className="text-[#FFD700]" />
                 </div>
-                <span className="text-sm text-blue-200 leading-snug">Tanjung Benoa, Nusa Dua, Bali, Indonesia</span>
+                <span className="text-sm leading-snug">Tanjung Benoa, Nusa Dua, Bali, Indonesia</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 border border-white/10">

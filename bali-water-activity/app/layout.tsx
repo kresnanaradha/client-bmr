@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
+import SplashScreen from "@/components/SplashScreen";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
         <GoogleTagManager gtmId="GTM-XXXXXXX" />
       </head>
       <body className={nunito.className}>
+        <SplashScreen />
         <LenisProvider />
         <Navbar />
         <main>{children}</main>

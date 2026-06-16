@@ -42,9 +42,9 @@ export default function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="section-gap bg-gradient-to-b from-[#0F1419] to-[#1A3D8C] text-white relative overflow-hidden">
+    <section className="section-gap bg-linear-to-b from-[#0F1419] to-dark-navy text-white relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl opacity-10 bg-[#0FA3B1] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full blur-3xl opacity-10 bg-[#0FA3B1] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
@@ -59,7 +59,7 @@ export default function FaqSection() {
             <div
               key={i}
               className={`glass border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ${
-                open === i ? "ring-2 ring-[#FFD700]/30 shadow-xl" : ""
+                open === i ? "ring-2 ring-golden/30 shadow-xl" : ""
               }`}
             >
               <button
@@ -67,10 +67,10 @@ export default function FaqSection() {
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
-                <span className="font-semibold text-white text-sm pr-4 group-hover:text-[#FFD700] transition-colors">{faq.q}</span>
+                <span className="font-semibold text-white text-sm pr-4 group-hover:text-golden transition-colors">{faq.q}</span>
                 <ChevronDown
                   size={18}
-                  className={`text-[#FFD700] shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}
+                  className={`text-golden shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}
                 />
               </button>
               {open === i && (
