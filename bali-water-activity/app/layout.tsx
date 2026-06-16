@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
+import { Nunito, Pacifico } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import LenisProvider from "@/app/providers/LenisProvider";
+import SplashScreen from "@/components/SplashScreen";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://baliwateractivity.com"),
@@ -46,19 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`,
-          }}
-        />
+        <GoogleTagManager gtmId="GTM-XXXXXXX" />
       </head>
-      <body>
+      <body className={nunito.className}>
+        <SplashScreen />
+        <LenisProvider />
         <Navbar />
         <main>{children}</main>
         <Footer />

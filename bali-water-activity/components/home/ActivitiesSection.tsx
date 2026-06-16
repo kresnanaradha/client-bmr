@@ -28,7 +28,6 @@ export default function ActivitiesSection() {
                 ageRange={act.ageRange}
                 image={act.image}
                 slug={act.slug}
-                badge={act.badge}
               />
             </Reveal>
           ))}

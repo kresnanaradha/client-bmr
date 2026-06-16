@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { AU, EU, ID, SG } from "country-flag-icons/react/3x2";
+import type { FlagComponent } from "country-flag-icons/react/3x2";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 
@@ -13,12 +15,28 @@ const stats = [
 ];
 
 const countries = [
-  { country: "Australia", pct: 35, code: "AU" },
-  { country: "Indonesia", pct: 25, code: "ID" },
-  { country: "Singapore", pct: 15, code: "SG" },
-  { country: "Europe", pct: 15, code: "EU" },
-  { country: "Others", pct: 10, code: "—" },
+  { country: "Australia", pct: 35, code: "AU", Flag: AU },
+  { country: "Indonesia", pct: 25, code: "ID", Flag: ID },
+  { country: "Singapore", pct: 15, code: "SG", Flag: SG },
+  { country: "Europe", pct: 15, code: "EU", Flag: EU },
+  { country: "Others", pct: 10, code: "OT" },
 ];
+
+function CountryBadge({ code, country, Flag }: { code: string; country: string; Flag?: FlagComponent }) {
+  if (Flag) {
+    return (
+      <span aria-label={`${country} flag`} className="mx-auto mb-2 flex  items-center justify-center overflow-hidden">
+        <Flag className="h-auto w-10" />
+      </span>
+    );
+  }
+
+  return (
+    <span className="mx-auto mb-2 flex h-7 min-w-10 items-center justify-center px-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#7b8da6]">
+      {code}
+    </span>
+  );
+}
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -53,7 +71,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function StatsSection() {
   return (
-    <section className="section-gap bg-gradient-to-b from-[#eef6ff] to-[#F8FAFC]">
+    <section className="section-gap bg-linear-to-b from-[#eef6ff] to-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Our Numbers"
@@ -67,7 +85,7 @@ export default function StatsSection() {
             <Reveal
               key={s.label}
               delay={(i % 6) * 0.06}
-              className="glass-card hover:bg-white/40 hover:border-[#FFD700]/30 rounded-2xl p-5 text-center border border-gray-200/50 shadow-md transition-all duration-300"
+              className="glass-card hover:bg-white/40 hover:border-golden/30 rounded-2xl p-5 text-center border border-gray-200/50 shadow-md transition-all duration-300"
             >
               <p className="font-display text-3xl text-[#0F1419] mb-1 font-bold">
                 <Counter value={s.value} suffix={s.suffix} />
@@ -78,23 +96,23 @@ export default function StatsSection() {
           ))}
         </div>
 
-        {/* Country distribution — dark card */}
-        <div className="glass-card p-6 md:p-8 border border-white/10 relative overflow-hidden bg-gradient-to-b from-[#0F1419] to-[#1A3D8C] text-white rounded-3xl shadow-xl">
-          <p className="text-white/50 text-[10px] font-bold uppercase tracking-[0.16em] text-center mb-6">
+        {/* Country distribution */}
+        <div className="glass-card p-6 md:p-8 border border-[#d7e6f7] relative overflow-hidden bg-linear-to-b from-white to-[#eaf4ff] text-[#10233f] rounded-3xl shadow-xl shadow-sky-100/80">
+          <p className="text-[#5f738d] text-[10px] font-bold uppercase tracking-[0.16em] text-center mb-6">
             Visitors by Country
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 relative z-10">
             {countries.map((c) => (
               <div key={c.country} className="text-center">
-                <p className="text-white/30 text-xs font-mono mb-1">{c.code}</p>
-                <p className="text-white text-sm font-semibold mb-2">{c.country}</p>
-                <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                <CountryBadge code={c.code} country={c.country} Flag={c.Flag} />
+                <p className="text-[#10233f] text-sm font-semibold mb-2 mt-4">{c.country}</p>
+                <div className="w-full bg-[#dbe8f5] rounded-full h-1.5 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#FF9500]"
+                    className="h-full rounded-full bg-linear-to-r from-golden to-orange"
                     style={{ width: `${c.pct}%` }}
                   />
                 </div>
-                <p className="text-[#FFD700] text-sm font-bold mt-1.5">{c.pct}%</p>
+                <p className="text-[#c67a00] text-sm font-bold mt-1.5">{c.pct}%</p>
               </div>
             ))}
           </div>

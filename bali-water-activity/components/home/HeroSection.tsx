@@ -14,7 +14,7 @@ export default function HeroSection() {
       posterSrc="/assets/hero-poster.jpg"
       bgImageSrc="/assets/hero-poster.jpg"
       title="Bali Water Activity"
-      date="Tanjung Benoa · Bali"
+      location="Tanjung Benoa · Bali"
       scrollToExpand="Scroll to explore"
       textBlend={false}
     >

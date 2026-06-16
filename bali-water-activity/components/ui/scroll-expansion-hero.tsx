@@ -5,13 +5,11 @@ import {
   useRef,
   useState,
   ReactNode,
-  TouchEvent,
-  WheelEvent,
 } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import WaterBubbles from './WaterBubbles';
-import WaveAnimation from './WaveAnimation';
 
 
 interface ScrollExpandMediaProps {
@@ -20,7 +18,7 @@ interface ScrollExpandMediaProps {
   posterSrc?: string;
   bgImageSrc: string;
   title?: string;
-  date?: string;
+  location?: string;
   scrollToExpand?: string;
   textBlend?: boolean;
   children?: ReactNode;
@@ -32,125 +30,42 @@ const ScrollExpandMedia = ({
   posterSrc,
   bgImageSrc,
   title,
-  date,
+  location,
   scrollToExpand,
   textBlend,
   children,
 }: ScrollExpandMediaProps) => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [showContent, setShowContent] = useState<boolean>(false);
-  const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
-  const [touchStartY, setTouchStartY] = useState<number>(0);
   const [isMobileState, setIsMobileState] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setScrollProgress(0);
-    setShowContent(false);
-    setMediaFullyExpanded(false);
-  }, [mediaType]);
+    const uplocationScrollState = (): void => {
+      const section = sectionRef.current;
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
-        setMediaFullyExpanded(false);
-        e.preventDefault();
-      } else if (!mediaFullyExpanded) {
-        e.preventDefault();
-        const scrollDelta = e.deltaY * 0.0009;
-        const newProgress = Math.min(
-          Math.max(scrollProgress + scrollDelta, 0),
-          1
-        );
-        setScrollProgress(newProgress);
-
-        if (newProgress >= 1) {
-          setMediaFullyExpanded(true);
-          setShowContent(true);
-        } else if (newProgress < 0.75) {
-          setShowContent(false);
-        }
+      if (!section) {
+        return;
       }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const expansionDistancePx = Math.max(viewportHeight * 1, 1);
+      const traveled = Math.min(Math.max(-rect.top, 0), expansionDistancePx);
+      const nextProgress = traveled / expansionDistancePx;
+
+      setScrollProgress(nextProgress);
     };
 
-    const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartY(e.touches[0].clientY);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!touchStartY) return;
-
-      const touchY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchY;
-
-      if (mediaFullyExpanded && deltaY < -20 && window.scrollY <= 5) {
-        setMediaFullyExpanded(false);
-        e.preventDefault();
-      } else if (!mediaFullyExpanded) {
-        e.preventDefault();
-        const scrollFactor = deltaY < 0 ? 0.008 : 0.005;
-        const scrollDelta = deltaY * scrollFactor;
-        const newProgress = Math.min(
-          Math.max(scrollProgress + scrollDelta, 0),
-          1
-        );
-        setScrollProgress(newProgress);
-
-        if (newProgress >= 1) {
-          setMediaFullyExpanded(true);
-          setShowContent(true);
-        } else if (newProgress < 0.75) {
-          setShowContent(false);
-        }
-
-        setTouchStartY(touchY);
-      }
-    };
-
-    const handleTouchEnd = (): void => {
-      setTouchStartY(0);
-    };
-
-    const handleScroll = (): void => {
-      if (!mediaFullyExpanded) {
-        window.scrollTo(0, 0);
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel as unknown as EventListener, {
-      passive: false,
-    });
-    window.addEventListener('scroll', handleScroll as EventListener);
-    window.addEventListener(
-      'touchstart',
-      handleTouchStart as unknown as EventListener,
-      { passive: false }
-    );
-    window.addEventListener(
-      'touchmove',
-      handleTouchMove as unknown as EventListener,
-      { passive: false }
-    );
-    window.addEventListener('touchend', handleTouchEnd as EventListener);
+    uplocationScrollState();
+    window.addEventListener('scroll', uplocationScrollState, { passive: true });
+    window.addEventListener('resize', uplocationScrollState);
 
     return () => {
-      window.removeEventListener(
-        'wheel',
-        handleWheel as unknown as EventListener
-      );
-      window.removeEventListener('scroll', handleScroll as EventListener);
-      window.removeEventListener(
-        'touchstart',
-        handleTouchStart as unknown as EventListener
-      );
-      window.removeEventListener(
-        'touchmove',
-        handleTouchMove as unknown as EventListener
-      );
-      window.removeEventListener('touchend', handleTouchEnd as EventListener);
+      window.removeEventListener('scroll', uplocationScrollState);
+      window.removeEventListener('resize', uplocationScrollState);
     };
-  }, [scrollProgress, mediaFullyExpanded, touchStartY]);
+  }, []);
 
   useEffect(() => {
     const checkIfMobile = (): void => {
@@ -166,17 +81,21 @@ const ScrollExpandMedia = ({
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
+  const scrollHintOpacity = Math.max(1 - scrollProgress * 8, 0);
+  const showContent = scrollProgress >= 0.95;
+  const expansionDistance = '100vh';
 
   const firstWord = title ? title.split(' ')[0] : '';
   const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
 
   return (
-    <div
-      ref={sectionRef}
-      className='transition-colors duration-700 ease-in-out overflow-x-hidden'
-    >
-      <section className='relative flex flex-col items-center justify-start min-h-[100dvh]'>
-        <div className='relative w-full flex flex-col items-center min-h-[100dvh]'>
+    <>
+      <div
+        ref={sectionRef}
+        className='relative w-full transition-colors duration-700 ease-in-out'
+        style={{ height: `calc(100vh + ${expansionDistance})` }}
+      >
+        <div className='sticky top-0 h-screen w-full overflow-hidden'>
           <motion.div
             className='absolute inset-0 z-0 h-full'
             initial={{ opacity: 0 }}
@@ -198,10 +117,10 @@ const ScrollExpandMedia = ({
             <div className='absolute inset-0 bg-black/10' />
           </motion.div>
 
-          <div className='container mx-auto flex flex-col items-center justify-start relative z-10'>
-            <div className='flex flex-col items-center justify-center w-full h-[100dvh] relative'>
+          <div className='container relative z-10 mx-auto h-full'>
+            <div className='relative flex h-screen w-full flex-col items-center justify-center'>
               <div
-                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl'
+                className='absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl'
                 style={{
                   width: `${mediaWidth}px`,
                   height: `${mediaHeight}px`,
@@ -282,27 +201,35 @@ const ScrollExpandMedia = ({
                 )}
 
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
-                  {date && (
+                  {location && (
                     <p
-                      className='text-2xl text-blue-200'
+                      className='text-2xl text-white'
                       style={{ transform: `translateX(-${textTranslateX}vw)` }}
                     >
-                      {date}
+                      {location}
                     </p>
                   )}
                   {scrollToExpand && (
-                    <p
-                      className='text-blue-200 font-medium text-center'
-                      style={{ transform: `translateX(${textTranslateX}vw)` }}
+                    <motion.div
+                      className='flex flex-col items-center text-center text-white'
+                      style={{
+                        transform: `translateX(${textTranslateX}vw)`,
+                        opacity: scrollHintOpacity,
+                        pointerEvents: scrollHintOpacity === 0 ? 'none' : 'auto',
+                      }}
+                      animate={{ y: [0, 8, 0] }}
+                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                      aria-hidden={scrollHintOpacity === 0}
                     >
-                      {scrollToExpand}
-                    </p>
+                      <p className='font-medium'>{scrollToExpand}</p>
+                      <ChevronDown className='mt-2 h-5 w-5' aria-hidden='true' />
+                    </motion.div>
                   )}
                 </div>
               </div>
 
               <div
-                className={`flex items-center justify-center text-center gap-4 w-full relative z-10 transition-none flex-col ${
+                className={`relative z-10 flex w-full flex-col items-center justify-center gap-4 text-center transition-none ${
                   textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
                 }`}
               >
@@ -320,29 +247,23 @@ const ScrollExpandMedia = ({
                 </motion.h2>
               </div>
             </div>
-
-            <motion.section
-              className='flex flex-col w-full px-8 py-10 md:px-16 lg:py-20 relative min-h-screen justify-center'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {/* Aquatic elements */}
-              <WaterBubbles />
-              
-              <div className="relative z-10 w-full">
-                {children}
-              </div>
-
-              {/* Wave animation footer */}
-              <div className="absolute bottom-0 left-0 right-0 z-10 text-white/10 pointer-events-none">
-                <WaveAnimation className="w-full h-20 text-white/5" />
-              </div>
-            </motion.section>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <motion.section
+        className='relative z-10 flex min-h-screen w-full flex-col justify-center px-8 py-10 md:px-16 lg:py-20'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showContent ? 1 : 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <WaterBubbles />
+
+        <div className='relative z-10 w-full'>
+          {children}
+        </div>
+      </motion.section>
+    </>
   );
 };
 

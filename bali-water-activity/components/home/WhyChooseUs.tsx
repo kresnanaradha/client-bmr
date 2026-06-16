@@ -43,9 +43,9 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-gap relative overflow-hidden bg-gradient-to-b from-[#0F1419] via-[#1A3D8C] to-[#0F1419]">
+    <section className="section-gap relative overflow-hidden bg-linear-to-b from-[#0F1419] via-dark-navy to-[#0F1419]">
       {/* Subtle radial glow behind header */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-15 bg-[#0052CC] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 rounded-full blur-3xl opacity-15 bg-primary-blue pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
@@ -60,13 +60,13 @@ export default function WhyChooseUs() {
             <Reveal
               key={r.title}
               delay={(i % 3) * 0.08}
-              className="glass-card group relative p-6 border border-white/10 overflow-hidden cursor-pointer flex flex-col h-full hover:border-[#FFD700]/30 hover:bg-white/12 transition-all duration-300"
+              className="glass-card group relative p-6 border border-white/10 overflow-hidden flex flex-col h-full hover:border-golden/30 hover:bg-white/12 transition-all duration-300"
             >
               {/* Hover glow */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.05) 0%, transparent 70%)" }} />
 
-              <div className={`relative w-11 h-11 rounded-xl bg-gradient-to-br ${r.accent} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`relative w-11 h-11 rounded-xl bg-linear-to-br ${r.accent} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                 <r.icon size={20} className="text-white" />
               </div>
               <h3 className="text-white font-bold text-base mb-2 relative">{r.title}</h3>
