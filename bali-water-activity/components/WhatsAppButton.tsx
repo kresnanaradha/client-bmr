@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { X, MessageCircle } from "lucide-react";
 import { WA_NUMBER } from "@/lib/config";
+import { trackContactWhatsApp } from "@/lib/analytics";
 
 const WA_MESSAGE = "Hi Bali Water Activity! I'd like to get more information and book an activity.";
 
@@ -38,6 +39,7 @@ export default function WhatsAppButton() {
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackContactWhatsApp("floating_button")}
             className="block w-full bg-[#25D366] hover:bg-[#1ebe59] text-white text-center py-2.5 rounded-xl font-semibold text-sm transition-colors duration-200 cursor-pointer"
           >
             Start Chat

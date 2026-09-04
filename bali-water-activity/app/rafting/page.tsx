@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { raftingPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Shield, Users } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
 import Image from "next/image";
+import BookNowButton from "@/components/BookNowButton";
 
 export const metadata: Metadata = {
   title: "Bali Rafting – Ayung & Telaga Waja River Adventure",
@@ -119,14 +119,12 @@ export default function RaftingPage() {
                       <p className="text-xs text-[#475569]">Per person</p>
                       <p className="text-2xl font-bold text-[#1A2FB0]">{pkg.price}</p>
                     </div>
-                    <a
-                      href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book ${pkg.title}. How many slots are available?`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <BookNowButton
+                      activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "rafting" }}
+                      label="Book Now"
+                      iconSize={14}
                       className="gradient-sunset text-white font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer text-sm"
-                    >
-                      Book Now
-                    </a>
+                    />
                   </div>
                 </div>
               </div>

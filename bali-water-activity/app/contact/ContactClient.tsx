@@ -3,6 +3,7 @@ import { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { WA_NUMBER } from "@/lib/config";
+import { trackContactWhatsApp } from "@/lib/analytics";
 
 
 export default function ContactClient() {
@@ -12,6 +13,7 @@ export default function ContactClient() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Hi! I'm ${form.name} (${form.email}).\n\nSubject: ${form.subject}\n\nMessage: ${form.message}`;
+    trackContactWhatsApp("contact_form");
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
     setSent(true);
   };

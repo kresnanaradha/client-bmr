@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { labuanBajoPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, Star, Fish, Sailboat, Mountain, Waves } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
 import Image from "next/image";
+import BookNowButton from "@/components/BookNowButton";
 
 export const metadata: Metadata = {
   title: "Labuan Bajo Tour – Komodo Dragons, Pink Beach & Island Hopping",
@@ -140,14 +140,12 @@ export default function LabuanBajoPage() {
                       <p className="font-display text-2xl text-[#0C1A4A]">{pkg.price}</p>
                       <p className="text-xs text-[#94A3B8]">per person</p>
                     </div>
-                    <a
-                      href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I'm interested in the ${pkg.title}. Can you share availability and pricing?`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <BookNowButton
+                      activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "labuan-bajo" }}
+                      label="Book Now"
+                      iconSize={14}
                       className="flex items-center gap-2 gradient-sunset text-white font-bold px-6 py-3 rounded-full cursor-pointer hover:shadow-xl hover:shadow-orange-500/25 hover:scale-105 transition-all duration-200 text-sm"
-                    >
-                      Book Now
-                    </a>
+                    />
                   </div>
                 </div>
               </div>

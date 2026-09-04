@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle, Shield } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 const WA_MSG = "Hi Bali Water Activity! I'm ready to book an adventure. Can you help me choose the best activity?";
 
@@ -33,16 +33,15 @@ export default function CtaSection() {
               It&apos;s that simple. Our team is online and ready to help!
             </p>
 
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gradient-sunset text-white w-full sm:w-auto sm:min-w-[320px] max-w-full font-bold px-6 sm:px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-orange-500/35 hover:scale-105 transition-all duration-200 cursor-pointer text-sm sm:text-base text-center"
-            >
+            <WhatsAppLink
+          message={WA_MSG}
+          source="homepage_cta"
+          className="gradient-sunset text-white w-full sm:w-auto sm:min-w-[320px] max-w-full font-bold px-6 sm:px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-orange-500/35 hover:scale-105 transition-all duration-200 cursor-pointer text-sm sm:text-base text-center"
+        >
               <MessageCircle size={20} />
               Chat on WhatsApp Now
               <ArrowRight size={18} />
-            </a>
+            </WhatsAppLink>
 
             <p className="text-[#5f738d] text-xs mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
               <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> No upfront payment</span>

@@ -3,7 +3,7 @@ import {
   ArrowRight, Shield, Star, Users, MessageCircle,
   Banana, Ship, Zap, Wind, Waves, Anchor, MapPin, Mountain,
 } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 const WA_MSG = "Hi Bali Water Activity! I want to explore your activities and make a booking.";
 
@@ -64,16 +64,15 @@ export default function HeroContent() {
 
       {/* CTA buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 max-w-md mx-auto sm:max-w-none">
-        <a
-          href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
+          message={WA_MSG}
+          source="hero"
           className="gradient-sunset text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-orange-500/35 hover:scale-105 transition-all duration-200 cursor-pointer text-base"
         >
           <MessageCircle size={18} />
           Book via WhatsApp
           <ArrowRight size={16} />
-        </a>
+        </WhatsAppLink>
         <Link
           href="/watersport"
           className="flex cursor-pointer items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white/85 px-8 py-4 text-base font-semibold text-slate-800 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-slate-300 hover:bg-white"

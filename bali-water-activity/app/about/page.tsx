@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { Target, Eye, MessageCircle, Users, Shield, Award } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
 import Image from "next/image";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 export const metadata: Metadata = {
   title: "About Us – Bali Water Activity",
@@ -147,14 +147,13 @@ export default function AboutPage() {
           </div>
 
           <div className="text-center mt-10">
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gradient-sunset text-white font-semibold px-8 py-4 rounded-full inline-flex items-center gap-2 hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
-            >
+            <WhatsAppLink
+          message={WA_MSG}
+          source="about_cta"
+          className="gradient-sunset text-white font-semibold px-8 py-4 rounded-full inline-flex items-center gap-2 hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
+        >
               Start Booking Now
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </section>

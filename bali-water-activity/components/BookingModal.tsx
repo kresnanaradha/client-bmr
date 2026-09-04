@@ -42,6 +42,9 @@ export default function BookingModal({ open, onClose, activity }: BookingModalPr
   const formId = useId();
 
   const unitPrice = parsePrice(activity.price);
+  // Multi-day tours have no session slot; the time is a hotel pickup preference.
+  const isTour = activity.category !== undefined && activity.category !== "watersport" && activity.category !== "combo";
+  const timeLabel = isTour ? "Preferred pickup time" : "Preferred time";
   const total = bookingTotal([{ name: activity.title, pax, unitPrice }]);
 
   useEffect(() => {
@@ -233,7 +236,7 @@ export default function BookingModal({ open, onClose, activity }: BookingModalPr
             </div>
             <div>
               <label htmlFor={`${formId}-slot`} className={labelClass}>
-                Preferred time <span className="text-red-500">*</span>
+                {timeLabel} <span className="text-red-500">*</span>
               </label>
               <select
                 id={`${formId}-slot`}

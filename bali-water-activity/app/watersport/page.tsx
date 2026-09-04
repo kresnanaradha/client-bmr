@@ -3,8 +3,9 @@ import WatersportClient from "@/components/activities/WatersportClient";
 import SectionHeader from "@/components/SectionHeader";
 import { watersportActivities } from "@/lib/activities";
 import { Shield, Clock, MapPin, CheckCircle, MessageCircle, ArrowRight } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
 import Image from "next/image";
+import BookNowButton from "@/components/BookNowButton";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 export const metadata: Metadata = {
   title: "Watersport Bali – Banana Boat, Jet Ski, Parasailing & More",
@@ -75,6 +76,7 @@ export default function WatersportPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
+                slug: "fun-starter-pack",
                 name: "Fun Starter Pack",
                 activities: ["Banana Boat", "Donut Boat"],
                 price: "IDR 90,000",
@@ -83,6 +85,7 @@ export default function WatersportPage() {
                 highlight: false,
               },
               {
+                slug: "thrill-seeker-pack",
                 name: "Thrill Seeker Pack",
                 activities: ["Jet Ski", "Parasailing", "Fly Fish"],
                 price: "IDR 350,000",
@@ -91,6 +94,7 @@ export default function WatersportPage() {
                 highlight: true,
               },
               {
+                slug: "ultimate-pack",
                 name: "Ultimate Pack",
                 activities: ["Banana Boat", "Jet Ski", "Parasailing", "Fly Board"],
                 price: "IDR 600,000",
@@ -126,18 +130,16 @@ export default function WatersportPage() {
                   <p className={`text-sm line-through mt-0.5 ${pkg.highlight ? "text-white/40" : "text-[#94A3B8]"}`}>{pkg.original}</p>
                 </div>
 
-                <a
-                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book the ${pkg.name} combo package.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <BookNowButton
+                  activity={{ slug: pkg.slug, title: pkg.name, price: pkg.price, category: "combo" }}
+                  label="Book This Package"
+                  iconSize={14}
                   className={`flex items-center justify-center gap-2 w-full py-3 rounded-full font-bold text-sm cursor-pointer transition-all duration-200 ${
                     pkg.highlight
                       ? "bg-[#F5A623] hover:bg-[#E8701A] text-white shadow-lg shadow-orange-500/25"
                       : "gradient-sunset text-white hover:shadow-md"
                   }`}
-                >
-                  Book This Package
-                </a>
+                />
               </div>
             ))}
           </div>
@@ -154,16 +156,15 @@ export default function WatersportPage() {
           </span>
           <h2 className="font-display text-display-md text-white mb-4">We&apos;ll Find the Perfect Activity for You</h2>
           <p className="text-white/50 mb-8 leading-relaxed">Our team is ready to help you pick the perfect activity. Chat with us on WhatsApp!</p>
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 gradient-sunset text-white font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all duration-200 cursor-pointer"
-          >
+          <WhatsAppLink
+          message={WA_MSG}
+          source="watersport_cta"
+          className="inline-flex items-center gap-2.5 gradient-sunset text-white font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all duration-200 cursor-pointer"
+        >
             <MessageCircle size={18} />
             Chat on WhatsApp
             <ArrowRight size={16} />
-          </a>
+          </WhatsAppLink>
         </div>
       </section>
     </>

@@ -32,15 +32,22 @@ export function formatIDR(amount: number): string {
 }
 
 /**
- * Parses the display price strings used in lib/activities.ts ("Rp350K", "Rp1,500K")
- * into rupiah. Returns 0 when a price is not machine-readable so the estimate is
- * omitted rather than shown as a wrong number.
+ * Parses the display price strings used across the site into rupiah:
+ * "Rp350K" and "Rp1,500K" (thousands shorthand) plus "IDR 90,000" (full amount).
+ * Returns 0 when a price is not machine-readable so the estimate is omitted
+ * rather than shown as a wrong number.
  */
 export function parsePrice(price: string): number {
-  const match = price.match(/([\d,.]+)\s*K/i);
-  if (!match) return 0;
-  const base = Number(match[1].replace(/[,.]/g, ""));
-  return Number.isFinite(base) ? base * 1000 : 0;
+  const shorthand = price.match(/([\d,.]+)\s*K\b/i);
+  if (shorthand) {
+    const base = Number(shorthand[1].replace(/[,.]/g, ""));
+    return Number.isFinite(base) ? base * 1000 : 0;
+  }
+
+  const full = price.match(/([\d][\d,.]*)/);
+  if (!full) return 0;
+  const amount = Number(full[1].replace(/[,.]/g, ""));
+  return Number.isFinite(amount) ? amount : 0;
 }
 
 export function bookingTotal(items: BookingItem[]): number {

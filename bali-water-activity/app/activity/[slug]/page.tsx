@@ -232,8 +232,8 @@ export default async function ActivityDetailPage({ params }: Props) {
                   href={`/activity/${rel.slug}`}
                   className="shrink-0 w-52 bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover cursor-pointer"
                 >
-                  <div className="h-32 overflow-hidden">
-                    <img src={rel.image} alt={rel.title} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="relative h-32 overflow-hidden">
+                    <Image src={rel.image} alt={rel.title} fill sizes="208px" className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3">
                     <p className="font-semibold text-sm text-[#0C1A4A]">{rel.title}</p>
