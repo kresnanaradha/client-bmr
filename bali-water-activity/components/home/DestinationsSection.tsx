@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const destinations = [
   {
@@ -55,12 +56,13 @@ export default function DestinationsSection() {
               className={`relative overflow-hidden rounded-3xl group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 ${i === 0 ? "md:row-span-1" : ""}`}
             >
               <div className={`relative ${i < 2 ? "h-72" : "h-64"}`}>
-                <img
-                  src={d.image}
-                  alt={d.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+                <Image
+          src={d.image}
+          alt={d.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F1419]/90 via-[#0F1419]/30 to-transparent" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10">

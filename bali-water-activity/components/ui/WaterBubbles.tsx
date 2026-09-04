@@ -1,7 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
 interface Bubble {
   id: number;
   size: number;
@@ -10,23 +6,30 @@ interface Bubble {
   duration: number;
 }
 
+// Deterministic so the server and client markup match; Math.random() here would
+// either desync hydration or force a post-mount setState.
+function pseudoRandom(seed: number): number {
+  return (Math.sin(seed * 12.9898) * 43758.5453) % 1;
+}
+
+const BUBBLES: Bubble[] = Array.from({ length: 12 }, (_, i) => {
+  const a = Math.abs(pseudoRandom(i + 1));
+  const b = Math.abs(pseudoRandom(i + 100));
+  const c = Math.abs(pseudoRandom(i + 200));
+  const d = Math.abs(pseudoRandom(i + 300));
+  return {
+    id: i,
+    size: a * 30 + 10,
+    left: b * 100,
+    delay: c * 6,
+    duration: d * 6 + 6,
+  };
+});
+
 export default function WaterBubbles() {
-  const [bubbles, setBubbles] = useState<Bubble[]>([]);
-
-  useEffect(() => {
-    const newBubbles = Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 30 + 10,
-      left: Math.random() * 100,
-      delay: Math.random() * 6,
-      duration: Math.random() * 6 + 6,
-    }));
-    setBubbles(newBubbles);
-  }, []);
-
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none z-0">
-      {bubbles.map((bubble) => (
+      {BUBBLES.map((bubble) => (
         <div
           key={bubble.id}
           className="absolute rounded-full bg-gradient-to-br from-white to-blue-200 animate-float-bubble"

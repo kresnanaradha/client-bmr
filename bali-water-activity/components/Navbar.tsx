@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown, Waves, Ship, Mountain, MapPin, ArrowUpRight } from "lucide-react";
+import { waLink } from "@/lib/config";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -189,7 +190,7 @@ export default function Navbar() {
             )
           )}
           <a
-            href="https://wa.me/628XXXXXXXXXX?text=Hi%2C%20I%20want%20to%20book%20an%20activity"
+            href={waLink("Hi, I want to book an activity")}
             target="_blank"
             rel="noopener noreferrer"
             className="gradient-sunset text-white text-center py-3.5 rounded-2xl font-semibold mt-3 cursor-pointer flex items-center justify-center gap-2 hover:shadow-lg"

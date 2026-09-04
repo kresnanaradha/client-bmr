@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { raftingPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Shield, Users } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Bali Rafting – Ayung & Telaga Waja River Adventure",
@@ -9,16 +11,18 @@ export const metadata: Metadata = {
     "Experience thrilling white water rafting in Bali on the Ayung and Telaga Waja rivers. All skill levels welcome. Includes lunch, insurance & guide. Book via WhatsApp!",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function RaftingPage() {
   return (
     <>
       {/* Hero */}
       <section className="relative h-80 md:h-[28rem] flex items-end overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1527004013197-933b2ba98694?w=1920&q=85"
           alt="Bali Rafting"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B5E]/90 to-[#2196C4]/50" />
@@ -42,7 +46,13 @@ export default function RaftingPage() {
             {raftingPackages.map((pkg, i) => (
               <div key={pkg.slug} className="bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100">
                 <div className="relative h-56 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" loading="lazy" />
+                  <Image
+          src={pkg.image}
+          alt={pkg.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover"
+        />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   {i === 1 && (
                     <span className="absolute top-4 left-4 gradient-sunset text-white text-xs font-bold px-3 py-1 rounded-full">

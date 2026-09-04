@@ -3,6 +3,8 @@ import WatersportClient from "@/components/activities/WatersportClient";
 import SectionHeader from "@/components/SectionHeader";
 import { watersportActivities } from "@/lib/activities";
 import { Shield, Clock, MapPin, CheckCircle, MessageCircle, ArrowRight } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Watersport Bali – Banana Boat, Jet Ski, Parasailing & More",
@@ -10,7 +12,6 @@ export const metadata: Metadata = {
     "Book the best watersport activities in Bali: Banana Boat, Jet Ski, Parasailing, Fly Board, Sea Walker & more at Tanjung Benoa. Safe, fun, pay on arrival.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi! I want to book a watersport package in Bali. Can you give me more information?";
 
 export default function WatersportPage() {
@@ -18,9 +19,12 @@ export default function WatersportPage() {
     <>
       {/* Hero */}
       <section className="relative h-[65vh] min-h-[420px] flex items-end overflow-hidden">
-        <img
+        <Image
           src="/assets/watersport-hero.jpg"
           alt="Bali Watersport"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F1419] via-[#0F1419]/30 to-transparent" />

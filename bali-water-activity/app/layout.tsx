@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
+import { GTM_ID, SITE_URL } from "@/lib/config";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://baliwateractivity.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Bali Water Activity – Watersport, Rafting & Tour Packages",
     template: "%s | Bali Water Activity",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://baliwateractivity.com",
+    url: SITE_URL,
     siteName: "Bali Water Activity",
     title: "Bali Water Activity – Premium Watersport & Tours in Bali",
     description:
@@ -64,10 +65,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
-      <head>
-        <GoogleTagManager gtmId="GTM-XXXXXXX" />
-      </head>
       <body className={nunito.className}>
+        {GTM_ID ? <GoogleTagManager gtmId={GTM_ID} /> : null}
         <SplashScreen />
         <LenisProvider />
         <Navbar />

@@ -1,4 +1,8 @@
 "use client";
+
+// NOT RENDERED. Every figure below is placeholder data invented during the draft
+// build. Re-enable in app/page.tsx only after real numbers are supplied — visitor
+// and country splits can come from GA4 once NEXT_PUBLIC_GTM_ID is live.
 import { useEffect, useRef, useState } from "react";
 import { AU, EU, ID, SG } from "country-flag-icons/react/3x2";
 import type { FlagComponent } from "country-flag-icons/react/3x2";

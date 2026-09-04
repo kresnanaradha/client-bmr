@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, Users, MessageCircle, ArrowUpRight } from "lucide-react";
+import { Clock, Users, ArrowUpRight } from "lucide-react";
+import BookNowButton from "./BookNowButton";
 
 interface ActivityCardProps {
   title: string;
@@ -13,13 +14,10 @@ interface ActivityCardProps {
   badge?: string;
 }
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function ActivityCard({
   title, description, price, duration, ageRange, image, slug,
 }: ActivityCardProps) {
-  const waMsg = `Hi! I want to book ${title}. Please send me more information.`;
-
   return (
     <div className="glass-card group relative overflow-hidden flex flex-col h-full">
       {/* Full-bleed image with cinematic overlay */}
@@ -67,15 +65,12 @@ export default function ActivityCard({
             >
               <ArrowUpRight size={14} />
             </Link>
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <BookNowButton
+              activity={{ slug, title, price, category: "watersport" }}
+              label="Book"
+              iconSize={12}
               className="flex items-center gap-1.5 gradient-sunset text-white text-[11px] font-bold px-4 py-2.5 rounded-full hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200 cursor-pointer"
-            >
-              <MessageCircle size={12} />
-              Book
-            </a>
+            />
           </div>
         </div>
       </div>

@@ -3,8 +3,8 @@ import {
   ArrowRight, Shield, Star, Users, MessageCircle,
   Banana, Ship, Zap, Wind, Waves, Anchor, MapPin, Mountain,
 } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi Bali Water Activity! I want to explore your activities and make a booking.";
 
 const activities = [

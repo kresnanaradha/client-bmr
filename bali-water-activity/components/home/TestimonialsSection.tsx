@@ -1,3 +1,6 @@
+// NOT RENDERED. Every figure below is placeholder data invented during the draft
+// build. Re-enable in app/page.tsx only after real numbers are supplied — visitor
+// and country splits can come from GA4 once NEXT_PUBLIC_GTM_ID is live.
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import { Star } from "lucide-react";

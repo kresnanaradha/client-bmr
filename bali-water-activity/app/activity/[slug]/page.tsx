@@ -6,8 +6,9 @@ import {
   Heart, ThumbsUp, ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
-
-const WA_NUMBER = "628XXXXXXXXXX";
+import Image from "next/image";
+import BookNowButton from "@/components/BookNowButton";
+import ViewItemTracker from "@/components/ViewItemTracker";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,15 +33,24 @@ export default async function ActivityDetailPage({ params }: Props) {
   const activity = watersportActivities.find((a) => a.slug === slug);
   if (!activity) notFound();
 
-  const waMsg = `Hi! I want to book ${activity.title} in Bali. Can you confirm availability and provide details?`;
+  const bookingActivity = {
+    slug: activity.slug,
+    title: activity.title,
+    price: activity.price,
+    category: activity.category,
+  };
 
   return (
     <>
+      <ViewItemTracker activity={bookingActivity} />
       {/* Hero */}
       <section className="relative h-72 md:h-96 flex items-end overflow-hidden">
-        <img
+        <Image
           src={activity.image}
           alt={activity.title}
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B5E]/85 to-[#2196C4]/40" />
@@ -67,14 +77,12 @@ export default async function ActivityDetailPage({ params }: Props) {
             <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#1A2FB0]" /> Insured</span>
             <span className="font-bold text-[#1A2FB0]">{activity.price}</span>
           </div>
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gradient-sunset text-white font-semibold px-6 py-2.5 rounded-full text-sm cursor-pointer hover:shadow-lg transition-all duration-200"
-          >
-            Book via WhatsApp
-          </a>
+          <BookNowButton
+            activity={bookingActivity}
+            label="Book via WhatsApp"
+            iconSize={14}
+            className="flex items-center gap-2 gradient-sunset text-white font-semibold px-6 py-2.5 rounded-full text-sm cursor-pointer hover:shadow-lg transition-all duration-200"
+          />
         </div>
       </div>
 
@@ -175,15 +183,12 @@ export default async function ActivityDetailPage({ params }: Props) {
               <p className="text-3xl font-bold text-[#1A2FB0] mb-4">{activity.price}</p>
               <p className="text-sm text-[#475569] mb-5">per person · pay on arrival</p>
 
-              <a
-                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full gradient-sunset text-white font-semibold py-3.5 rounded-full text-center cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-200 mb-3"
-              >
-                Book via WhatsApp
-              </a>
-              <p className="text-xs text-[#475569] text-center">No upfront payment · Instant confirmation</p>
+              <BookNowButton
+                activity={bookingActivity}
+                label="Book via WhatsApp"
+                className="flex w-full items-center justify-center gap-2 gradient-sunset text-white font-semibold py-3.5 rounded-full text-center cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-200 mb-3"
+              />
+              <p className="text-xs text-[#475569] text-center">No upfront payment · we confirm on WhatsApp</p>
 
               {/* Includes */}
               <div className="mt-5 pt-5 border-t border-gray-100">

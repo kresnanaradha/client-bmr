@@ -2,8 +2,8 @@
 import { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function ContactClient() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });

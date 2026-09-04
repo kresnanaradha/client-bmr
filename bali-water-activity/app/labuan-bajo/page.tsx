@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { labuanBajoPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, Star, Fish, Sailboat, Mountain, Waves } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Labuan Bajo Tour – Komodo Dragons, Pink Beach & Island Hopping",
@@ -9,7 +11,6 @@ export const metadata: Metadata = {
     "Book Labuan Bajo tours from Bali: Komodo National Park, Komodo Dragons, Pink Beach, Padar Island & snorkeling. 2D1N and 3D2N packages available.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 const features = [
   { icon: Mountain, label: "Komodo Dragons", desc: "World's largest lizard" },
@@ -23,9 +24,12 @@ export default function LabuanBajoPage() {
     <>
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85"
           alt="Labuan Bajo"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/40 to-transparent" />
@@ -74,7 +78,13 @@ export default function LabuanBajoPage() {
             {labuanBajoPackages.map((pkg, i) => (
               <div key={pkg.slug} className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E2E8F0] hover:shadow-xl hover:shadow-blue-50/60 transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <Image
+          src={pkg.image}
+          alt={pkg.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/70 to-transparent" />
                   {i === 1 && (
                     <span className="absolute top-4 left-4 bg-[#F5A623] text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full flex items-center gap-1">
@@ -151,15 +161,33 @@ export default function LabuanBajoPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Labuan Bajo in Photos" />
           <div className="grid grid-cols-3 gap-3 h-[400px]">
-            <div className="col-span-2 rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Labuan Bajo 1" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div className="relative col-span-2 rounded-2xl overflow-hidden">
+              <Image
+          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80"
+          alt="Labuan Bajo 1"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
             </div>
             <div className="flex flex-col gap-3">
-              <div className="flex-1 rounded-2xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=600&q=80" alt="Labuan Bajo 2" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div className="relative flex-1 rounded-2xl overflow-hidden">
+                <Image
+          src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=600&q=80"
+          alt="Labuan Bajo 2"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
               </div>
-              <div className="flex-1 rounded-2xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Labuan Bajo 3" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div className="relative flex-1 rounded-2xl overflow-hidden">
+                <Image
+          src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80"
+          alt="Labuan Bajo 3"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import { MetadataRoute } from "next";
 import { watersportActivities, raftingPackages, nusaPenidaPackages, labuanBajoPackages } from "@/lib/activities";
 
-const BASE_URL = "https://baliwateractivity.com";
+import { SITE_URL } from "@/lib/config";
+
+const BASE_URL = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -20,5 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...activityRoutes];
+  // Package pages have no detail routes yet; surface them via their category page
+  // anchors so the entries below stay valid until dedicated routes exist.
+  const packageRoutes = [
+    ...raftingPackages.map((p) => `${BASE_URL}/rafting#${p.slug}`),
+    ...nusaPenidaPackages.map((p) => `${BASE_URL}/nusa-penida#${p.slug}`),
+    ...labuanBajoPackages.map((p) => `${BASE_URL}/labuan-bajo#${p.slug}`),
+  ].map((url) => ({ url, changeFrequency: "monthly" as const, priority: 0.7 }));
+
+  return [...staticRoutes, ...activityRoutes, ...packageRoutes];
 }

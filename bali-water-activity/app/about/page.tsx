@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { Target, Eye, MessageCircle, Users, Shield, Award } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About Us – Bali Water Activity",
@@ -8,7 +10,6 @@ export const metadata: Metadata = {
     "Learn about Bali Water Activity — your trusted booking platform for water activities, rafting, and island tours in Bali and beyond.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi! I'd like to learn more about Bali Water Activity and book an activity.";
 
 const steps = [
@@ -43,9 +44,12 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section className="relative h-64 md:h-80 flex items-end overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=85"
           alt="About Bali Water Activity"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 gradient-hero opacity-80" />

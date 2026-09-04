@@ -1,6 +1,6 @@
 import { ArrowRight, MessageCircle, Shield } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi Bali Water Activity! I'm ready to book an adventure. Can you help me choose the best activity?";
 
 export default function CtaSection() {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { nusaPenidaPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Waves, Camera } from "lucide-react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Nusa Penida Tour – Kelingking Beach, Angel's Billabong & Manta Ray",
@@ -25,9 +26,12 @@ export default function NusaPenidaPage() {
     <>
       {/* Hero — full viewport cinematic */}
       <section className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=1920&q=85"
           alt="Nusa Penida"
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/40 to-transparent" />
@@ -84,7 +88,7 @@ export default function NusaPenidaPage() {
             {nusaPenidaPackages.map((pkg, i) => (
               <div key={pkg.slug} className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E2E8F0] flex flex-col hover:shadow-xl hover:shadow-blue-50/60 transition-all duration-300">
                 <div className="relative h-52 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <Image src={pkg.image} alt={pkg.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/70 to-transparent" />
                   {i === 0 && (
                     <span className="absolute top-4 left-4 gradient-sunset text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
@@ -166,8 +170,8 @@ export default function NusaPenidaPage() {
               "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=600&q=80",
               "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
             ].map((src, i) => (
-              <div key={i} className={`rounded-2xl overflow-hidden ${i === 0 ? "row-span-2 h-full min-h-[260px]" : "h-40 md:h-[126px]"}`}>
-                <img src={src} alt={`Nusa Penida ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div key={i} className={`relative rounded-2xl overflow-hidden ${i === 0 ? "row-span-2 h-full min-h-[260px]" : "h-40 md:h-[126px]"}`}>
+                <Image src={src} alt={`Nusa Penida ${i + 1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
               </div>
             ))}
           </div>
