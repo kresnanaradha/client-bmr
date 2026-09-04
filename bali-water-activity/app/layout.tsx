@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
+import SiteChrome from "@/components/SiteChrome";
 import { GTM_ID, SITE_URL } from "@/lib/config";
 
 const nunito = Nunito({
@@ -67,12 +68,16 @@ export default function RootLayout({
     <html lang="en" className={`${nunito.variable} ${pacifico.variable}`}>
       <body className={nunito.className}>
         {GTM_ID ? <GoogleTagManager gtmId={GTM_ID} /> : null}
-        <SplashScreen />
-        <LenisProvider />
-        <Navbar />
+        <SiteChrome>
+          <SplashScreen />
+          <LenisProvider />
+          <Navbar />
+        </SiteChrome>
         <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <SiteChrome>
+          <Footer />
+          <WhatsAppButton />
+        </SiteChrome>
       </body>
     </html>
   );
