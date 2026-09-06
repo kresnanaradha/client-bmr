@@ -1,13 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import { X, MessageCircle } from "lucide-react";
-import { WA_NUMBER } from "@/lib/config";
+import { BUSINESS, WA_NUMBER, isWithinOpeningHours } from "@/lib/config";
 import { trackContactWhatsApp } from "@/lib/analytics";
 
 const WA_MESSAGE = "Hi Bali Water Activity! I'd like to get more information and book an activity.";
 
 export default function WhatsAppButton() {
   const [open, setOpen] = useState(false);
+
+  // Server renders null (neutral label); the client resolves the real state on
+  // hydration and re-checks each minute so the badge stays accurate.
+  const subscribe = useCallback((onChange: () => void) => {
+    const id = window.setInterval(onChange, 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const isOpenNow = useSyncExternalStore(
+    subscribe,
+    () => isWithinOpeningHours(),
+    () => null
+  );
 
   const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
 
@@ -22,9 +35,13 @@ export default function WhatsAppButton() {
               </div>
               <div>
                 <p className="font-semibold text-sm text-[#0C1A4A]">Bali Water Activity</p>
-                <p className="text-xs text-green-500 flex items-center gap-1">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-                  Online now
+                <p className={`text-xs flex items-center gap-1 ${isOpenNow ? "text-green-500" : "text-slate-400"}`}>
+                  <span className={`inline-block w-1.5 h-1.5 rounded-full ${isOpenNow ? "bg-green-500" : "bg-slate-300"}`} />
+                  {isOpenNow === null
+                    ? `${BUSINESS.openHour}–${BUSINESS.closeHour} ${BUSINESS.timezone}`
+                    : isOpenNow
+                      ? "Open now"
+                      : `Closed · opens ${BUSINESS.openHour} ${BUSINESS.timezone}`}
                 </p>
               </div>
             </div>
@@ -33,7 +50,7 @@ export default function WhatsAppButton() {
             </button>
           </div>
           <p className="text-sm text-[#475569] bg-[#F0F9FF] rounded-xl p-3 mb-3">
-            Hi there! Ready to book your Bali adventure? Chat with us on WhatsApp!
+            Hi there! Send us a message and we’ll confirm your booking during opening hours.
           </p>
           <a
             href={waUrl}

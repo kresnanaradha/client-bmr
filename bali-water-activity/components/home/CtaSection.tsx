@@ -45,7 +45,7 @@ export default function CtaSection() {
 
             <p className="text-[#5f738d] text-xs mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
               <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> No upfront payment</span>
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> Instant confirmation</span>
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> Confirmed on WhatsApp</span>
               <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> Free cancellation</span>
             </p>
           </div>

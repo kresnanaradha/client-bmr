@@ -17,12 +17,15 @@ const BUBBLES: Bubble[] = Array.from({ length: 12 }, (_, i) => {
   const b = Math.abs(pseudoRandom(i + 100));
   const c = Math.abs(pseudoRandom(i + 200));
   const d = Math.abs(pseudoRandom(i + 300));
+  // Rounded: React serializes inline styles to limited precision on the server,
+  // so full-precision floats hydrate as a mismatch.
+  const round = (n: number) => Math.round(n * 100) / 100;
   return {
     id: i,
-    size: a * 30 + 10,
-    left: b * 100,
-    delay: c * 6,
-    duration: d * 6 + 6,
+    size: round(a * 30 + 10),
+    left: round(b * 100),
+    delay: round(c * 6),
+    duration: round(d * 6 + 6),
   };
 });
 

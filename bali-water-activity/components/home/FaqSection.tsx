@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   {
     q: "How do I book an activity?",
-    a: "Simply click the 'Book Now' or 'Book via WhatsApp' button on any activity page. You'll be redirected to WhatsApp where our team will confirm your booking within minutes. No complicated forms, no upfront payment.",
+    a: "Click 'Book Now' on any activity, fill in your name, date and number of guests, then send it to us on WhatsApp. Our team checks availability and replies to confirm your slot and the final price. We answer during opening hours, 09:00-16:00 WITA. No upfront payment.",
   },
   {
     q: "When do I pay?",

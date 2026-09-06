@@ -104,7 +104,7 @@ export default function HeroContent() {
       <p className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-600">
         <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> No upfront payment</span>
         <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Pay on arrival</span>
-        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Instant confirmation</span>
+        <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Confirmed on WhatsApp</span>
         <span className="flex items-center gap-1.5"><Shield size={13} className="text-green-400" /> Insurance included</span>
       </p>
     </div>

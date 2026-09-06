@@ -11,8 +11,8 @@ const reasons = [
   },
   {
     icon: MessageCircle,
-    title: "Instant WhatsApp Booking",
-    desc: "No complicated forms. Just message us on WhatsApp and your booking is confirmed within minutes.",
+    title: "Simple WhatsApp Booking",
+    desc: "Fill in a short form, send it to us on WhatsApp, and we reply to confirm availability and the final price.",
     accent: "from-green-500 to-emerald-400",
   },
   {

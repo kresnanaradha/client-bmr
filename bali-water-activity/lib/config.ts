@@ -48,3 +48,14 @@ export const AGE_LIMITS = {
 export function waLink(message: string): string {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Whether the operator is inside opening hours right now. Bali is UTC+8 (WITA)
+ * with no daylight saving, so the offset is a constant.
+ */
+export function isWithinOpeningHours(now: Date = new Date()): boolean {
+  const witaHour = (now.getUTCHours() + 8) % 24;
+  const open = Number(BUSINESS.openHour.split(":")[0]);
+  const close = Number(BUSINESS.closeHour.split(":")[0]);
+  return witaHour >= open && witaHour < close;
+}

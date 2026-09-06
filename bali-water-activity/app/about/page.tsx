@@ -27,8 +27,8 @@ const steps = [
   },
   {
     step: "3",
-    title: "Get Instant Confirmation",
-    desc: "Our team responds within minutes to confirm availability and provide all details.",
+    title: "Talk to a Real Person",
+    desc: "Our team confirms your slot, the final price and pickup details personally on WhatsApp during opening hours.",
     icon: Shield,
   },
   {
