@@ -8,7 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
 import SiteChrome from "@/components/SiteChrome";
-import { GTM_ID, SITE_URL } from "@/lib/config";
+import { ALLOW_INDEXING, GTM_ID, SITE_URL } from "@/lib/config";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Bali Water Activity – Watersport & Tours",
     description: "Premium water activities in Bali. Book via WhatsApp!",
   },
-  robots: { index: true, follow: true },
+  robots: { index: ALLOW_INDEXING, follow: ALLOW_INDEXING },
 };
 
 export default function RootLayout({

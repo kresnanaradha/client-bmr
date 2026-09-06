@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { isWithinOpeningHours, waLink } from "./config";
+import { ALLOW_INDEXING, isWithinOpeningHours, waLink } from "./config";
 
 // Bali is UTC+8 year round, so 09:00-16:00 WITA is 01:00-08:00 UTC.
 describe("isWithinOpeningHours", () => {
@@ -34,5 +34,14 @@ describe("waLink", () => {
 
   test("escapes characters that would break the query string", () => {
     expect(waLink("a&b=c")).toContain("a%26b%3Dc");
+  });
+});
+
+describe("ALLOW_INDEXING", () => {
+  // Guards against a preview deployment quietly becoming indexable: the flag
+  // must stay opt-in, so an unset environment variable means "do not index".
+  test("defaults to false when the environment variable is unset", () => {
+    expect(process.env.NEXT_PUBLIC_ALLOW_INDEXING).toBeUndefined();
+    expect(ALLOW_INDEXING).toBe(false);
   });
 });

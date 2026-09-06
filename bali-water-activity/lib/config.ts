@@ -7,6 +7,13 @@ export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 
 export const IS_WA_CONFIGURED = /^\d{8,15}$/.test(WA_NUMBER);
 
+/**
+ * Search engines are kept out unless explicitly allowed. Preview and staging
+ * deployments carry unconfirmed prices under a real business name, so indexing
+ * them would publish figures the operator has not approved.
+ */
+export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+
 export const BUSINESS = {
   name: "Bali Water Activity",
   openHour: "09:00",
