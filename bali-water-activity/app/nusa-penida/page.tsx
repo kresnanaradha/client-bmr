@@ -4,6 +4,7 @@ import { nusaPenidaPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Waves, Camera } from "lucide-react";
 import Image from "next/image";
 import BookNowButton from "@/components/BookNowButton";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Nusa Penida Tour – Kelingking Beach, Angel's Billabong & Manta Ray",
@@ -143,12 +144,20 @@ export default function NusaPenidaPage() {
                       <p className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Per person</p>
                       <p className="font-display text-xl text-[#0C1A4A]">{pkg.price}</p>
                     </div>
-                    <BookNowButton
-                      activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "nusa-penida" }}
-                      label="Book Now"
-                      iconSize={14}
-                      className="flex items-center gap-1.5 gradient-sunset text-white font-bold px-5 py-2.5 rounded-full cursor-pointer hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200 text-sm"
-                    />
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/tour/${pkg.slug}`}
+                        className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+                      >
+                        Details
+                      </Link>
+                      <BookNowButton
+                        activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "nusa-penida" }}
+                        label="Book Now"
+                        iconSize={14}
+                        className="flex items-center gap-1.5 gradient-sunset text-white font-bold px-5 py-2.5 rounded-full cursor-pointer hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200 text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

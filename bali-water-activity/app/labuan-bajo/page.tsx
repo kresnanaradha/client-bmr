@@ -4,6 +4,7 @@ import { labuanBajoPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, Star, Fish, Sailboat, Mountain, Waves } from "lucide-react";
 import Image from "next/image";
 import BookNowButton from "@/components/BookNowButton";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Labuan Bajo Tour – Komodo Dragons, Pink Beach & Island Hopping",
@@ -140,12 +141,20 @@ export default function LabuanBajoPage() {
                       <p className="font-display text-2xl text-[#0C1A4A]">{pkg.price}</p>
                       <p className="text-xs text-[#94A3B8]">per person</p>
                     </div>
-                    <BookNowButton
-                      activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "labuan-bajo" }}
-                      label="Book Now"
-                      iconSize={14}
-                      className="flex items-center gap-2 gradient-sunset text-white font-bold px-6 py-3 rounded-full cursor-pointer hover:shadow-xl hover:shadow-orange-500/25 hover:scale-105 transition-all duration-200 text-sm"
-                    />
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/tour/${pkg.slug}`}
+                        className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+                      >
+                        Details
+                      </Link>
+                      <BookNowButton
+                        activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "labuan-bajo" }}
+                        label="Book Now"
+                        iconSize={14}
+                        className="flex items-center gap-2 gradient-sunset text-white font-bold px-6 py-3 rounded-full cursor-pointer hover:shadow-xl hover:shadow-orange-500/25 hover:scale-105 transition-all duration-200 text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

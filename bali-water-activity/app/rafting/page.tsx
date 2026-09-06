@@ -4,6 +4,7 @@ import { raftingPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Shield, Users } from "lucide-react";
 import Image from "next/image";
 import BookNowButton from "@/components/BookNowButton";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Bali Rafting – Ayung & Telaga Waja River Adventure",
@@ -119,12 +120,20 @@ export default function RaftingPage() {
                       <p className="text-xs text-[#475569]">Per person</p>
                       <p className="text-2xl font-bold text-[#1A2FB0]">{pkg.price}</p>
                     </div>
-                    <BookNowButton
-                      activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "rafting" }}
-                      label="Book Now"
-                      iconSize={14}
-                      className="gradient-sunset text-white font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer text-sm"
-                    />
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/tour/${pkg.slug}`}
+                        className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+                      >
+                        Details
+                      </Link>
+                      <BookNowButton
+                        activity={{ slug: pkg.slug, title: pkg.title, price: pkg.price, category: "rafting" }}
+                        label="Book Now"
+                        iconSize={14}
+                        className="gradient-sunset text-white font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

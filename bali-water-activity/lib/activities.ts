@@ -224,7 +224,7 @@ export const raftingPackages = [
     duration: "2 hours on water",
     level: "Beginner–Intermediate",
     distance: "9 km",
-    image: "/activities/rafting.webp",
+    image: "https://images.unsplash.com/photo-1527004013197-933b2ba98694?w=800&q=80",
     itinerary: ["Pick-up from hotel (optional)", "Equipment fitting & safety briefing", "2-hour rafting on Ayung River", "Shower & changing facilities", "Buffet lunch at riverside restaurant", "Hotel transfer (optional)"],
     includes: ["Rafting equipment", "Life jacket", "Helmet", "Certified guide", "Insurance", "Buffet lunch", "Shower facilities"],
     excludes: ["Hotel pick-up/drop-off (extra cost)", "Personal items", "Tips"],
