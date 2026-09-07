@@ -25,14 +25,14 @@ const countries = [
 function CountryBadge({ code, country, Flag }: { code: string; country: string; Flag?: FlagComponent }) {
   if (Flag) {
     return (
-      <span aria-label={`${country} flag`} className="mx-auto mb-2 flex  items-center justify-center overflow-hidden">
-        <Flag className="h-auto w-10" />
+      <span aria-label={`${country} flag`} className="mx-auto mb-3 flex w-10 items-center justify-center overflow-hidden rounded-[3px] ring-1 ring-white/15">
+        <Flag className="h-auto w-full" />
       </span>
     );
   }
 
   return (
-    <span className="mx-auto mb-2 flex h-7 min-w-10 items-center justify-center px-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#7b8da6]">
+    <span className="mx-auto mb-3 flex h-[27px] w-10 items-center justify-center rounded-[3px] bg-white/[0.06] text-[10px] font-bold uppercase tracking-[0.14em] text-[#8FB0C2] ring-1 ring-white/15">
       {code}
     </span>
   );
@@ -71,48 +71,49 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function StatsSection() {
   return (
-    <section className="section-gap bg-linear-to-b from-[#eef6ff] to-[#F8FAFC]">
+    <section className="section-gap relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Our Numbers"
           title="Trusted by Thousands of Travelers"
           subtitle="Real results from real adventurers — from Australia to Europe to Southeast Asia."
+          light
         />
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+        {/* Numbers read as one band split by hairlines, not six floating boxes */}
+        <div className="aq-panel mb-4 grid grid-cols-2 gap-px overflow-hidden bg-white/[0.07] md:grid-cols-3 lg:grid-cols-6">
           {stats.map((s, i) => (
             <Reveal
               key={s.label}
               delay={(i % 6) * 0.06}
-              className="glass-card hover:bg-white/40 hover:border-golden/30 rounded-2xl p-5 text-center border border-gray-200/50 shadow-md transition-all duration-300"
+              className="bg-[#072334] px-5 py-9 text-center transition-colors duration-300 hover:bg-[#0A3247]"
             >
-              <p className="font-display text-3xl text-[#0F1419] mb-1 font-bold">
+              <p className="aq-accent-text font-display text-[34px] font-semibold leading-none">
                 <Counter value={s.value} suffix={s.suffix} />
               </p>
-              <p className="text-[#0F1419] font-bold text-sm">{s.label}</p>
-              <p className="text-[#64748B] text-xs mt-0.5">{s.sublabel}</p>
+              <p className="mt-3 text-[13px] font-semibold text-[#EAF4F8]">{s.label}</p>
+              <p className="mt-1 text-[11px] text-[#6E90A4]">{s.sublabel}</p>
             </Reveal>
           ))}
         </div>
 
         {/* Country distribution */}
-        <div className="glass-card p-6 md:p-8 border border-[#d7e6f7] relative overflow-hidden bg-linear-to-b from-white to-[#eaf4ff] text-[#10233f] rounded-3xl shadow-xl shadow-sky-100/80">
-          <p className="text-[#5f738d] text-[10px] font-bold uppercase tracking-[0.16em] text-center mb-6">
+        <div className="aq-panel p-7 md:p-10">
+          <p className="mb-8 text-center text-[10px] font-bold uppercase tracking-[0.22em] text-[#6E90A4]">
             Visitors by Country
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 relative z-10">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
             {countries.map((c) => (
               <div key={c.country} className="text-center">
                 <CountryBadge code={c.code} country={c.country} Flag={c.Flag} />
-                <p className="text-[#10233f] text-sm font-semibold mb-2 mt-4">{c.country}</p>
-                <div className="w-full bg-[#dbe8f5] rounded-full h-1.5 overflow-hidden">
+                <p className="mb-3 text-[13px] font-semibold text-[#EAF4F8]">{c.country}</p>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
                   <div
-                    className="h-full rounded-full bg-linear-to-r from-golden to-orange"
+                    className="h-full rounded-full bg-gradient-to-r from-[#3ED6E0] to-[#F9913E]"
                     style={{ width: `${c.pct}%` }}
                   />
                 </div>
-                <p className="text-[#c67a00] text-sm font-bold mt-1.5">{c.pct}%</p>
+                <p className="mt-2 text-[13px] font-bold text-[#FFC48A]">{c.pct}%</p>
               </div>
             ))}
           </div>

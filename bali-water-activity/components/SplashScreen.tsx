@@ -57,14 +57,17 @@ export default function SplashScreen() {
     <div
       className={[
         "fixed inset-0 z-100 flex items-center justify-center overflow-hidden",
-        "bg-[linear-gradient(160deg,#E56E42_0%,#0052CC_100%)]",
+        "ocean-page",
         "transition-opacity duration-700 ease-out",
         isClosing ? "pointer-events-none opacity-0" : "opacity-100",
       ].join(" ")}
       aria-hidden="true"
     >
-      <div className="animate-fade-in-up relative grid justify-items-center gap-6 px-8 py-8 text-center text-white">
-        <div className="w-60">
+      {/* Warm light rising from the deep — the same note the page ends on */}
+      <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[420px] w-[760px] max-w-[140%] -translate-x-1/2 rounded-full bg-[#F9913E]/14 blur-[110px]" />
+
+      <div className="animate-fade-in-up relative grid justify-items-center gap-7 px-8 py-8 text-center">
+        <div className="w-52">
           <Image
             src="/logo.png"
             alt="Bali Water Activity"
@@ -74,17 +77,21 @@ export default function SplashScreen() {
             className="h-auto w-full object-contain"
           />
         </div>
-        <p className="m-0 font-display text-[clamp(2rem,4vw,3.25rem)] leading-none">Bali Water Activity</p>
-        <p className="m-0 max-w-md text-[clamp(0.95rem,2vw,1.1rem)] tracking-[0.08em] text-white/78">Watersport, rafting, and island escapes</p>
+
+        <p className="aq-display m-0 text-[clamp(2rem,4vw,3.25rem)] text-[#EAF4F8]">Bali Water Activity</p>
+        <p className="m-0 max-w-md text-[clamp(0.9rem,2vw,1.05rem)] tracking-[0.06em] text-[#8FB0C2]">
+          Watersport, rafting, and island escapes
+        </p>
+
         <div
-          className="mt-3 h-2 w-[min(22rem,78vw)] overflow-hidden rounded-full bg-white/16 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
+          className="mt-2 h-[3px] w-[min(20rem,72vw)] overflow-hidden rounded-full bg-white/10"
           role="progressbar"
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
         >
           <div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#ffd700_0%,#ff9500_35%,#7ce7f0_100%)] shadow-[0_0_24px_rgba(255,215,0,0.35)] transition-[width] duration-150 ease-linear"
+            className="h-full rounded-full bg-[linear-gradient(90deg,#3ED6E0_0%,#FFC48A_60%,#F9913E_100%)] shadow-[0_0_20px_rgba(249,145,62,0.45)] transition-[width] duration-150 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>

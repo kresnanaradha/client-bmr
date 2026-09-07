@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { raftingPackages } from "@/lib/activities";
 import { CheckCircle, X, Clock, MapPin, Shield, Users } from "lucide-react";
+import { dummyImage } from "@/lib/dummyImage";
 
 export const metadata: Metadata = {
   title: "Bali Rafting – Ayung & Telaga Waja River Adventure",
@@ -13,67 +14,67 @@ const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function RaftingPage() {
   return (
-    <>
+    <div className="ocean-page">
       {/* Hero */}
-      <section className="relative h-80 md:h-[28rem] flex items-end overflow-hidden">
+      <section className="aq-page-hero h-[52vh] min-h-[360px]">
         <img
-          src="https://images.unsplash.com/photo-1527004013197-933b2ba98694?w=1920&q=85"
+          src={dummyImage("rafting-hero", 1920, 1080)}
           alt="Bali Rafting"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B5E]/90 to-[#2196C4]/50" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-          <span className="text-[#F5A623] text-xs font-semibold uppercase tracking-widest">Bali River Adventure</span>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mt-1">Rafting in Bali</h1>
-          <p className="text-blue-200 mt-2 max-w-xl">Navigate stunning rivers through Bali&apos;s lush jungles and rice terraces. Suitable for beginners and thrill-seekers alike.</p>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+          <span className="aq-eyebrow mb-4">Bali River Adventure</span>
+          <h1 className="aq-display mb-4 text-display-lg text-white">Rafting in Bali</h1>
+          <p className="max-w-xl text-[15px] leading-[1.8] text-white/65">
+            Navigate stunning rivers through Bali&apos;s lush jungles and rice terraces. Suitable for beginners and thrill-seekers alike.
+          </p>
         </div>
       </section>
 
       {/* Packages */}
-      <section className="py-16 bg-[#F0F9FF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section-gap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Choose Your River"
             title="Rafting Packages"
             subtitle="Two epic rivers, two unforgettable experiences. Pick your level of adventure."
+            light
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {raftingPackages.map((pkg, i) => (
-              <div key={pkg.slug} className="bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100">
-                <div className="relative h-56 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  {i === 1 && (
-                    <span className="absolute top-4 left-4 gradient-sunset text-white text-xs font-bold px-3 py-1 rounded-full">
-                      For Thrill Seekers
-                    </span>
-                  )}
+              <div key={pkg.slug} className="aq-panel overflow-hidden !rounded-[28px] p-0">
+                <div className="relative h-60 overflow-hidden p-2.5 pb-0">
+                  <div className="relative h-full overflow-hidden rounded-[20px]">
+                    <img src={pkg.image} alt={pkg.title} className="h-full w-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#04131F] via-[#04131F]/20 to-transparent" />
+                    {i === 1 && (
+                      <span className="absolute left-4 top-4 rounded-full bg-gradient-to-br from-[#FFC48A] to-[#F9913E] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
+                        For Thrill Seekers
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                <div className="p-6">
-                  <h2 className="font-bold text-xl text-[#0C1A4A] mb-2">{pkg.title}</h2>
-                  <p className="text-[#475569] text-sm mb-4">{pkg.description}</p>
+                <div className="p-7">
+                  <h2 className="aq-display mb-3 text-[24px] text-[#EAF4F8]">{pkg.title}</h2>
+                  <p className="mb-6 text-[14px] leading-[1.8] text-[#8FB0C2]">{pkg.description}</p>
 
-                  <div className="flex flex-wrap gap-3 mb-5 text-xs text-[#475569]">
-                    <span className="flex items-center gap-1.5 bg-[#F0F9FF] px-3 py-1.5 rounded-full">
-                      <Clock size={12} className="text-[#1A2FB0]" /> {pkg.duration}
-                    </span>
-                    <span className="flex items-center gap-1.5 bg-[#F0F9FF] px-3 py-1.5 rounded-full">
-                      <MapPin size={12} className="text-[#1A2FB0]" /> {pkg.distance}
-                    </span>
-                    <span className="flex items-center gap-1.5 bg-[#F0F9FF] px-3 py-1.5 rounded-full">
-                      <Users size={12} className="text-[#1A2FB0]" /> {pkg.level}
-                    </span>
+                  <div className="mb-8 flex flex-wrap gap-2">
+                    <span className="aq-chip"><Clock size={12} className="text-[#3ED6E0]" /> {pkg.duration}</span>
+                    <span className="aq-chip"><MapPin size={12} className="text-[#3ED6E0]" /> {pkg.distance}</span>
+                    <span className="aq-chip"><Users size={12} className="text-[#3ED6E0]" /> {pkg.level}</span>
                   </div>
 
                   {/* Itinerary */}
-                  <div className="mb-5">
-                    <p className="font-semibold text-sm text-[#0C1A4A] mb-3">Itinerary</p>
-                    <ol className="space-y-2">
+                  <div className="mb-8">
+                    <p className="aq-label">Itinerary</p>
+                    <ol className="space-y-3">
                       {pkg.itinerary.map((step, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[#475569]">
-                          <span className="w-5 h-5 rounded-full gradient-card flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5">{j + 1}</span>
+                        <li key={j} className="flex items-start gap-3 text-[13px] leading-[1.7] text-[#8FB0C2]">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[10px] font-bold text-[#3ED6E0]">
+                            {j + 1}
+                          </span>
                           {step}
                         </li>
                       ))}
@@ -81,39 +82,39 @@ export default function RaftingPage() {
                   </div>
 
                   {/* Includes / Excludes */}
-                  <div className="grid grid-cols-2 gap-4 mb-5">
+                  <div className="mb-8 grid grid-cols-2 gap-6">
                     <div>
-                      <p className="font-semibold text-xs text-[#0C1A4A] uppercase tracking-widest mb-2">Includes</p>
-                      <ul className="space-y-1">
+                      <p className="aq-label">Includes</p>
+                      <ul className="space-y-2">
                         {pkg.includes.map((inc) => (
-                          <li key={inc} className="flex items-start gap-1.5 text-xs text-[#475569]">
-                            <CheckCircle size={12} className="text-green-500 mt-0.5 shrink-0" /> {inc}
+                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#8FB0C2]">
+                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#3ED6E0]" /> {inc}
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold text-xs text-[#0C1A4A] uppercase tracking-widest mb-2">Excludes</p>
-                      <ul className="space-y-1">
+                      <p className="aq-label">Excludes</p>
+                      <ul className="space-y-2">
                         {pkg.excludes.map((ex) => (
-                          <li key={ex} className="flex items-start gap-1.5 text-xs text-[#475569]">
-                            <X size={12} className="text-red-400 mt-0.5 shrink-0" /> {ex}
+                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#5C7D91]">
+                            <X size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#5C7D91]" /> {ex}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-6">
                     <div>
-                      <p className="text-xs text-[#475569]">Per person</p>
-                      <p className="text-2xl font-bold text-[#1A2FB0]">{pkg.price}</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Per person</p>
+                      <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.price}</p>
                     </div>
                     <a
                       href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book ${pkg.title}. How many slots are available?`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="gradient-sunset text-white font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer text-sm"
+                      className="aq-btn !px-7 !py-3 text-[14px]"
                     >
                       Book Now
                     </a>
@@ -126,17 +127,21 @@ export default function RaftingPage() {
       </section>
 
       {/* Safety */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="gradient-card rounded-2xl p-6 flex items-center gap-4">
-            <Shield size={40} className="text-white shrink-0" />
+      <section className="pb-24">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="aq-panel flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+              <Shield size={21} strokeWidth={1.6} />
+            </div>
             <div>
-              <p className="text-white font-bold text-lg">Safety Briefing Included</p>
-              <p className="text-blue-200 text-sm">All participants receive a full safety briefing before entering the water. Helmets, life jackets, and certified guides are always provided.</p>
+              <p className="mb-1.5 text-[17px] font-semibold text-[#EAF4F8]">Safety Briefing Included</p>
+              <p className="text-[13px] leading-[1.75] text-[#8FB0C2]">
+                All participants receive a full safety briefing before entering the water. Helmets, life jackets, and certified guides are always provided.
+              </p>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

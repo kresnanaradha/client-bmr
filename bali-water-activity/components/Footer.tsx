@@ -16,11 +16,11 @@ function FooterLogo() {
     return (
       <div className="flex items-center gap-2 mb-4">
         <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
-          <Waves size={20} className="text-golden" />
+          <Waves size={20} className="text-[#FFC48A]" />
         </div>
         <div>
           <p className="text-white font-bold text-base leading-tight">Bali Water</p>
-          <p className="text-golden font-bold text-base leading-tight">Activity</p>
+          <p className="text-[#FFC48A] font-bold text-base leading-tight">Activity</p>
         </div>
       </div>
     );
@@ -39,13 +39,13 @@ function FooterLogo() {
 
 export default function Footer() {
   return (
-    <footer className="bg-linear-to-b from-[#0F1419] to-dark-navy text-white relative overflow-hidden pt-12 border-t border-white/5">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-linear-to-b from-[#04131F] to-[#072334] pt-12 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <FooterLogo />
-            <p className="text-blue-200 text-sm leading-relaxed mb-5">
+            <p className="text-[#8FB0C2] text-sm leading-relaxed mb-5">
               Your trusted partner for premium water activities in Bali. Safe, fun, and unforgettable experiences for every traveler.
             </p>
             <div className="flex gap-2">
@@ -54,7 +54,7 @@ export default function Footer() {
                   key={s.label}
                   href="#"
                   aria-label={s.label}
-                  className="w-9 h-9 glass hover:bg-[#FFD700] hover:text-black border-white/10 hover:border-[#FFD700] rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 hover:shadow-lg hover:shadow-yellow-500/20"
+                  className="w-9 h-9 glass hover:bg-[#FFC48A] hover:text-[#1B0E02] border-white/10 hover:border-[#FFC48A] rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 hover:shadow-lg hover:shadow-[#F9913E]/25"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                     <path d={s.svg} />
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Activities */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD700] mb-4">Activities</h3>
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC48A] mb-4">Activities</h3>
             <ul className="space-y-2.5">
               {[
                 { label: "Watersport Bali", href: "/watersport" },
@@ -77,9 +77,9 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-blue-200 hover:text-[#FFD700] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-[#8FB0C2] hover:text-[#FFC48A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD700]/50 group-hover:bg-[#FFD700] transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFC48A]/50 group-hover:bg-[#FFC48A] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD700] mb-4">Company</h3>
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC48A] mb-4">Company</h3>
             <ul className="space-y-2.5">
               {[
                 { label: "About Us", href: "/about" },
@@ -100,9 +100,9 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-blue-200 hover:text-[#FFD700] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-[#8FB0C2] hover:text-[#FFC48A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD700]/50 group-hover:bg-[#FFD700] transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFC48A]/50 group-hover:bg-[#FFC48A] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -112,27 +112,27 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD700] mb-4">Contact Us</h3>
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC48A] mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-white/10">
-                  <MapPin size={13} className="text-[#FFD700]" />
+                  <MapPin size={13} className="text-[#FFC48A]" />
                 </div>
                 <span className="text-sm leading-snug">Tanjung Benoa, Nusa Dua, Bali, Indonesia</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
-                  <Phone size={13} className="text-[#FFD700]" />
+                  <Phone size={13} className="text-[#FFC48A]" />
                 </div>
-                <a href="https://wa.me/628XXXXXXXXXX" className="text-sm text-blue-200 hover:text-white cursor-pointer transition-colors">
+                <a href="https://wa.me/628XXXXXXXXXX" className="text-sm text-[#8FB0C2] hover:text-white cursor-pointer transition-colors">
                   +62 8XX-XXXX-XXXX
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
-                  <Mail size={13} className="text-[#FFD700]" />
+                  <Mail size={13} className="text-[#FFC48A]" />
                 </div>
-                <a href="mailto:hello@baliwateractivity.com" className="text-sm text-blue-200 hover:text-white cursor-pointer transition-colors">
+                <a href="mailto:hello@baliwateractivity.com" className="text-sm text-[#8FB0C2] hover:text-white cursor-pointer transition-colors">
                   hello@baliwateractivity.com
                 </a>
               </li>
@@ -142,7 +142,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-blue-300">
+          <p className="text-xs text-[#6E90A4]">
             © {new Date().getFullYear()} Bali Water Activity. All rights reserved.
           </p>
         </div>

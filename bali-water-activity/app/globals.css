@@ -57,8 +57,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body), sans-serif;
-  color: var(--ink);
-  background: radial-gradient(circle at top, rgba(15,163,177,0.08), transparent 32%), #F8FAFC;
+  color: var(--aq-text);
+  background: #04131F;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,7 +66,7 @@ body {
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--ocean) rgba(15, 20, 25, 0.08);
+  scrollbar-color: #F9913E rgba(255, 255, 255, 0.06);
 }
 
 body::-webkit-scrollbar {
@@ -74,22 +74,22 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, rgba(15, 20, 25, 0.08), rgba(0, 82, 204, 0.12));
+  background: #04131F;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--blue), var(--ocean));
+  background: linear-gradient(180deg, #FFC48A, #F9913E);
   border-radius: 999px;
-  border: 2px solid rgba(248, 250, 252, 0.9);
+  border: 3px solid #04131F;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--dark-navy, #1A3D8C), var(--blue));
+  background: #F9913E;
 }
 
 ::selection {
-  background: rgba(255, 215, 0, 0.18);
-  color: var(--ink);
+  background: rgba(249, 145, 62, 0.28);
+  color: #fff;
 }
 
 img {
@@ -247,7 +247,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), sans-serif; letter-sp
 
 /* ─── Accessibility (Point 08) ──────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid #F9913E;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -393,3 +393,213 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), sans-serif; letter-sp
   background-clip: text;
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   AQUARIUM SYSTEM — used by the homepage below the hero.
+   One continuous underwater surface instead of alternating slabs.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --aq-abyss:  #04131F;
+  --aq-deep:   #072334;
+  --aq-reef:   #0A3247;
+  --aq-glass:  rgba(255, 255, 255, 0.045);
+  --aq-line:   rgba(255, 255, 255, 0.09);
+  --aq-text:   #EAF4F8;
+  --aq-muted:  #8FB0C2;
+  --aq-aqua:   #3ED6E0;
+  --aq-coral:  #F9913E;
+  --aq-sand:   #FFC48A;
+}
+
+/* The continuous ocean surface everything below the hero sits on. */
+.ocean-page {
+  position: relative;
+  isolation: isolate;
+  overflow: clip; /* the drifting light shafts scale past the edges */
+  color: var(--aq-text);
+  background:
+    radial-gradient(120% 60% at 50% 0%,   rgba(62, 214, 224, 0.10), transparent 60%),
+    radial-gradient(90%  50% at 12% 32%,  rgba(249, 145, 62, 0.07), transparent 62%),
+    radial-gradient(90%  55% at 88% 68%,  rgba(62, 214, 224, 0.08), transparent 62%),
+    linear-gradient(180deg, var(--aq-abyss) 0%, var(--aq-deep) 38%, var(--aq-reef) 62%, var(--aq-deep) 82%, var(--aq-abyss) 100%);
+}
+
+/* Slow drifting light shafts, like sun through water. */
+.ocean-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background:
+    repeating-linear-gradient(
+      104deg,
+      transparent 0 90px,
+      rgba(255, 255, 255, 0.028) 90px 130px,
+      transparent 130px 240px
+    );
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 72%, transparent);
+  animation: caustics 24s ease-in-out infinite alternate;
+}
+
+@keyframes caustics {
+  from { transform: translate3d(-3%, 0, 0) scale(1.05); }
+  to   { transform: translate3d(3%, 0, 0)  scale(1.12); }
+}
+
+/* ─── Surfaces ──────────────────────────────────────────────── */
+.aq-panel {
+  background: var(--aq-glass);
+  border: 1px solid var(--aq-line);
+  border-radius: 28px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aq-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(249, 145, 62, 0.32);
+  transform: translateY(-4px);
+}
+
+/* Small uppercase label used above every section title. */
+.aq-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--aq-sand);
+}
+
+.aq-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--aq-coral);
+  box-shadow: 0 0 0 4px rgba(249, 145, 62, 0.16);
+}
+
+/* Chip / tag. */
+.aq-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(4, 19, 31, 0.55);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(234, 244, 248, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Warm accent button — the one loud element per section. */
+.aq-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #1B0E02;
+  background: linear-gradient(135deg, var(--aq-sand), var(--aq-coral));
+  box-shadow: 0 14px 40px rgba(249, 145, 62, 0.28);
+}
+
+.aq-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 54px rgba(249, 145, 62, 0.38);
+}
+
+.aq-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--aq-text);
+  border: 1px solid var(--aq-line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.aq-btn-ghost:hover {
+  border-color: rgba(249, 145, 62, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Warm gradient text for the emphasised word in a heading. */
+.aq-accent-text {
+  background: linear-gradient(100deg, var(--aq-sand), var(--aq-coral));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Airy display type — light weight, tight leading, one bold word. */
+.aq-display {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+
+/* Inner-page hero: image sunk into the same deep water as the rest of the page. */
+.aq-page-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--aq-abyss);
+}
+
+.aq-page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4, 19, 31, 0.72) 0%, rgba(4, 19, 31, 0.35) 45%, var(--aq-abyss) 100%),
+    linear-gradient(90deg, rgba(4, 19, 31, 0.7) 0%, transparent 65%);
+}
+
+/* Form fields on the dark surface. */
+.aq-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid var(--aq-line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--aq-text);
+  font-size: 14px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.aq-input::placeholder { color: #5C7D91; }
+
+.aq-input:focus {
+  outline: none;
+  border-color: rgba(249, 145, 62, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.aq-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--aq-muted);
+}

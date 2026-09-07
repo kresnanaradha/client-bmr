@@ -93,7 +93,7 @@ export default function WatersportClient({ initialActivities }: WatersportClient
   }, [enrichedActivities, filters]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
       {/* Sidebar Filters */}
       <div className="lg:col-span-1">
         <FilterBar onFilter={setFilters} />
@@ -102,7 +102,7 @@ export default function WatersportClient({ initialActivities }: WatersportClient
       {/* Grid List */}
       <div className="lg:col-span-3">
         {filteredAndSortedActivities.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {filteredAndSortedActivities.map((act) => (
               <ActivityCard
                 key={act.slug}
@@ -118,9 +118,9 @@ export default function WatersportClient({ initialActivities }: WatersportClient
             ))}
           </div>
         ) : (
-          <div className="glass-card p-12 text-center text-white border border-white/10 rounded-2xl">
-            <p className="text-lg font-bold mb-2">No Activities Found</p>
-            <p className="text-sm text-blue-200">Try adjusting your filters to find your perfect adventure.</p>
+          <div className="aq-panel p-16 text-center">
+            <p className="aq-display mb-3 text-[22px] text-[#EAF4F8]">No Activities Found</p>
+            <p className="text-[14px] text-[#8FB0C2]">Try adjusting your filters to find your perfect adventure.</p>
           </div>
         )}
       </div>

@@ -12,14 +12,17 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ActivitiesSection />
-      <WhyChooseUs />
-      <DestinationsSection />
-      <StatsSection />
-      <TestimonialsSection />
-      <SafetySection />
-      <FaqSection />
-      <CtaSection />
+      {/* Everything below the hero shares one continuous underwater surface. */}
+      <div className="ocean-page">
+        <ActivitiesSection />
+        <WhyChooseUs />
+        <DestinationsSection />
+        <StatsSection />
+        <TestimonialsSection />
+        <SafetySection />
+        <FaqSection />
+        <CtaSection />
+      </div>
     </>
   );
 }

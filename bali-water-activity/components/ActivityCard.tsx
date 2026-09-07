@@ -21,48 +21,47 @@ export default function ActivityCard({
   const waMsg = `Hi! I want to book ${title}. Please send me more information.`;
 
   return (
-    <div className="glass-card group relative overflow-hidden flex flex-col h-full">
-      {/* Full-bleed image with cinematic overlay */}
-      <div className="relative h-64 overflow-hidden rounded-t-2xl shrink-0">
-        <Image
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-90"
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-        {/* Cinematic gradient */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#072334] shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[#F9913E]/35">
+      {/* Image sits inset inside the card, like a porthole into the water */}
+      <div className="relative shrink-0 p-2.5">
+        <div className="relative h-56 overflow-hidden rounded-[20px]">
+          <Image
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04131F] via-[#04131F]/25 to-transparent" />
 
-        {/* Meta pills */}
-        <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-10">
-          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/90 backdrop-blur-md">
-            <Clock size={10} className="text-golden" /> {duration}
-          </span>
-          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/90 backdrop-blur-md">
-            <Users size={10} className="text-golden" /> {ageRange} yrs
-          </span>
-        </div>
-
-        {/* Content over image */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-          <h3 className="mb-1 font-display text-xl leading-tight text-white transition-colors group-hover:text-golden">{title}</h3>
+          {/* Meta pills */}
+          <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">
+            <span className="aq-chip !text-[10px]">
+              <Clock size={10} className="text-[#FFC48A]" /> {duration}
+            </span>
+            <span className="aq-chip !text-[10px]">
+              <Users size={10} className="text-[#FFC48A]" /> {ageRange} yrs
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Card Body & Action Strip */}
-      <div className="flex flex-1 flex-col justify-between bg-white/80 p-5">
-        <p className="mb-5 line-clamp-2 text-sm leading-relaxed text-slate-700">{description}</p>
-        
-        <div className="flex items-center justify-between gap-3 border-t border-slate-200 pt-4">
+      {/* Body */}
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-1">
+        <h3 className="aq-display mb-2 text-[21px] font-medium text-[#EAF4F8] transition-colors group-hover:text-[#FFC48A]">
+          {title}
+        </h3>
+        <p className="mb-6 line-clamp-2 text-[13px] leading-relaxed text-[#8FB0C2]">{description}</p>
+
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4">
           <div>
-            <p className="text-[9px] uppercase tracking-wider text-slate-500">From</p>
-            <p className="bg-linear-to-r from-dark-navy to-teal bg-clip-text text-xl font-bold leading-none text-transparent">{price}</p>
+            <p className="text-[9px] uppercase tracking-[0.18em] text-[#6E90A4]">From</p>
+            <p className="aq-accent-text text-xl font-bold leading-none">{price}</p>
           </div>
           <div className="flex items-center gap-1.5">
             <Link
               href={`/activity/${slug}`}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-all duration-200 hover:border-slate-300 hover:text-slate-900"
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/12 text-[#8FB0C2] transition-all duration-200 hover:border-white/30 hover:bg-white/5 hover:text-white"
               aria-label={`Details for ${title}`}
             >
               <ArrowUpRight size={14} />
@@ -71,7 +70,7 @@ export default function ActivityCard({
               href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 gradient-sunset text-white text-[11px] font-bold px-4 py-2.5 rounded-full hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200 cursor-pointer"
+              className="flex cursor-pointer items-center gap-1.5 rounded-full bg-gradient-to-br from-[#FFC48A] to-[#F9913E] px-4 py-2.5 text-[11px] font-bold text-[#1B0E02] transition-all duration-200 hover:shadow-[0_10px_28px_-6px_rgba(249,145,62,0.6)]"
             >
               <MessageCircle size={12} />
               Book
@@ -79,9 +78,6 @@ export default function ActivityCard({
           </div>
         </div>
       </div>
-
-      {/* Hover shine effect */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
     </div>
   );
 }

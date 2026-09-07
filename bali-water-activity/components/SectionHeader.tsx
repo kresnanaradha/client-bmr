@@ -11,26 +11,22 @@ export default function SectionHeader({
   eyebrow, title, subtitle, center = true, light = false, size = "md",
 }: SectionHeaderProps) {
   return (
-    <div className={`mb-16 max-w-3xl mx-auto ${center ? "text-center" : ""}`}>
+    <div className={`mb-14 md:mb-20 max-w-3xl ${center ? "text-center mx-auto items-center" : ""} flex flex-col`}>
       {eyebrow && (
-        <span className="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#F5A623] mb-4">
-          <span className="w-7 h-px bg-[#F5A623]" />
-          {eyebrow}
-          <span className="w-7 h-px bg-[#F5A623]" />
-        </span>
+        <span className={`aq-eyebrow mb-6 ${light ? "" : "text-[#B4661C]"}`}>{eyebrow}</span>
       )}
       <h2
-        className={`font-display leading-[1.08] tracking-[-0.02em] mb-5 ${
+        className={`aq-display mb-5 ${
           size === "lg" ? "text-display-lg" : "text-display-md"
-        } ${light ? "text-white" : "text-[#0C1A4A]"}`}
+        } ${light ? "text-[color:var(--aq-text)]" : "text-[#0C1A4A]"}`}
       >
         {title}
       </h2>
       {subtitle && (
         <p
-          className={`text-base md:text-lg leading-relaxed max-w-2xl font-light ${
+          className={`text-base md:text-[17px] leading-[1.75] max-w-2xl font-light ${
             center ? "mx-auto" : ""
-          } ${light ? "text-blue-200" : "text-[#64748B]"}`}
+          } ${light ? "text-[color:var(--aq-muted)]" : "text-[#64748B]"}`}
         >
           {subtitle}
         </p>

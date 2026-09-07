@@ -9,17 +9,18 @@ export default function ActivitiesSection() {
   const featured = watersportActivities.slice(0, 4);
 
   return (
-    <section id="activities" className="section-gap bg-white">
+    <section id="activities" className="section-gap relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Popular Activities"
           title="Thrill Starts Here"
           subtitle="From adrenaline-pumping rides to serene underwater walks — we have the perfect Bali water activity for every traveler."
+          light
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {featured.map((act, i) => (
-            <Reveal key={act.slug} delay={(i % 4) * 0.08}>
+            <Reveal key={act.slug} delay={(i % 4) * 0.08} className="h-full">
               <ActivityCard
                 title={act.title}
                 description={act.description}
@@ -33,11 +34,8 @@ export default function ActivitiesSection() {
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <Link
-            href="/watersport"
-            className="button-secondary border-transparent text-[#1A2FB0] hover:bg-[#eef6ff]"
-          >
+        <div className="text-center mt-14">
+          <Link href="/watersport" className="aq-btn-ghost">
             View All Activities <ArrowRight size={16} />
           </Link>
         </div>

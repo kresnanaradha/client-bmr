@@ -42,11 +42,8 @@ export default function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="section-gap bg-linear-to-b from-[#0F1419] to-dark-navy text-white relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full blur-3xl opacity-10 bg-[#0FA3B1] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="section-gap relative">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="FAQ"
           title="Frequently Asked Questions"
@@ -54,28 +51,26 @@ export default function FaqSection() {
           light
         />
 
-        <div className="space-y-4">
+        <div className="aq-panel divide-y divide-white/10 overflow-hidden !rounded-[28px] p-0">
           {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className={`glass border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ${
-                open === i ? "ring-2 ring-golden/30 shadow-xl" : ""
-              }`}
-            >
+            <div key={i} className={open === i ? "bg-white/[0.035]" : ""}>
               <button
-                className="w-full flex items-center justify-between p-5 text-left cursor-pointer hover:bg-white/5 transition-colors duration-150"
+                className="flex w-full cursor-pointer items-center justify-between gap-6 px-7 py-6 text-left transition-colors duration-200 hover:bg-white/[0.03]"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
-                <span className="font-semibold text-white text-sm pr-4 group-hover:text-golden transition-colors">{faq.q}</span>
+                <span className={`text-[15px] font-medium transition-colors ${open === i ? "text-[#FFC48A]" : "text-[#EAF4F8]"}`}>
+                  {faq.q}
+                </span>
                 <ChevronDown
                   size={18}
-                  className={`text-golden shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}
+                  strokeWidth={1.8}
+                  className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-[#FFC48A]" : "text-[#6E90A4]"}`}
                 />
               </button>
               {open === i && (
-                <div className="px-5 pb-5 border-t border-white/5 pt-4">
-                  <p className="text-blue-100/80 text-sm leading-relaxed">{faq.a}</p>
+                <div className="px-7 pb-7">
+                  <p className="max-w-2xl text-[14px] leading-[1.8] text-[#8FB0C2]">{faq.a}</p>
                 </div>
               )}
             </div>

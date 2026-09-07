@@ -203,7 +203,7 @@ const ScrollExpandMedia = ({
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
                   {location && (
                     <p
-                      className='text-2xl text-white'
+                      className='text-[11px] font-semibold uppercase tracking-[0.22em] text-[#FFC48A]'
                       style={{ transform: `translateX(-${textTranslateX}vw)` }}
                     >
                       {location}
@@ -211,7 +211,7 @@ const ScrollExpandMedia = ({
                   )}
                   {scrollToExpand && (
                     <motion.div
-                      className='flex flex-col items-center text-center text-white'
+                      className='flex flex-col items-center text-center text-white/70'
                       style={{
                         transform: `translateX(${textTranslateX}vw)`,
                         opacity: scrollHintOpacity,
@@ -221,7 +221,7 @@ const ScrollExpandMedia = ({
                       transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
                       aria-hidden={scrollHintOpacity === 0}
                     >
-                      <p className='font-medium'>{scrollToExpand}</p>
+                      <p className='text-[12px] font-medium uppercase tracking-[0.18em]'>{scrollToExpand}</p>
                       <ChevronDown className='mt-2 h-5 w-5' aria-hidden='true' />
                     </motion.div>
                   )}
@@ -234,13 +234,13 @@ const ScrollExpandMedia = ({
                 }`}
               >
                 <motion.h2
-                  className='text-4xl md:text-5xl lg:text-6xl font-bold text-white transition-none'
+                  className='aq-display text-[clamp(2.5rem,7vw,4.5rem)] text-white transition-none'
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {firstWord}
                 </motion.h2>
                 <motion.h2
-                  className='text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white transition-none'
+                  className='aq-display aq-accent-text text-center text-[clamp(2.5rem,7vw,4.5rem)] font-semibold transition-none'
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {restOfTitle}
@@ -252,7 +252,7 @@ const ScrollExpandMedia = ({
       </div>
 
       <motion.section
-        className='relative z-10 flex min-h-screen w-full flex-col justify-center px-8 py-10 md:px-16 lg:py-20 bg-linear-to-b from-[#0F1419] via-dark-navy to-[#0F1419]'
+        className='relative z-10 flex min-h-screen w-full flex-col justify-center px-8 py-10 md:px-16 lg:py-20 bg-linear-to-b from-[#04131F] via-[#072334] to-[#04131F]'
         initial={{ opacity: 0 }}
         animate={{ opacity: showContent ? 1 : 0 }}
         transition={{ duration: 0.7 }}

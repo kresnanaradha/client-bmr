@@ -35,119 +35,127 @@ export default async function ActivityDetailPage({ params }: Props) {
   const waMsg = `Hi! I want to book ${activity.title} in Bali. Can you confirm availability and provide details?`;
 
   return (
-    <>
+    <div className="ocean-page">
       {/* Hero */}
-      <section className="relative h-72 md:h-96 flex items-end overflow-hidden">
+      <section className="aq-page-hero h-[46vh] min-h-[340px]">
         <img
           src={activity.image}
           alt={activity.title}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B5E]/85 to-[#2196C4]/40" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 w-full">
-          <Link href="/watersport" className="inline-flex items-center gap-1 text-blue-200 text-sm mb-3 hover:text-white cursor-pointer">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+          <Link
+            href="/watersport"
+            className="mb-5 inline-flex cursor-pointer items-center gap-1.5 text-[13px] text-white/60 transition-colors hover:text-[#FFC48A]"
+          >
             <ArrowLeft size={14} /> Back to Watersport
           </Link>
+
           {activity.badge && (
-            <span className="block gradient-sunset text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-2">
+            <span className="mb-4 block w-fit rounded-full bg-gradient-to-br from-[#FFC48A] to-[#F9913E] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
               {activity.badge}
             </span>
           )}
-          <h1 className="text-3xl md:text-4xl font-bold text-white">{activity.title}</h1>
-          <p className="text-blue-200 mt-1">Watersport · Tanjung Benoa, Bali</p>
+
+          <h1 className="aq-display mb-2 text-display-lg text-white">{activity.title}</h1>
+          <p className="text-[14px] text-white/55">Watersport · Tanjung Benoa, Bali</p>
         </div>
       </section>
 
       {/* Quick info bar */}
-      <div className="bg-white border-b border-gray-100 sticky top-16 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap gap-5 items-center justify-between">
-          <div className="flex flex-wrap gap-5 text-sm text-[#475569]">
-            <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#1A2FB0]" /> {activity.duration}</span>
-            <span className="flex items-center gap-1.5"><Users size={14} className="text-[#1A2FB0]" /> Age {activity.ageRange}</span>
-            <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#1A2FB0]" /> Insured</span>
-            <span className="font-bold text-[#1A2FB0]">{activity.price}</span>
+      <div className="sticky top-16 z-30 border-b border-white/10 bg-[#04131F]/85 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-4 py-3.5 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-5 text-[13px] text-[#8FB0C2]">
+            <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#3ED6E0]" /> {activity.duration}</span>
+            <span className="flex items-center gap-1.5"><Users size={14} className="text-[#3ED6E0]" /> Age {activity.ageRange}</span>
+            <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#3ED6E0]" /> Insured</span>
+            <span className="aq-accent-text font-display text-[18px] font-semibold">{activity.price}</span>
           </div>
           <a
             href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="gradient-sunset text-white font-semibold px-6 py-2.5 rounded-full text-sm cursor-pointer hover:shadow-lg transition-all duration-200"
+            className="aq-btn !px-6 !py-2.5 text-[13px]"
           >
             Book via WhatsApp
           </a>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* Main content */}
-          <div className="lg:col-span-2 space-y-8">
-
+          <div className="space-y-4 lg:col-span-2">
             {/* Overview */}
-            <section className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h2 className="font-bold text-lg text-[#0C1A4A] mb-3">Overview</h2>
-              <p className="text-[#475569] leading-relaxed">{activity.longDescription}</p>
+            <section className="aq-panel p-8">
+              <h2 className="aq-display mb-4 text-[22px] text-[#EAF4F8]">Overview</h2>
+              <p className="text-[14px] leading-[1.9] text-[#8FB0C2]">{activity.longDescription}</p>
             </section>
 
             {/* Operating Hours */}
-            <section className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h2 className="font-bold text-lg text-[#0C1A4A] mb-4">Operating Hours</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div className="bg-[#F0F9FF] rounded-xl p-4 text-center">
-                  <p className="text-xs text-[#475569] uppercase tracking-widest mb-1">Opens</p>
-                  <p className="text-xl font-bold text-[#1A2FB0]">{activity.openHour}</p>
-                </div>
-                <div className="bg-[#F0F9FF] rounded-xl p-4 text-center">
-                  <p className="text-xs text-[#475569] uppercase tracking-widest mb-1">Closes</p>
-                  <p className="text-xl font-bold text-[#1A2FB0]">{activity.closeHour}</p>
-                </div>
-                <div className="bg-amber-50 rounded-xl p-4 text-center col-span-2 sm:col-span-1">
-                  <p className="text-xs text-amber-600 uppercase tracking-widest mb-1">Check-in</p>
-                  <p className="text-sm font-medium text-amber-700">{activity.checkInNote}</p>
+            <section className="aq-panel p-8">
+              <h2 className="aq-display mb-6 text-[22px] text-[#EAF4F8]">Operating Hours</h2>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {[
+                  { label: "Opens", value: activity.openHour },
+                  { label: "Closes", value: activity.closeHour },
+                ].map((t) => (
+                  <div key={t.label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 text-center">
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">{t.label}</p>
+                    <p className="font-display text-[24px] font-semibold text-[#3ED6E0]">{t.value}</p>
+                  </div>
+                ))}
+                <div className="col-span-2 rounded-2xl border border-[#F9913E]/25 bg-[#F9913E]/8 p-5 text-center sm:col-span-1">
+                  <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#FFC48A]">Check-in</p>
+                  <p className="text-[13px] leading-[1.6] text-[#EAF4F8]">{activity.checkInNote}</p>
                 </div>
               </div>
             </section>
 
             {/* Health Requirements */}
-            <section className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <AlertTriangle size={18} className="text-amber-600" />
-                <h2 className="font-bold text-lg text-[#0C1A4A]">Health Requirements</h2>
+            <section className="aq-panel border-[#F9913E]/25 bg-[#F9913E]/[0.06] p-8">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#F9913E]/30 bg-[#F9913E]/12 text-[#FFC48A]">
+                  <AlertTriangle size={18} strokeWidth={1.7} />
+                </div>
+                <h2 className="text-[19px] font-semibold text-[#EAF4F8]">Health Requirements</h2>
               </div>
-              <p className="text-[#475569] text-sm mb-3">For safety, participants with the following conditions are advised NOT to join this activity:</p>
-              <ul className="space-y-2">
+              <p className="mb-5 text-[13px] leading-[1.75] text-[#8FB0C2]">
+                For safety, participants with the following conditions are advised NOT to join this activity:
+              </p>
+              <ul className="space-y-3">
                 {activity.healthRestrictions.map((r) => (
-                  <li key={r} className="flex items-start gap-2 text-sm text-[#475569]">
-                    <Heart size={14} className="text-amber-500 mt-0.5 shrink-0" /> {r}
+                  <li key={r} className="flex items-start gap-2.5 text-[13px] text-[#8FB0C2]">
+                    <Heart size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FFC48A]" /> {r}
                   </li>
                 ))}
               </ul>
             </section>
 
             {/* Do's and Don'ts */}
-            <section className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <h2 className="font-bold text-lg text-[#0C1A4A] mb-4">Do&apos;s and Don&apos;ts</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <section className="aq-panel p-8">
+              <h2 className="aq-display mb-7 text-[22px] text-[#EAF4F8]">Do&apos;s and Don&apos;ts</h2>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <div>
-                  <p className="flex items-center gap-2 font-semibold text-green-600 text-sm mb-3">
-                    <ThumbsUp size={15} /> Do
+                  <p className="aq-label flex items-center gap-2 !text-[#3ED6E0]">
+                    <ThumbsUp size={14} /> Do
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {activity.dos.map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-sm text-[#475569]">
-                        <CheckCircle size={14} className="text-green-500 mt-0.5 shrink-0" /> {d}
+                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#8FB0C2]">
+                        <CheckCircle size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#3ED6E0]" /> {d}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <p className="flex items-center gap-2 font-semibold text-red-500 text-sm mb-3">
-                    <X size={15} /> Don&apos;t
+                  <p className="aq-label flex items-center gap-2 !text-[#FFC48A]">
+                    <X size={14} /> Don&apos;t
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {activity.donts.map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-sm text-[#475569]">
-                        <X size={14} className="text-red-400 mt-0.5 shrink-0" /> {d}
+                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#8FB0C2]">
+                        <X size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FFC48A]" /> {d}
                       </li>
                     ))}
                   </ul>
@@ -156,54 +164,53 @@ export default async function ActivityDetailPage({ params }: Props) {
             </section>
 
             {/* Insurance */}
-            <section className="gradient-card rounded-2xl p-6">
-              <div className="flex items-start gap-3">
-                <Shield size={24} className="text-white shrink-0 mt-0.5" />
-                <div>
-                  <h2 className="font-bold text-lg text-white mb-2">Insurance Coverage</h2>
-                  <p className="text-blue-200 text-sm leading-relaxed">{activity.insuranceInfo}</p>
-                </div>
+            <section className="aq-panel flex items-start gap-4 p-8">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+                <Shield size={19} strokeWidth={1.6} />
+              </div>
+              <div>
+                <h2 className="mb-2.5 text-[19px] font-semibold text-[#EAF4F8]">Insurance Coverage</h2>
+                <p className="text-[13px] leading-[1.8] text-[#8FB0C2]">{activity.insuranceInfo}</p>
               </div>
             </section>
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-5">
-            {/* Booking card */}
-            <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 sticky top-32">
-              <p className="text-xs text-[#475569] uppercase tracking-widest mb-1">Starting from</p>
-              <p className="text-3xl font-bold text-[#1A2FB0] mb-4">{activity.price}</p>
-              <p className="text-sm text-[#475569] mb-5">per person · pay on arrival</p>
+          <div>
+            <div className="aq-panel sticky top-32 p-7">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Starting from</p>
+              <p className="aq-accent-text my-2 font-display text-[38px] font-semibold leading-none">{activity.price}</p>
+              <p className="mb-7 text-[12px] text-[#6E90A4]">per person · pay on arrival</p>
 
               <a
                 href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full gradient-sunset text-white font-semibold py-3.5 rounded-full text-center cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-200 mb-3"
+                className="aq-btn !w-full"
               >
                 Book via WhatsApp
               </a>
-              <p className="text-xs text-[#475569] text-center">No upfront payment · Instant confirmation</p>
+              <p className="mt-3.5 text-center text-[11px] text-[#6E90A4]">
+                No upfront payment · Instant confirmation
+              </p>
 
-              {/* Includes */}
-              <div className="mt-5 pt-5 border-t border-gray-100">
-                <p className="font-semibold text-sm text-[#0C1A4A] mb-3">Includes</p>
-                <ul className="space-y-2">
+              <div className="mt-7 border-t border-white/10 pt-6">
+                <p className="aq-label">Includes</p>
+                <ul className="space-y-2.5">
                   {activity.includes.map((inc) => (
-                    <li key={inc} className="flex items-center gap-2 text-sm text-[#475569]">
-                      <CheckCircle size={13} className="text-green-500 shrink-0" /> {inc}
+                    <li key={inc} className="flex items-center gap-2 text-[13px] text-[#8FB0C2]">
+                      <CheckCircle size={13} strokeWidth={1.9} className="shrink-0 text-[#3ED6E0]" /> {inc}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Excludes */}
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <p className="font-semibold text-sm text-[#0C1A4A] mb-3">Not Included</p>
-                <ul className="space-y-2">
+              <div className="mt-6 border-t border-white/10 pt-6">
+                <p className="aq-label">Not Included</p>
+                <ul className="space-y-2.5">
                   {activity.excludes.map((ex) => (
-                    <li key={ex} className="flex items-center gap-2 text-sm text-[#475569]">
-                      <X size={13} className="text-red-400 shrink-0" /> {ex}
+                    <li key={ex} className="flex items-center gap-2 text-[13px] text-[#5C7D91]">
+                      <X size={13} strokeWidth={1.9} className="shrink-0" /> {ex}
                     </li>
                   ))}
                 </ul>
@@ -214,10 +221,10 @@ export default async function ActivityDetailPage({ params }: Props) {
       </div>
 
       {/* Related activities */}
-      <section className="py-12 bg-[#F0F9FF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-bold text-xl text-[#0C1A4A] mb-6">Other Activities You May Like</h2>
-          <div className="flex gap-4 overflow-x-auto pb-2">
+      <section className="section-gap border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="aq-display mb-8 text-display-md text-[#EAF4F8]">Other Activities You May Like</h2>
+          <div className="flex gap-4 overflow-x-auto pb-3">
             {watersportActivities
               .filter((a) => a.slug !== slug)
               .slice(0, 4)
@@ -225,20 +232,20 @@ export default async function ActivityDetailPage({ params }: Props) {
                 <Link
                   key={rel.slug}
                   href={`/activity/${rel.slug}`}
-                  className="shrink-0 w-52 bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover cursor-pointer"
+                  className="aq-panel aq-panel-hover w-56 shrink-0 overflow-hidden !rounded-[24px] p-2.5"
                 >
-                  <div className="h-32 overflow-hidden">
-                    <img src={rel.image} alt={rel.title} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="h-32 overflow-hidden rounded-[16px]">
+                    <img src={rel.image} alt={rel.title} className="h-full w-full object-cover" loading="lazy" />
                   </div>
-                  <div className="p-3">
-                    <p className="font-semibold text-sm text-[#0C1A4A]">{rel.title}</p>
-                    <p className="text-[#1A2FB0] font-bold text-sm mt-0.5">{rel.price}</p>
+                  <div className="p-3.5">
+                    <p className="text-[14px] font-semibold text-[#EAF4F8]">{rel.title}</p>
+                    <p className="aq-accent-text mt-1 font-display text-[16px] font-semibold">{rel.price}</p>
                   </div>
                 </Link>
               ))}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

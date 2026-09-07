@@ -5,30 +5,25 @@ const WA_MSG = "Hi Bali Water Activity! I'm ready to book an adventure. Can you 
 
 export default function CtaSection() {
   return (
-    <section className="section-gap bg-gradient-to-b from-[#F8FAFC] to-[#eef6ff]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="relative glass-card border border-[#d7e6f7] rounded-3xl overflow-hidden px-8 md:px-16 py-16 md:py-20 text-center bg-gradient-to-b from-white to-[#eaf4ff] text-[#10233f] shadow-2xl shadow-sky-100/80"
-        >
-          {/* Radial glow */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-3xl opacity-20 bg-[#7cc4ff]" />
+    <section className="section-gap relative">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="aq-panel relative overflow-hidden px-8 py-20 text-center md:px-16 md:py-24">
+          {/* Warm light rising from below, like the surface lit at sunset */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -bottom-24 left-1/2 h-[320px] w-[620px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#F9913E]/18 blur-[90px]" />
+            <div className="absolute -top-20 left-1/2 h-[240px] w-[520px] max-w-[120%] -translate-x-1/2 rounded-full bg-[#3ED6E0]/12 blur-[80px]" />
           </div>
 
           <div className="relative z-10 flex flex-col items-center">
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#c67a00] mb-5">
-              <span className="w-6 h-px bg-[#c67a00]" />
-              Ready for Adventure?
-              <span className="w-6 h-px bg-[#c67a00]" />
-            </span>
+            <span className="aq-eyebrow mb-7">Ready for Adventure?</span>
 
-            <h2 className="font-display text-display-lg text-[#10233f] mb-4">
+            <h2 className="aq-display text-display-lg mb-6 text-[#EAF4F8]">
               Book Your Bali Adventure
               <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-golden to-orange font-bold">in Just 2 Minutes</span>
+              <span className="aq-accent-text font-semibold">in Just 2 Minutes</span>
             </h2>
 
-            <p className="text-[#3d536f] text-base mb-10 max-w-xl mx-auto leading-relaxed">
+            <p className="mx-auto mb-11 max-w-xl text-[15px] leading-[1.8] text-[#8FB0C2]">
               Chat with us on WhatsApp, pick your activity, and pay on arrival.
               It&apos;s that simple. Our team is online and ready to help!
             </p>
@@ -37,17 +32,17 @@ export default function CtaSection() {
               href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="gradient-sunset text-white w-full sm:w-auto sm:min-w-[320px] max-w-full font-bold px-6 sm:px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-orange-500/35 hover:scale-105 transition-all duration-200 cursor-pointer text-sm sm:text-base text-center"
+              className="aq-btn w-full max-w-full sm:w-auto sm:min-w-[320px]"
             >
-              <MessageCircle size={20} />
+              <MessageCircle size={19} />
               Chat on WhatsApp Now
-              <ArrowRight size={18} />
+              <ArrowRight size={17} />
             </a>
 
-            <p className="text-[#5f738d] text-xs mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> No upfront payment</span>
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> Instant confirmation</span>
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-green-400" /> Free cancellation</span>
+            <p className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-2.5 text-[12px] text-[#6E90A4]">
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> No upfront payment</span>
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> Instant confirmation</span>
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> Free cancellation</span>
             </p>
           </div>
         </div>

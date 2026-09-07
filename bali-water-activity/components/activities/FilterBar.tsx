@@ -23,12 +23,12 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
   }, []);
 
   return (
-    <div className="glass-card p-6 space-y-6 text-white border border-white/12">
-      <div className="flex justify-between items-center pb-4 border-b border-white/10">
-        <h3 className="text-lg font-bold">Filters</h3>
+    <div className="aq-panel space-y-8 p-7 lg:sticky lg:top-28">
+      <div className="flex items-center justify-between border-b border-white/10 pb-5">
+        <h3 className="text-[16px] font-semibold text-[#EAF4F8]">Filters</h3>
         <button
           onClick={handleReset}
-          className="text-xs text-blue-200 hover:text-white transition-colors cursor-pointer"
+          className="cursor-pointer text-[12px] text-[#6E90A4] transition-colors hover:text-[#FFC48A]"
         >
           Reset All
         </button>
@@ -36,36 +36,34 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
 
       {/* Price Range */}
       <div>
-        <label className="block text-sm text-blue-200 font-semibold mb-3">Price Limit</label>
-        <div className="space-y-3">
-          <input
-            type="range"
-            min="50000"
-            max="1000000"
-            step="50000"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-            className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#FFD700]"
-          />
-          <div className="flex justify-between text-xs text-blue-200/80">
-            <span>IDR 50k</span>
-            <span className="font-bold text-[#FFD700]">Under IDR {maxPrice.toLocaleString()}</span>
-          </div>
+        <label className="aq-label">Price Limit</label>
+        <input
+          type="range"
+          min="50000"
+          max="1000000"
+          step="50000"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+          className="h-1 w-full cursor-pointer appearance-none rounded-full bg-white/12 accent-[#F9913E]"
+        />
+        <div className="mt-3 flex justify-between text-[12px] text-[#6E90A4]">
+          <span>IDR 50k</span>
+          <span className="font-semibold text-[#FFC48A]">Under IDR {maxPrice.toLocaleString("en-US")}</span>
         </div>
       </div>
 
       {/* Minimum Rating */}
       <div>
-        <label className="block text-sm text-blue-200 font-semibold mb-3">Minimum Rating</label>
-        <div className="flex gap-1.5 flex-wrap">
+        <label className="aq-label">Minimum Rating</label>
+        <div className="flex flex-wrap gap-2">
           {[0, 4, 4.5, 4.8].map((r) => (
             <button
               key={r}
               onClick={() => setMinRating(r)}
-              className={`glass px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[12px] font-semibold transition-all duration-200 ${
                 minRating === r
-                  ? "bg-[#FFD700] border-[#FFD700] text-black shadow-lg shadow-yellow-500/25 animate-pulse"
-                  : "bg-white/5 border-white/10 hover:bg-white/10 text-white"
+                  ? "border-transparent bg-gradient-to-br from-[#FFC48A] to-[#F9913E] text-[#1B0E02]"
+                  : "border-white/12 bg-white/4 text-[#8FB0C2] hover:border-white/25 hover:text-white"
               }`}
             >
               {r === 0 ? "Any" : `${r}★+`}
@@ -76,16 +74,20 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
 
       {/* Sort Options */}
       <div>
-        <label className="block text-sm text-blue-200 font-semibold mb-3">Sort By</label>
+        <label className="aq-label">Sort By</label>
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="glass-input w-full bg-black/35 border-white/10 text-white rounded-xl py-2.5 px-3 focus:border-white/30"
+          className="aq-input cursor-pointer"
         >
-          <option value="popular" className="bg-[#0F1419] text-white">Most Popular</option>
-          <option value="price-low" className="bg-[#0F1419] text-white">Price: Low to High</option>
-          <option value="price-high" className="bg-[#0F1419] text-white">Price: High to Low</option>
-          <option value="rating" className="bg-[#0F1419] text-white">Highest Rated</option>
+          {[
+            { v: "popular", l: "Most Popular" },
+            { v: "price-low", l: "Price: Low to High" },
+            { v: "price-high", l: "Price: High to Low" },
+            { v: "rating", l: "Highest Rated" },
+          ].map((o) => (
+            <option key={o.v} value={o.v} className="bg-[#072334]">{o.l}</option>
+          ))}
         </select>
       </div>
     </div>

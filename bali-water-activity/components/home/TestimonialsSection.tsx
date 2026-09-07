@@ -61,12 +61,8 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="section-gap bg-gradient-to-b from-[#0F1419] via-[#1A3D8C] to-[#0F1419] relative overflow-hidden text-white">
-      {/* Decorative glows */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="section-gap relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Testimonials"
           title="What Our Adventurers Say"
@@ -74,41 +70,41 @@ export default function TestimonialsSection() {
           light
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal
               key={t.name}
               delay={(i % 3) * 0.08}
-              className="glass-card flex flex-col h-full hover:border-[#FFD700]/30 hover:bg-white/12 p-6"
+              className="aq-panel aq-panel-hover relative flex h-full flex-col p-7"
             >
-              {/* Stars + activity */}
-              <div className="flex items-center justify-between mb-4 shrink-0">
+              {/* Oversized quote mark instead of a border-heavy header */}
+              <span className="pointer-events-none absolute right-6 top-2 font-display text-[76px] leading-none text-white/[0.05]">
+                &rdquo;
+              </span>
+
+              <div className="relative mb-5 flex items-center gap-3">
                 <div className="flex gap-0.5">
                   {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={13} className="text-[#FFD700] fill-[#FFD700]" />
+                    <Star key={i} size={13} className="fill-[#F9913E] text-[#F9913E]" />
                   ))}
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFD700] bg-white/10 px-2.5 py-1 rounded-full border border-white/5">
-                  {t.activity}
-                </span>
+                <span className="text-[11px] font-semibold text-[#6E90A4]">{t.activity}</span>
               </div>
 
-              {/* Quote */}
-              <p className="text-white/80 text-sm leading-relaxed flex-1 mb-6 italic">
+              <p className="relative mb-8 flex-1 text-[14px] leading-[1.8] text-[#B7CEDB]">
                 &ldquo;{t.text}&rdquo;
               </p>
 
-              {/* Reviewer */}
-              <div className="flex items-center gap-3 pt-4 border-t border-white/10 shrink-0">
+              <div className="relative flex items-center gap-3 border-t border-white/10 pt-5">
                 <img
                   src={t.avatar}
                   alt={t.name}
-                  className="w-9 h-9 rounded-full object-cover border border-[#FFD700]/30"
+                  className="h-10 w-10 rounded-full object-cover ring-1 ring-white/15"
                   loading="lazy"
                 />
                 <div>
-                  <p className="font-semibold text-white text-sm">{t.name}</p>
-                  <p className="text-xs text-blue-200">{t.flag} · {t.country}</p>
+                  <p className="text-[13px] font-semibold text-[#EAF4F8]">{t.name}</p>
+                  <p className="text-[11px] text-[#6E90A4]">{t.flag} · {t.country}</p>
                 </div>
               </div>
             </Reveal>
@@ -116,18 +112,18 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Overall score bar */}
-        <div className="glass border-white/10 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-white/5 pointer-events-none" />
-          <div className="text-center sm:text-left relative z-10">
-            <p className="font-display text-6xl text-[#FFD700] leading-none drop-shadow-[0_0_12px_rgba(255,215,0,0.2)]">4.9</p>
-            <div className="flex gap-0.5 mt-2 justify-center sm:justify-start">
+        <div className="aq-panel flex flex-col items-center justify-between gap-10 p-8 sm:flex-row md:p-10">
+          <div className="text-center sm:text-left">
+            <p className="aq-accent-text font-display text-[64px] font-semibold leading-none">4.9</p>
+            <div className="mt-3 flex justify-center gap-0.5 sm:justify-start">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={16} className="text-[#FFD700] fill-[#FFD700]" />
+                <Star key={i} size={15} className="fill-[#F9913E] text-[#F9913E]" />
               ))}
             </div>
-            <p className="text-xs text-blue-200 mt-2">Based on 3,500+ reviews</p>
+            <p className="mt-3 text-[11px] text-[#6E90A4]">Based on 3,500+ reviews</p>
           </div>
-          <div className="flex gap-8 md:gap-12 relative z-10">
+
+          <div className="grid grid-cols-2 gap-x-12 gap-y-6 sm:flex sm:gap-12">
             {[
               { label: "Safety", pct: 99 },
               { label: "Value", pct: 97 },
@@ -135,8 +131,8 @@ export default function TestimonialsSection() {
               { label: "Fun", pct: 100 },
             ].map((r) => (
               <div key={r.label} className="text-center">
-                <p className="font-display text-2xl text-white">{r.pct}%</p>
-                <p className="text-[10px] uppercase tracking-wider text-blue-200 mt-1">{r.label}</p>
+                <p className="font-display text-[28px] font-light text-[#EAF4F8]">{r.pct}%</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">{r.label}</p>
               </div>
             ))}
           </div>
