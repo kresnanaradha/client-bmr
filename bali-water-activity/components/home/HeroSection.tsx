@@ -10,9 +10,9 @@ export default function HeroSection() {
   return (
     <ScrollExpandMedia
       mediaType="video"
-      mediaSrc="/assets/hero-watersport.mp4"
-      posterSrc="/assets/hero-poster.jpg"
-      bgImageSrc="/assets/hero-poster.jpg"
+      mediaSrc="/assets/hero-watersport.mov"
+      posterSrc="/assets/hero-poster.png"
+      bgImageSrc="/assets/hero-poster.png"
       title="Bali Water Activity"
       location="Tanjung Benoa · Bali"
       scrollToExpand="Scroll to explore"
