@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { raftingPackages } from "@/lib/activities";
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     "Experience thrilling white water rafting in Bali on the Ayung and Telaga Waja rivers. All skill levels welcome. Includes lunch, insurance & guide. Book via WhatsApp!",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function RaftingPage() {
   return (

@@ -1,4 +1,5 @@
 "use client";
+import { WA_NUMBER } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, Phone, Waves } from "lucide-react";
@@ -124,7 +125,7 @@ export default function Footer() {
                 <div className="w-7 h-7 bg-white/5 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
                   <Phone size={13} className="text-[#FFC48A]" />
                 </div>
-                <a href="https://wa.me/628XXXXXXXXXX" className="text-sm text-[#8FB0C2] hover:text-white cursor-pointer transition-colors">
+                <a href={`https://wa.me/${WA_NUMBER}`} className="text-sm text-[#8FB0C2] hover:text-white cursor-pointer transition-colors">
                   +62 8XX-XXXX-XXXX
                 </a>
               </li>

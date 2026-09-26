@@ -1,8 +1,8 @@
 "use client";
+import { WA_NUMBER } from "@/lib/site";
 import { useState } from "react";
 import { X, MessageCircle } from "lucide-react";
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MESSAGE = "Hi Bali Water Activity! I'd like to get more information and book an activity.";
 
 export default function WhatsAppButton() {

@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import WatersportClient from "@/components/activities/WatersportClient";
 import SectionHeader from "@/components/SectionHeader";
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     "Book the best watersport activities in Bali: Banana Boat, Jet Ski, Parasailing, Fly Board, Sea Walker & more at Tanjung Benoa. Safe, fun, pay on arrival.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi! I want to book a watersport package in Bali. Can you give me more information?";
 
 const combos = [
@@ -46,7 +46,7 @@ export default function WatersportPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[62vh] min-h-[420px]">
         <img
-          src="/assets/watersport-hero.jpg"
+          src="/assets/hero-poster.jpg"
           alt="Bali Watersport"
           className="absolute inset-0 h-full w-full scale-105 object-cover"
         />

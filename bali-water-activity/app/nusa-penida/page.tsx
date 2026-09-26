@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { nusaPenidaPackages } from "@/lib/activities";
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     "Explore Nusa Penida with guided day tours: Kelingking Beach, Angel's Billabong, Broken Beach, Crystal Bay, and Manta Ray snorkeling. Book via WhatsApp!",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 const highlights = [
   { icon: MapPin, label: "Kelingking Beach", desc: "Iconic T-Rex cliff" },

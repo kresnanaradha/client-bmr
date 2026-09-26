@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
+import { ALLOW_INDEXING } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     title: "Bali Water Activity – Watersport & Tours",
     description: "Premium water activities in Bali. Book via WhatsApp!",
   },
-  robots: { index: true, follow: true },
+  robots: { index: ALLOW_INDEXING, follow: ALLOW_INDEXING },
 };
 
 export default function RootLayout({
