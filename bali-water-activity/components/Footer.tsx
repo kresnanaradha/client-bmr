@@ -146,6 +146,9 @@ export default function Footer() {
           <p className="text-xs text-[#6E90A4]">
             © {new Date().getFullYear()} Bali Water Activity. All rights reserved.
           </p>
+          <Link href="/credits" className="text-xs text-[#6E90A4] hover:text-[#FFC48A] transition-colors">
+            Photo credits
+          </Link>
         </div>
       </div>
     </footer>

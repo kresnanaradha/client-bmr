@@ -34,7 +34,7 @@ export default function NusaPenidaPage() {
       {/* Hero — full viewport cinematic */}
       <section className="aq-page-hero h-[70vh] min-h-[480px]">
         <img
-          src={dummyImage("penida-hero", 1920, 1080)}
+          src={dummyImage("penida-hero")}
           alt="Nusa Penida"
           className="absolute inset-0 h-full w-full scale-105 object-cover"
         />

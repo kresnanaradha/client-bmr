@@ -65,7 +65,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[52vh] min-h-[360px]">
         <img
-          src={dummyImage("about-hero", 1920, 1080)}
+          src={dummyImage("about-hero")}
           alt="About Bali Water Activity"
           className="absolute inset-0 h-full w-full object-cover"
         />

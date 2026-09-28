@@ -25,7 +25,7 @@ export default function LabuanBajoPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[70vh] min-h-[480px]">
         <img
-          src={dummyImage("labuan-hero", 1920, 1080)}
+          src={dummyImage("labuan-hero")}
           alt="Labuan Bajo"
           className="absolute inset-0 h-full w-full scale-105 object-cover"
         />

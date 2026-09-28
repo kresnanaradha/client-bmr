@@ -18,7 +18,7 @@ export default function RaftingPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[52vh] min-h-[360px]">
         <img
-          src={dummyImage("rafting-hero", 1920, 1080)}
+          src={dummyImage("rafting-hero")}
           alt="Bali Rafting"
           className="absolute inset-0 h-full w-full object-cover"
         />
