@@ -1,4 +1,5 @@
 "use client";
+import { sendGAEvent } from "@next/third-parties/google";
 import { WA_NUMBER } from "@/lib/site";
 import { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
@@ -19,6 +20,8 @@ export default function ContactClient() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Hi! I'm ${form.name} (${form.email}).\n\nSubject: ${form.subject}\n\nMessage: ${form.message}`;
+    // Opened via window.open rather than a link, so the global click listener misses it.
+    sendGAEvent("event", "whatsapp_click", { link_text: "Contact form" });
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
     setSent(true);
   };

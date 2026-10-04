@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import { GoogleTagManager } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
 import SplashScreen from "@/components/SplashScreen";
+import SiteChrome from "@/components/SiteChrome";
+import Analytics from "@/components/Analytics";
 import { ALLOW_INDEXING } from "@/lib/site";
 
 const inter = Inter({
@@ -65,16 +66,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <head>
-        <GoogleTagManager gtmId="GTM-XXXXXXX" />
-      </head>
       <body className={inter.className}>
-        <SplashScreen />
-        <LenisProvider />
-        <Navbar />
+        <SiteChrome>
+          <SplashScreen />
+          <LenisProvider />
+          <Navbar />
+        </SiteChrome>
         <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <SiteChrome>
+          <Footer />
+          <WhatsAppButton />
+          <Analytics />
+        </SiteChrome>
       </body>
     </html>
   );
