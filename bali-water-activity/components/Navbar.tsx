@@ -1,4 +1,5 @@
 "use client";
+import { WA_NUMBER } from "@/lib/site";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -189,7 +190,7 @@ export default function Navbar() {
             )
           )}
           <a
-            href="https://wa.me/628XXXXXXXXXX?text=Hi%2C%20I%20want%20to%20book%20an%20activity"
+            href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20an%20activity`}
             target="_blank"
             rel="noopener noreferrer"
             className="aq-btn mt-3 !w-full"

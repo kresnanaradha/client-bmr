@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { labuanBajoPackages } from "@/lib/activities";
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     "Book Labuan Bajo tours from Bali: Komodo National Park, Komodo Dragons, Pink Beach, Padar Island & snorkeling. 2D1N and 3D2N packages available.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 const features = [
   { icon: Mountain, label: "Komodo Dragons", desc: "World's largest lizard" },
@@ -25,7 +25,7 @@ export default function LabuanBajoPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[70vh] min-h-[480px]">
         <img
-          src={dummyImage("labuan-hero", 1920, 1080)}
+          src={dummyImage("labuan-hero")}
           alt="Labuan Bajo"
           className="absolute inset-0 h-full w-full scale-105 object-cover"
         />

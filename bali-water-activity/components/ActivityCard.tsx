@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, MessageCircle, ArrowUpRight } from "lucide-react";
@@ -13,7 +14,6 @@ interface ActivityCardProps {
   badge?: string;
 }
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 export default function ActivityCard({
   title, description, price, duration, ageRange, image, slug,

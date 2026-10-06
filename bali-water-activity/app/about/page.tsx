@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import { dummyImage } from "@/lib/dummyImage";
@@ -9,7 +10,6 @@ export const metadata: Metadata = {
     "Learn about Bali Water Activity — your trusted booking platform for water activities, rafting, and island tours in Bali and beyond.",
 };
 
-const WA_NUMBER = "628XXXXXXXXXX";
 const WA_MSG = "Hi! I'd like to learn more about Bali Water Activity and book an activity.";
 
 const steps = [
@@ -65,7 +65,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="aq-page-hero h-[52vh] min-h-[360px]">
         <img
-          src={dummyImage("about-hero", 1920, 1080)}
+          src={dummyImage("about-hero")}
           alt="About Bali Water Activity"
           className="absolute inset-0 h-full w-full object-cover"
         />
