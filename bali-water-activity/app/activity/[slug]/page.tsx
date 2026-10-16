@@ -63,12 +63,12 @@ export default async function ActivityDetailPage({ params }: Props) {
       </section>
 
       {/* Quick info bar */}
-      <div className="sticky top-16 z-30 border-b border-white/10 bg-[#04131F]/85 backdrop-blur-xl">
+      <div className="sticky top-16 z-30 border-b border-[#173B4D]/10 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-4 py-3.5 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-5 text-[13px] text-[#8FB0C2]">
-            <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#3ED6E0]" /> {activity.duration}</span>
-            <span className="flex items-center gap-1.5"><Users size={14} className="text-[#3ED6E0]" /> Age {activity.ageRange}</span>
-            <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#3ED6E0]" /> Insured</span>
+          <div className="flex flex-wrap items-center gap-5 text-[13px] text-[#526B78]">
+            <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#087D8A]" /> {activity.duration}</span>
+            <span className="flex items-center gap-1.5"><Users size={14} className="text-[#087D8A]" /> Age {activity.ageRange}</span>
+            <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#087D8A]" /> Insured</span>
             <span className="aq-accent-text font-display text-[18px] font-semibold">{activity.price}</span>
           </div>
           <a
@@ -88,26 +88,26 @@ export default async function ActivityDetailPage({ params }: Props) {
           <div className="space-y-4 lg:col-span-2">
             {/* Overview */}
             <section className="aq-panel p-8">
-              <h2 className="aq-display mb-4 text-[22px] text-[#EAF4F8]">Overview</h2>
-              <p className="text-[14px] leading-[1.9] text-[#8FB0C2]">{activity.longDescription}</p>
+              <h2 className="aq-display mb-4 text-[22px] text-[#173B4D]">Overview</h2>
+              <p className="text-[14px] leading-[1.9] text-[#526B78]">{activity.longDescription}</p>
             </section>
 
             {/* Operating Hours */}
             <section className="aq-panel p-8">
-              <h2 className="aq-display mb-6 text-[22px] text-[#EAF4F8]">Operating Hours</h2>
+              <h2 className="aq-display mb-6 text-[22px] text-[#173B4D]">Operating Hours</h2>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {[
                   { label: "Opens", value: activity.openHour },
                   { label: "Closes", value: activity.closeHour },
                 ].map((t) => (
-                  <div key={t.label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 text-center">
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">{t.label}</p>
-                    <p className="font-display text-[24px] font-semibold text-[#3ED6E0]">{t.value}</p>
+                  <div key={t.label} className="rounded-2xl border border-[#173B4D]/10 bg-[#173B4D]/[0.035] p-5 text-center">
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#657B87]">{t.label}</p>
+                    <p className="font-display text-[24px] font-semibold text-[#087D8A]">{t.value}</p>
                   </div>
                 ))}
                 <div className="col-span-2 rounded-2xl border border-[#F9913E]/25 bg-[#F9913E]/8 p-5 text-center sm:col-span-1">
-                  <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#FFC48A]">Check-in</p>
-                  <p className="text-[13px] leading-[1.6] text-[#EAF4F8]">{activity.checkInNote}</p>
+                  <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#A84914]">Check-in</p>
+                  <p className="text-[13px] leading-[1.6] text-[#173B4D]">{activity.checkInNote}</p>
                 </div>
               </div>
             </section>
@@ -115,18 +115,18 @@ export default async function ActivityDetailPage({ params }: Props) {
             {/* Health Requirements */}
             <section className="aq-panel border-[#F9913E]/25 bg-[#F9913E]/[0.06] p-8">
               <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#F9913E]/30 bg-[#F9913E]/12 text-[#FFC48A]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#F9913E]/30 bg-[#F9913E]/12 text-[#A84914]">
                   <AlertTriangle size={18} strokeWidth={1.7} />
                 </div>
-                <h2 className="text-[19px] font-semibold text-[#EAF4F8]">Health Requirements</h2>
+                <h2 className="text-[19px] font-semibold text-[#173B4D]">Health Requirements</h2>
               </div>
-              <p className="mb-5 text-[13px] leading-[1.75] text-[#8FB0C2]">
+              <p className="mb-5 text-[13px] leading-[1.75] text-[#526B78]">
                 For safety, participants with the following conditions are advised NOT to join this activity:
               </p>
               <ul className="space-y-3">
                 {activity.healthRestrictions.map((r) => (
-                  <li key={r} className="flex items-start gap-2.5 text-[13px] text-[#8FB0C2]">
-                    <Heart size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FFC48A]" /> {r}
+                  <li key={r} className="flex items-start gap-2.5 text-[13px] text-[#526B78]">
+                    <Heart size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#A84914]" /> {r}
                   </li>
                 ))}
               </ul>
@@ -134,28 +134,28 @@ export default async function ActivityDetailPage({ params }: Props) {
 
             {/* Do's and Don'ts */}
             <section className="aq-panel p-8">
-              <h2 className="aq-display mb-7 text-[22px] text-[#EAF4F8]">Do&apos;s and Don&apos;ts</h2>
+              <h2 className="aq-display mb-7 text-[22px] text-[#173B4D]">Do&apos;s and Don&apos;ts</h2>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <div>
-                  <p className="aq-label flex items-center gap-2 !text-[#3ED6E0]">
+                  <p className="aq-label flex items-center gap-2 !text-[#087D8A]">
                     <ThumbsUp size={14} /> Do
                   </p>
                   <ul className="space-y-3">
                     {activity.dos.map((d) => (
-                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#8FB0C2]">
-                        <CheckCircle size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#3ED6E0]" /> {d}
+                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#526B78]">
+                        <CheckCircle size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#087D8A]" /> {d}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <p className="aq-label flex items-center gap-2 !text-[#FFC48A]">
+                  <p className="aq-label flex items-center gap-2 !text-[#A84914]">
                     <X size={14} /> Don&apos;t
                   </p>
                   <ul className="space-y-3">
                     {activity.donts.map((d) => (
-                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#8FB0C2]">
-                        <X size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FFC48A]" /> {d}
+                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#526B78]">
+                        <X size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#A84914]" /> {d}
                       </li>
                     ))}
                   </ul>
@@ -165,12 +165,12 @@ export default async function ActivityDetailPage({ params }: Props) {
 
             {/* Insurance */}
             <section className="aq-panel flex items-start gap-4 p-8">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                 <Shield size={19} strokeWidth={1.6} />
               </div>
               <div>
-                <h2 className="mb-2.5 text-[19px] font-semibold text-[#EAF4F8]">Insurance Coverage</h2>
-                <p className="text-[13px] leading-[1.8] text-[#8FB0C2]">{activity.insuranceInfo}</p>
+                <h2 className="mb-2.5 text-[19px] font-semibold text-[#173B4D]">Insurance Coverage</h2>
+                <p className="text-[13px] leading-[1.8] text-[#526B78]">{activity.insuranceInfo}</p>
               </div>
             </section>
           </div>
@@ -178,9 +178,9 @@ export default async function ActivityDetailPage({ params }: Props) {
           {/* Sidebar */}
           <div>
             <div className="aq-panel sticky top-32 p-7">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Starting from</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Starting from</p>
               <p className="aq-accent-text my-2 font-display text-[38px] font-semibold leading-none">{activity.price}</p>
-              <p className="mb-7 text-[12px] text-[#6E90A4]">per person · pay on arrival</p>
+              <p className="mb-7 text-[12px] text-[#657B87]">per person · pay on arrival</p>
 
               <a
                 href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
@@ -190,26 +190,26 @@ export default async function ActivityDetailPage({ params }: Props) {
               >
                 Book via WhatsApp
               </a>
-              <p className="mt-3.5 text-center text-[11px] text-[#6E90A4]">
+              <p className="mt-3.5 text-center text-[11px] text-[#657B87]">
                 No upfront payment · Instant confirmation
               </p>
 
-              <div className="mt-7 border-t border-white/10 pt-6">
+              <div className="mt-7 border-t border-[#173B4D]/10 pt-6">
                 <p className="aq-label">Includes</p>
                 <ul className="space-y-2.5">
                   {activity.includes.map((inc) => (
-                    <li key={inc} className="flex items-center gap-2 text-[13px] text-[#8FB0C2]">
-                      <CheckCircle size={13} strokeWidth={1.9} className="shrink-0 text-[#3ED6E0]" /> {inc}
+                    <li key={inc} className="flex items-center gap-2 text-[13px] text-[#526B78]">
+                      <CheckCircle size={13} strokeWidth={1.9} className="shrink-0 text-[#087D8A]" /> {inc}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-6 border-t border-white/10 pt-6">
+              <div className="mt-6 border-t border-[#173B4D]/10 pt-6">
                 <p className="aq-label">Not Included</p>
                 <ul className="space-y-2.5">
                   {activity.excludes.map((ex) => (
-                    <li key={ex} className="flex items-center gap-2 text-[13px] text-[#5C7D91]">
+                    <li key={ex} className="flex items-center gap-2 text-[13px] text-[#657B87]">
                       <X size={13} strokeWidth={1.9} className="shrink-0" /> {ex}
                     </li>
                   ))}
@@ -221,9 +221,9 @@ export default async function ActivityDetailPage({ params }: Props) {
       </div>
 
       {/* Related activities */}
-      <section className="section-gap border-t border-white/10">
+      <section className="section-gap border-t border-[#173B4D]/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="aq-display mb-8 text-display-md text-[#EAF4F8]">Other Activities You May Like</h2>
+          <h2 className="aq-display mb-8 text-display-md text-[#173B4D]">Other Activities You May Like</h2>
           <div className="flex gap-4 overflow-x-auto pb-3">
             {watersportActivities
               .filter((a) => a.slug !== slug)
@@ -238,7 +238,7 @@ export default async function ActivityDetailPage({ params }: Props) {
                     <img src={rel.image} alt={rel.title} className="h-full w-full object-cover" loading="lazy" />
                   </div>
                   <div className="p-3.5">
-                    <p className="text-[14px] font-semibold text-[#EAF4F8]">{rel.title}</p>
+                    <p className="text-[14px] font-semibold text-[#173B4D]">{rel.title}</p>
                     <p className="aq-accent-text mt-1 font-display text-[16px] font-semibold">{rel.price}</p>
                   </div>
                 </Link>

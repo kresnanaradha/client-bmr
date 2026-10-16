@@ -119,8 +119,8 @@ export default function WatersportClient({ initialActivities }: WatersportClient
           </div>
         ) : (
           <div className="aq-panel p-16 text-center">
-            <p className="aq-display mb-3 text-[22px] text-[#EAF4F8]">No Activities Found</p>
-            <p className="text-[14px] text-[#8FB0C2]">Try adjusting your filters to find your perfect adventure.</p>
+            <p className="aq-display mb-3 text-[22px] text-[#173B4D]">No Activities Found</p>
+            <p className="text-[14px] text-[#526B78]">Try adjusting your filters to find your perfect adventure.</p>
           </div>
         )}
       </div>

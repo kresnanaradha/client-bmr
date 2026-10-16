@@ -64,7 +64,7 @@ export default function WatersportPage() {
               { icon: Shield, text: "Insurance included" },
             ].map((item) => (
               <span key={item.text} className="aq-chip">
-                <item.icon size={12} className="text-[#FFC48A]" /> {item.text}
+                <item.icon size={12} className="text-[#A84914]" /> {item.text}
               </span>
             ))}
           </div>
@@ -111,25 +111,25 @@ export default function WatersportPage() {
                     className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] ${
                       pkg.highlight
                         ? "bg-gradient-to-br from-[#FFC48A] to-[#F9913E] text-[#1B0E02]"
-                        : "border border-white/12 bg-white/5 text-[#8FB0C2]"
+                        : "border border-[#173B4D]/12 bg-[#173B4D]/5 text-[#526B78]"
                     }`}
                   >
                     {pkg.tag}
                   </span>
 
-                  <h3 className="aq-display mb-6 mt-5 text-[24px] text-[#EAF4F8]">{pkg.name}</h3>
+                  <h3 className="aq-display mb-6 mt-5 text-[24px] text-[#173B4D]">{pkg.name}</h3>
 
-                  <ul className="mb-8 space-y-2.5 text-[13px] text-[#8FB0C2]">
+                  <ul className="mb-8 space-y-2.5 text-[13px] text-[#526B78]">
                     {pkg.activities.map((a) => (
                       <li key={a} className="flex items-center gap-2.5">
-                        <CheckCircle size={14} strokeWidth={1.8} className="shrink-0 text-[#3ED6E0]" /> {a}
+                        <CheckCircle size={14} strokeWidth={1.8} className="shrink-0 text-[#087D8A]" /> {a}
                       </li>
                     ))}
                   </ul>
 
                   <div className="mb-7">
                     <p className="aq-accent-text font-display text-[30px] font-semibold leading-none">{pkg.price}</p>
-                    <p className="mt-1.5 text-[13px] text-[#5C7D91] line-through">{pkg.original}</p>
+                    <p className="mt-1.5 text-[13px] text-[#657B87] line-through">{pkg.original}</p>
                   </div>
 
                   <a
@@ -154,10 +154,10 @@ export default function WatersportPage() {
             <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[300px] w-[600px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#F9913E]/16 blur-[90px]" />
             <div className="relative z-10">
               <span className="aq-eyebrow mb-7">Need Help Choosing?</span>
-              <h2 className="aq-display mb-6 text-display-md text-[#EAF4F8]">
+              <h2 className="aq-display mb-6 text-display-md text-[#173B4D]">
                 We&apos;ll Find the Perfect Activity for You
               </h2>
-              <p className="mx-auto mb-10 max-w-lg text-[15px] leading-[1.8] text-[#8FB0C2]">
+              <p className="mx-auto mb-10 max-w-lg text-[15px] leading-[1.8] text-[#526B78]">
                 Our team is ready to help you pick the perfect activity. Chat with us on WhatsApp!
               </p>
               <a

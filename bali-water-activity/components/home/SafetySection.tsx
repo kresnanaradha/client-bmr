@@ -33,16 +33,16 @@ export default function SafetySection() {
           {/* Safety standards */}
           <div className="aq-panel p-8 lg:col-span-7">
             <div className="mb-7 flex items-center gap-3.5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                 <Shield size={19} strokeWidth={1.6} />
               </div>
-              <h3 className="text-[19px] font-semibold text-[#EAF4F8]">Our Safety Standards</h3>
+              <h3 className="text-[19px] font-semibold text-[#173B4D]">Our Safety Standards</h3>
             </div>
             <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
               {safetyPoints.map((p) => (
                 <div key={p} className="flex items-start gap-2.5">
-                  <CheckCircle size={15} strokeWidth={1.8} className="mt-1 shrink-0 text-[#3ED6E0]" />
-                  <p className="text-[13px] leading-[1.7] text-[#8FB0C2]">{p}</p>
+                  <CheckCircle size={15} strokeWidth={1.8} className="mt-1 shrink-0 text-[#087D8A]" />
+                  <p className="text-[13px] leading-[1.7] text-[#526B78]">{p}</p>
                 </div>
               ))}
             </div>
@@ -51,19 +51,19 @@ export default function SafetySection() {
           {/* Health restrictions */}
           <div className="aq-panel p-8 lg:col-span-5">
             <div className="mb-7 flex items-center gap-3.5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#F9913E]/30 bg-[#F9913E]/12 text-[#FFC48A]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#F9913E]/30 bg-[#F9913E]/12 text-[#A84914]">
                 <AlertTriangle size={19} strokeWidth={1.6} />
               </div>
-              <h3 className="text-[19px] font-semibold text-[#EAF4F8]">Health Advisory</h3>
+              <h3 className="text-[19px] font-semibold text-[#173B4D]">Health Advisory</h3>
             </div>
-            <p className="mb-5 text-[13px] leading-[1.7] text-[#8FB0C2]">
+            <p className="mb-5 text-[13px] leading-[1.7] text-[#526B78]">
               For your safety, participants with the following conditions should consult a doctor before participating:
             </p>
             <div className="space-y-3">
               {healthRestrictions.map((r) => (
                 <div key={r} className="flex items-start gap-2.5">
-                  <Heart size={14} strokeWidth={1.8} className="mt-1 shrink-0 text-[#FFC48A]" />
-                  <p className="text-[13px] text-[#8FB0C2]">{r}</p>
+                  <Heart size={14} strokeWidth={1.8} className="mt-1 shrink-0 text-[#A84914]" />
+                  <p className="text-[13px] text-[#526B78]">{r}</p>
                 </div>
               ))}
             </div>
@@ -71,11 +71,11 @@ export default function SafetySection() {
 
           {/* Insurance — full-width strip so the row never leaves a ragged gap */}
           <div className="aq-panel flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center lg:col-span-12">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
               <Hospital size={19} strokeWidth={1.6} />
             </div>
-            <h3 className="text-[19px] font-semibold text-[#EAF4F8] sm:shrink-0">Activity Insurance Included</h3>
-            <p className="text-[13px] leading-[1.7] text-[#8FB0C2]">
+            <h3 className="text-[19px] font-semibold text-[#173B4D] sm:shrink-0">Activity Insurance Included</h3>
+            <p className="text-[13px] leading-[1.7] text-[#526B78]">
               All participants are covered for the duration of their activity. No extra cost.
             </p>
           </div>

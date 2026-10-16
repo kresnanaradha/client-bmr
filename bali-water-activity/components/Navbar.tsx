@@ -4,7 +4,16 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Waves, Ship, Mountain, MapPin, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Waves,
+  Ship,
+  Mountain,
+  MapPin,
+  ArrowUpRight,
+} from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -12,10 +21,30 @@ const navLinks = [
     label: "Activities",
     href: "#",
     children: [
-      { label: "Watersport", href: "/watersport", icon: Waves, desc: "Jet ski, parasailing & more" },
-      { label: "Rafting", href: "/rafting", icon: Ship, desc: "Ayung & Telaga river rapids" },
-      { label: "Nusa Penida Tour", href: "/nusa-penida", icon: MapPin, desc: "Kelingking & island hopping" },
-      { label: "Labuan Bajo Tour", href: "/labuan-bajo", icon: Mountain, desc: "Komodo & Pink Beach" },
+      {
+        label: "Watersport",
+        href: "/watersport",
+        icon: Waves,
+        desc: "Jet ski, parasailing & more",
+      },
+      {
+        label: "Rafting",
+        href: "/rafting",
+        icon: Ship,
+        desc: "Ayung & Telaga river rapids",
+      },
+      {
+        label: "Nusa Penida Tour",
+        href: "/nusa-penida",
+        icon: MapPin,
+        desc: "Kelingking & island hopping",
+      },
+      {
+        label: "Labuan Bajo Tour",
+        href: "/labuan-bajo",
+        icon: Mountain,
+        desc: "Komodo & Pink Beach",
+      },
     ],
   },
   { label: "About Us", href: "/about" },
@@ -32,7 +61,7 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       // Use 100vh on the home page so it waits for the video to expand fully + 10px buffer
-      const threshold = pathname === '/' ? window.innerHeight - 10 : 20;
+      const threshold = pathname === "/" ? window.innerHeight - 10 : 20;
       setScrolled(window.scrollY > threshold);
     };
 
@@ -45,7 +74,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-[#04131F]/85 backdrop-blur-xl border-white/10 py-3"
+        ? "bg-white/90 backdrop-blur-xl border-[#173B4D]/10 py-3 shadow-sm"
           : "bg-transparent border-transparent py-2"
       }`}
     >
@@ -66,7 +95,9 @@ export default function Navbar() {
             />
           ) : (
             <div className="flex items-center gap-2">
-              <h1 className={`font-bold text-base leading-tight ${"text-white"}`}>
+              <h1
+                className={`font-bold text-base leading-tight ${scrolled ? "text-[#173B4D]" : "text-white"}`}
+              >
                 Bali Water Activity
               </h1>
             </div>
@@ -74,7 +105,9 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className={`hidden md:flex items-center gap-7 font-semibold ${"text-white"}`}>
+        <nav
+          className={`hidden md:flex items-center gap-7 font-semibold ${scrolled ? "text-[#173B4D]" : "text-white"}`}
+        >
           {navLinks.map((link) =>
             link.children ? (
               <div
@@ -84,7 +117,7 @@ export default function Navbar() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className={`flex items-center gap-1 cursor-pointer transition-colors hover:text-[#FFC48A]!`}
+                  className={`flex items-center gap-1 cursor-pointer transition-colors hover:text-[#A84914]!`}
                 >
                   {link.label}
                   <ChevronDown
@@ -100,26 +133,28 @@ export default function Navbar() {
                       : "opacity-0 invisible -translate-y-1 pointer-events-none"
                   }`}
                 >
-                  <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#072334]/95 p-2 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+                  <div className="overflow-hidden rounded-2xl border border-[#173B4D]/10 bg-white/95 p-2 shadow-[0_24px_60px_-20px_rgba(23,59,77,0.25)] backdrop-blur-xl">
                     {link.children!.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
                         onClick={() => setActiveDropdown(null)}
-                        className="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-150 hover:bg-white/6"
+                        className="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-150 hover:bg-[#173B4D]/[0.04]"
                       >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                           <child.icon size={16} strokeWidth={1.7} />
                         </span>
                         <span className="flex-1 min-w-0">
-                          <span className="block text-sm font-semibold text-[#EAF4F8] transition-colors group-hover/item:text-[#FFC48A]">
+                          <span className="block text-sm font-semibold text-[#173B4D] transition-colors group-hover/item:text-[#A84914]">
                             {child.label}
                           </span>
-                          <span className="block truncate text-[11px] text-[#6E90A4]">{child.desc}</span>
+                          <span className="block truncate text-[11px] text-[#657B87]">
+                            {child.desc}
+                          </span>
                         </span>
                         <ArrowUpRight
                           size={14}
-                          className="shrink-0 text-[#6E90A4] opacity-0 transition-all group-hover/item:text-[#FFC48A] group-hover/item:opacity-100"
+                          className="shrink-0 text-[#657B87] opacity-0 transition-all group-hover/item:text-[#A84914] group-hover/item:opacity-100"
                         />
                       </Link>
                     ))}
@@ -130,19 +165,17 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-[#FFC48A]!"
+                className="transition-colors hover:text-[#A84914]!"
               >
                 {link.label}
               </Link>
-            )
+            ),
           )}
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className={`md:hidden cursor-pointer p-1.5 rounded-xl transition-all ${
-            "text-[#EAF4F8] hover:bg-white/10"
-          }`}
+          className={`md:hidden cursor-pointer p-1.5 rounded-xl transition-all ${scrolled ? "text-[#173B4D] hover:bg-[#173B4D]/[0.06]" : "text-white hover:bg-[#173B4D]/10"}`}
           onClick={() => {
             setMenuOpen(!menuOpen);
             setActiveDropdown(null);
@@ -159,12 +192,12 @@ export default function Navbar() {
       {menuOpen && (
         <div
           id="mobile-navigation"
-          className="flex flex-col gap-1 border-t border-white/10 bg-[#04131F]/95 px-4 py-4 backdrop-blur-xl md:hidden"
+          className="flex flex-col gap-1 border-t border-[#173B4D]/10 bg-white/95 px-4 py-4 text-[#173B4D] shadow-lg backdrop-blur-xl md:hidden"
         >
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label}>
-                <p className="mt-3 mb-1 px-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#FFC48A]">
+                <p className="mt-3 mb-1 px-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#A84914]">
                   {link.label}
                 </p>
                 {link.children.map((child) => (
@@ -172,7 +205,7 @@ export default function Navbar() {
                     key={child.href}
                     href={child.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block cursor-pointer rounded-xl py-2.5 pl-3 text-sm font-medium text-[#8FB0C2] transition-all hover:bg-white/5 hover:text-[#FFC48A]"
+                    className="block cursor-pointer rounded-xl py-2.5 pl-3 text-sm font-medium text-[#526B78] transition-all hover:bg-[#173B4D]/[0.04] hover:text-[#A84914]"
                   >
                     {child.label}
                   </Link>
@@ -183,11 +216,11 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block cursor-pointer px-1 py-2.5 text-sm font-medium text-[#EAF4F8] hover:text-[#FFC48A]"
+                className="block cursor-pointer px-1 py-2.5 text-sm font-medium text-[#173B4D] hover:text-[#A84914]"
               >
                 {link.label}
               </Link>
-            )
+            ),
           )}
           <a
             href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20an%20activity`}

@@ -1,6 +1,6 @@
 // Set in .env.local locally and in the Vercel project settings; never committed,
 // because the repository is public.
-export const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? "628XXXXXXXXXX";
+export const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? "+628124600378";
 
 // Off unless explicitly enabled: demo deployments carry sample reviews and
 // unconfirmed prices that must not show up in search results.

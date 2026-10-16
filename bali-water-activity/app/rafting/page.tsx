@@ -57,13 +57,13 @@ export default function RaftingPage() {
                 </div>
 
                 <div className="p-7">
-                  <h2 className="aq-display mb-3 text-[24px] text-[#EAF4F8]">{pkg.title}</h2>
-                  <p className="mb-6 text-[14px] leading-[1.8] text-[#8FB0C2]">{pkg.description}</p>
+                  <h2 className="aq-display mb-3 text-[24px] text-[#173B4D]">{pkg.title}</h2>
+                  <p className="mb-6 text-[14px] leading-[1.8] text-[#526B78]">{pkg.description}</p>
 
                   <div className="mb-8 flex flex-wrap gap-2">
-                    <span className="aq-chip"><Clock size={12} className="text-[#3ED6E0]" /> {pkg.duration}</span>
-                    <span className="aq-chip"><MapPin size={12} className="text-[#3ED6E0]" /> {pkg.distance}</span>
-                    <span className="aq-chip"><Users size={12} className="text-[#3ED6E0]" /> {pkg.level}</span>
+                    <span className="aq-chip"><Clock size={12} className="text-[#087D8A]" /> {pkg.duration}</span>
+                    <span className="aq-chip"><MapPin size={12} className="text-[#087D8A]" /> {pkg.distance}</span>
+                    <span className="aq-chip"><Users size={12} className="text-[#087D8A]" /> {pkg.level}</span>
                   </div>
 
                   {/* Itinerary */}
@@ -71,8 +71,8 @@ export default function RaftingPage() {
                     <p className="aq-label">Itinerary</p>
                     <ol className="space-y-3">
                       {pkg.itinerary.map((step, j) => (
-                        <li key={j} className="flex items-start gap-3 text-[13px] leading-[1.7] text-[#8FB0C2]">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[10px] font-bold text-[#3ED6E0]">
+                        <li key={j} className="flex items-start gap-3 text-[13px] leading-[1.7] text-[#526B78]">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[10px] font-bold text-[#087D8A]">
                             {j + 1}
                           </span>
                           {step}
@@ -87,8 +87,8 @@ export default function RaftingPage() {
                       <p className="aq-label">Includes</p>
                       <ul className="space-y-2">
                         {pkg.includes.map((inc) => (
-                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#8FB0C2]">
-                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#3ED6E0]" /> {inc}
+                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#526B78]">
+                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#087D8A]" /> {inc}
                           </li>
                         ))}
                       </ul>
@@ -97,17 +97,17 @@ export default function RaftingPage() {
                       <p className="aq-label">Excludes</p>
                       <ul className="space-y-2">
                         {pkg.excludes.map((ex) => (
-                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#5C7D91]">
-                            <X size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#5C7D91]" /> {ex}
+                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#657B87]">
+                            <X size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#657B87]" /> {ex}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-6">
+                  <div className="flex items-center justify-between gap-4 border-t border-[#173B4D]/10 pt-6">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Per person</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Per person</p>
                       <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.price}</p>
                     </div>
                     <a
@@ -130,12 +130,12 @@ export default function RaftingPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="aq-panel flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
               <Shield size={21} strokeWidth={1.6} />
             </div>
             <div>
-              <p className="mb-1.5 text-[17px] font-semibold text-[#EAF4F8]">Safety Briefing Included</p>
-              <p className="text-[13px] leading-[1.75] text-[#8FB0C2]">
+              <p className="mb-1.5 text-[17px] font-semibold text-[#173B4D]">Safety Briefing Included</p>
+              <p className="text-[13px] leading-[1.75] text-[#526B78]">
                 All participants receive a full safety briefing before entering the water. Helmets, life jackets, and certified guides are always provided.
               </p>
             </div>

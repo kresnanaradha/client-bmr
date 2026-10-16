@@ -17,13 +17,13 @@ export default function CtaSection() {
           <div className="relative z-10 flex flex-col items-center">
             <span className="aq-eyebrow mb-7">Ready for Adventure?</span>
 
-            <h2 className="aq-display text-display-lg mb-6 text-[#EAF4F8]">
+            <h2 className="aq-display text-display-lg mb-6 text-[#173B4D]">
               Book Your Bali Adventure
               <br />
               <span className="aq-accent-text font-semibold">in Just 2 Minutes</span>
             </h2>
 
-            <p className="mx-auto mb-11 max-w-xl text-[15px] leading-[1.8] text-[#8FB0C2]">
+            <p className="mx-auto mb-11 max-w-xl text-[15px] leading-[1.8] text-[#526B78]">
               Chat with us on WhatsApp, pick your activity, and pay on arrival.
               It&apos;s that simple. Our team is online and ready to help!
             </p>
@@ -39,10 +39,10 @@ export default function CtaSection() {
               <ArrowRight size={17} />
             </a>
 
-            <p className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-2.5 text-[12px] text-[#6E90A4]">
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> No upfront payment</span>
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> Instant confirmation</span>
-              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#3ED6E0]" /> Free cancellation</span>
+            <p className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-2.5 text-[12px] text-[#657B87]">
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#087D8A]" /> No upfront payment</span>
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#087D8A]" /> Instant confirmation</span>
+              <span className="flex items-center gap-1.5"><Shield size={12} className="text-[#087D8A]" /> Free cancellation</span>
             </p>
           </div>
         </div>

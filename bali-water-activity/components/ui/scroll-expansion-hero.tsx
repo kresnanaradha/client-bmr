@@ -16,7 +16,7 @@ interface ScrollExpandMediaProps {
   mediaType?: 'video' | 'image';
   mediaSrc: string;
   posterSrc?: string;
-  bgImageSrc: string;
+  bgImageSrc: string | string[];
   title?: string;
   location?: string;
   scrollToExpand?: string;
@@ -102,19 +102,33 @@ const ScrollExpandMedia = ({
             animate={{ opacity: 1 - scrollProgress }}
             transition={{ duration: 0.1 }}
           >
-            <Image
-              src={bgImageSrc}
-              alt='Background'
-              width={1920}
-              height={1080}
-              className='w-screen h-screen'
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
-              priority
-            />
-            <div className='absolute inset-0 bg-black/10' />
+            {Array.isArray(bgImageSrc) ? (
+              <div className='grid h-full w-full grid-cols-2 grid-rows-2 gap-1'>
+                {bgImageSrc.map((src, index) => (
+                  <div key={src} className='relative min-h-0 min-w-0 overflow-hidden'>
+                    <Image
+                      src={src}
+                      alt={`${title || 'Hero'} background ${index + 1}`}
+                      fill
+                      sizes='50vw'
+                      className='object-cover'
+                      priority={index === 0}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <Image
+                src={bgImageSrc}
+                alt='Background'
+                width={1920}
+                height={1080}
+                className='h-screen w-screen object-cover'
+                style={{ objectPosition: 'center' }}
+                priority
+              />
+            )}
+            <div className='absolute inset-0 bg-black/20' />
           </motion.div>
 
           <div className='container relative z-10 mx-auto h-full'>
@@ -252,7 +266,7 @@ const ScrollExpandMedia = ({
       </div>
 
       <motion.section
-        className='relative z-10 flex min-h-screen w-full flex-col justify-center px-8 py-10 md:px-16 lg:py-20 bg-linear-to-b from-[#04131F] via-[#072334] to-[#04131F]'
+        className='relative z-10 flex min-h-screen w-full flex-col justify-center bg-linear-to-b from-[#F5FBFC] via-[#EAF6F7] to-[#D9EFF1] px-8 py-10 md:px-16 lg:py-20'
         initial={{ opacity: 0 }}
         animate={{ opacity: showContent ? 1 : 0 }}
         transition={{ duration: 0.7 }}
@@ -268,4 +282,3 @@ const ScrollExpandMedia = ({
 };
 
 export default ScrollExpandMedia;
-

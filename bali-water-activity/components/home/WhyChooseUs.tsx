@@ -58,12 +58,12 @@ export default function WhyChooseUs() {
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              <div className="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0] transition-colors duration-300 group-hover:border-[#F9913E]/40 group-hover:bg-[#F9913E]/12 group-hover:text-[#FFC48A]">
+              <div className="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A] transition-colors duration-300 group-hover:border-[#F9913E]/40 group-hover:bg-[#F9913E]/12 group-hover:text-[#A84914]">
                 <r.icon size={20} strokeWidth={1.6} />
               </div>
 
-              <h3 className="relative mb-2.5 text-[17px] font-semibold text-[#EAF4F8]">{r.title}</h3>
-              <p className="relative flex-1 text-[13px] leading-[1.75] text-[#8FB0C2]">{r.desc}</p>
+              <h3 className="relative mb-2.5 text-[17px] font-semibold text-[#173B4D]">{r.title}</h3>
+              <p className="relative flex-1 text-[13px] leading-[1.75] text-[#526B78]">{r.desc}</p>
             </Reveal>
           ))}
         </div>

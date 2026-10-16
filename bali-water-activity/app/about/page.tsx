@@ -81,10 +81,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
             <div>
               <span className="aq-eyebrow mb-5">Who We Are</span>
-              <h2 className="aq-display mb-7 text-display-md text-[#EAF4F8]">
+              <h2 className="aq-display mb-7 text-display-md text-[#173B4D]">
                 Your Trusted Bali Activity Partner
               </h2>
-              <div className="space-y-5 text-[15px] leading-[1.85] text-[#8FB0C2]">
+              <div className="space-y-5 text-[15px] leading-[1.85] text-[#526B78]">
                 <p>
                   Bali Water Activity is a centralized booking platform dedicated to connecting travelers with the best water adventures in Bali and beyond. We are not just a booking site — we are your personal concierge for unforgettable experiences.
                 </p>
@@ -100,9 +100,9 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               {figures.map((s) => (
                 <div key={s.label} className="aq-panel aq-panel-hover p-7 text-center">
-                  <s.icon size={22} strokeWidth={1.6} className="mx-auto mb-4 text-[#3ED6E0]" />
+                  <s.icon size={22} strokeWidth={1.6} className="mx-auto mb-4 text-[#087D8A]" />
                   <p className="aq-accent-text font-display text-[28px] font-semibold leading-none">{s.num}</p>
-                  <p className="mt-2.5 text-[12px] text-[#6E90A4]">{s.label}</p>
+                  <p className="mt-2.5 text-[12px] text-[#657B87]">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -116,11 +116,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {pillars.map((c) => (
               <div key={c.title} className="aq-panel aq-panel-hover p-9">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                   <c.icon size={21} strokeWidth={1.6} />
                 </div>
-                <h3 className="mb-3.5 text-[20px] font-semibold text-[#EAF4F8]">{c.title}</h3>
-                <p className="text-[14px] leading-[1.85] text-[#8FB0C2]">{c.body}</p>
+                <h3 className="mb-3.5 text-[20px] font-semibold text-[#173B4D]">{c.title}</h3>
+                <p className="text-[14px] leading-[1.85] text-[#526B78]">{c.body}</p>
               </div>
             ))}
           </div>
@@ -147,11 +147,11 @@ export default function AboutPage() {
                   />
                 )}
                 <div className="aq-panel aq-panel-hover relative z-10 h-full p-7 text-center">
-                  <div className="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-[#F9913E]/35 bg-[#F9913E]/12 font-display text-[17px] font-semibold text-[#FFC48A]">
+                  <div className="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-[#F9913E]/35 bg-[#F9913E]/12 font-display text-[17px] font-semibold text-[#A84914]">
                     {s.step}
                   </div>
-                  <h3 className="mb-2.5 text-[16px] font-semibold text-[#EAF4F8]">{s.title}</h3>
-                  <p className="text-[13px] leading-[1.75] text-[#8FB0C2]">{s.desc}</p>
+                  <h3 className="mb-2.5 text-[16px] font-semibold text-[#173B4D]">{s.title}</h3>
+                  <p className="text-[13px] leading-[1.75] text-[#526B78]">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -176,9 +176,9 @@ export default function AboutPage() {
           <div className="aq-panel relative overflow-hidden p-10 text-center md:p-14">
             <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[280px] w-[560px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#3ED6E0]/12 blur-[90px]" />
             <div className="relative z-10">
-              <h3 className="aq-display mb-5 text-[26px] text-[#EAF4F8]">Our Partner Network</h3>
-              <p className="text-[14px] leading-[1.9] text-[#8FB0C2]">
-                We work exclusively with certified, licensed operators who meet our strict safety and quality standards. Our partners cover watersport activities at Tanjung Benoa, rafting on Ayung and Telaga Waja rivers, Nusa Penida day tours, and Labuan Bajo expeditions. While partners handle the operations, <strong className="font-semibold text-[#FFC48A]">all bookings and customer service remain under the Bali Water Activity brand</strong>.
+              <h3 className="aq-display mb-5 text-[26px] text-[#173B4D]">Our Partner Network</h3>
+              <p className="text-[14px] leading-[1.9] text-[#526B78]">
+                We work exclusively with certified, licensed operators who meet our strict safety and quality standards. Our partners cover watersport activities at Tanjung Benoa, rafting on Ayung and Telaga Waja rivers, Nusa Penida day tours, and Labuan Bajo expeditions. While partners handle the operations, <strong className="font-semibold text-[#A84914]">all bookings and customer service remain under the Bali Water Activity brand</strong>.
               </p>
             </div>
           </div>

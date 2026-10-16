@@ -32,7 +32,7 @@ function CountryBadge({ code, country, Flag }: { code: string; country: string; 
   }
 
   return (
-    <span className="mx-auto mb-3 flex h-[27px] w-10 items-center justify-center rounded-[3px] bg-white/[0.06] text-[10px] font-bold uppercase tracking-[0.14em] text-[#8FB0C2] ring-1 ring-white/15">
+    <span className="mx-auto mb-3 flex h-[27px] w-10 items-center justify-center rounded-[3px] bg-[#173B4D]/[0.04] text-[10px] font-bold uppercase tracking-[0.14em] text-[#526B78] ring-1 ring-[#173B4D]/15">
       {code}
     </span>
   );
@@ -81,39 +81,39 @@ export default function StatsSection() {
         />
 
         {/* Numbers read as one band split by hairlines, not six floating boxes */}
-        <div className="aq-panel mb-4 grid grid-cols-2 gap-px overflow-hidden bg-white/[0.07] md:grid-cols-3 lg:grid-cols-6">
+        <div className="aq-panel mb-4 grid grid-cols-2 gap-px overflow-hidden bg-[#173B4D]/[0.08] md:grid-cols-3 lg:grid-cols-6">
           {stats.map((s, i) => (
             <Reveal
               key={s.label}
               delay={(i % 6) * 0.06}
-              className="bg-[#072334] px-5 py-9 text-center transition-colors duration-300 hover:bg-[#0A3247]"
+              className="bg-white px-5 py-9 text-center transition-colors duration-300 hover:bg-[#EAF6F7]"
             >
               <p className="aq-accent-text font-display text-[34px] font-semibold leading-none">
                 <Counter value={s.value} suffix={s.suffix} />
               </p>
-              <p className="mt-3 text-[13px] font-semibold text-[#EAF4F8]">{s.label}</p>
-              <p className="mt-1 text-[11px] text-[#6E90A4]">{s.sublabel}</p>
+              <p className="mt-3 text-[13px] font-semibold text-[#173B4D]">{s.label}</p>
+              <p className="mt-1 text-[11px] text-[#657B87]">{s.sublabel}</p>
             </Reveal>
           ))}
         </div>
 
         {/* Country distribution */}
         <div className="aq-panel p-7 md:p-10">
-          <p className="mb-8 text-center text-[10px] font-bold uppercase tracking-[0.22em] text-[#6E90A4]">
+          <p className="mb-8 text-center text-[10px] font-bold uppercase tracking-[0.22em] text-[#657B87]">
             Visitors by Country
           </p>
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
             {countries.map((c) => (
               <div key={c.country} className="text-center">
                 <CountryBadge code={c.code} country={c.country} Flag={c.Flag} />
-                <p className="mb-3 text-[13px] font-semibold text-[#EAF4F8]">{c.country}</p>
-                <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
+                <p className="mb-3 text-[13px] font-semibold text-[#173B4D]">{c.country}</p>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-[#173B4D]/10">
                   <div
                     className="h-full rounded-full bg-gradient-to-r from-[#3ED6E0] to-[#F9913E]"
                     style={{ width: `${c.pct}%` }}
                   />
                 </div>
-                <p className="mt-2 text-[13px] font-bold text-[#FFC48A]">{c.pct}%</p>
+                <p className="mt-2 text-[13px] font-bold text-[#A84914]">{c.pct}%</p>
               </div>
             ))}
           </div>

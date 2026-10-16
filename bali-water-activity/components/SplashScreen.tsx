@@ -78,13 +78,13 @@ export default function SplashScreen() {
           />
         </div>
 
-        <p className="aq-display m-0 text-[clamp(2rem,4vw,3.25rem)] text-[#EAF4F8]">Bali Water Activity</p>
-        <p className="m-0 max-w-md text-[clamp(0.9rem,2vw,1.05rem)] tracking-[0.06em] text-[#8FB0C2]">
+        <p className="aq-display m-0 text-[clamp(2rem,4vw,3.25rem)] text-[#173B4D]">Bali Water Activity</p>
+        <p className="m-0 max-w-md text-[clamp(0.9rem,2vw,1.05rem)] tracking-[0.06em] text-[#526B78]">
           Watersport, rafting, and island escapes
         </p>
 
         <div
-          className="mt-2 h-[3px] w-[min(20rem,72vw)] overflow-hidden rounded-full bg-white/10"
+          className="mt-2 h-[3px] w-[min(20rem,72vw)] overflow-hidden rounded-full bg-[#173B4D]/10"
           role="progressbar"
           aria-valuenow={progress}
           aria-valuemin={0}

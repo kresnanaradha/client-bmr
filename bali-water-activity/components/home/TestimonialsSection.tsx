@@ -88,14 +88,14 @@ export default function TestimonialsSection() {
                     <Star key={i} size={13} className="fill-[#F9913E] text-[#F9913E]" />
                   ))}
                 </div>
-                <span className="text-[11px] font-semibold text-[#6E90A4]">{t.activity}</span>
+                <span className="text-[11px] font-semibold text-[#657B87]">{t.activity}</span>
               </div>
 
-              <p className="relative mb-8 flex-1 text-[14px] leading-[1.8] text-[#B7CEDB]">
+              <p className="relative mb-8 flex-1 text-[14px] leading-[1.8] text-[#405D6B]">
                 &ldquo;{t.text}&rdquo;
               </p>
 
-              <div className="relative flex items-center gap-3 border-t border-white/10 pt-5">
+              <div className="relative flex items-center gap-3 border-t border-[#173B4D]/10 pt-5">
                 <img
                   src={t.avatar}
                   alt={t.name}
@@ -103,8 +103,8 @@ export default function TestimonialsSection() {
                   loading="lazy"
                 />
                 <div>
-                  <p className="text-[13px] font-semibold text-[#EAF4F8]">{t.name}</p>
-                  <p className="text-[11px] text-[#6E90A4]">{t.flag} · {t.country}</p>
+                  <p className="text-[13px] font-semibold text-[#173B4D]">{t.name}</p>
+                  <p className="text-[11px] text-[#657B87]">{t.flag} · {t.country}</p>
                 </div>
               </div>
             </Reveal>
@@ -120,7 +120,7 @@ export default function TestimonialsSection() {
                 <Star key={i} size={15} className="fill-[#F9913E] text-[#F9913E]" />
               ))}
             </div>
-            <p className="mt-3 text-[11px] text-[#6E90A4]">Based on 3,500+ reviews</p>
+            <p className="mt-3 text-[11px] text-[#657B87]">Based on 3,500+ reviews</p>
           </div>
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-6 sm:flex sm:gap-12">
@@ -131,8 +131,8 @@ export default function TestimonialsSection() {
               { label: "Fun", pct: 100 },
             ].map((r) => (
               <div key={r.label} className="text-center">
-                <p className="font-display text-[28px] font-light text-[#EAF4F8]">{r.pct}%</p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">{r.label}</p>
+                <p className="font-display text-[28px] font-light text-[#173B4D]">{r.pct}%</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#657B87]">{r.label}</p>
               </div>
             ))}
           </div>

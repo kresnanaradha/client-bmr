@@ -40,17 +40,17 @@ export default function LabuanBajoPage() {
       </section>
 
       {/* Features strip */}
-      <section className="border-y border-white/10 bg-white/[0.025]">
+      <section className="border-y border-[#173B4D]/10 bg-[#173B4D]/[0.025]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[#173B4D]/10">
             {features.map((f) => (
               <div key={f.label} className="flex items-center gap-3.5 px-2 py-7 md:px-7 md:first:pl-0 md:last:pr-0">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                   <f.icon size={17} strokeWidth={1.7} />
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-[#EAF4F8]">{f.label}</p>
-                  <p className="text-[11px] text-[#6E90A4]">{f.desc}</p>
+                  <p className="text-[13px] font-semibold text-[#173B4D]">{f.label}</p>
+                  <p className="text-[11px] text-[#657B87]">{f.desc}</p>
                 </div>
               </div>
             ))}
@@ -81,14 +81,14 @@ export default function LabuanBajoPage() {
                       </span>
                     )}
                     <span className="aq-chip absolute bottom-3 left-3 !text-[10px]">
-                      <Clock size={10} className="text-[#FFC48A]" /> {pkg.duration}
+                      <Clock size={10} className="text-[#A84914]" /> {pkg.duration}
                     </span>
                   </div>
                 </div>
 
                 <div className="px-7 pb-7 pt-1">
-                  <h2 className="aq-display mb-3 text-[22px] font-medium text-[#EAF4F8]">{pkg.title}</h2>
-                  <p className="mb-7 text-[14px] leading-[1.8] text-[#8FB0C2]">{pkg.description}</p>
+                  <h2 className="aq-display mb-3 text-[22px] font-medium text-[#173B4D]">{pkg.title}</h2>
+                  <p className="mb-7 text-[14px] leading-[1.8] text-[#526B78]">{pkg.description}</p>
 
                   {/* Highlights */}
                   <div className="mb-7">
@@ -101,13 +101,13 @@ export default function LabuanBajoPage() {
                   </div>
 
                   {/* Includes / Excludes */}
-                  <div className="mb-7 grid grid-cols-2 gap-5 border-t border-white/10 pt-6">
+                  <div className="mb-7 grid grid-cols-2 gap-5 border-t border-[#173B4D]/10 pt-6">
                     <div>
                       <p className="aq-label">Includes</p>
                       <ul className="space-y-2">
                         {pkg.includes.map((inc) => (
-                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#8FB0C2]">
-                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#3ED6E0]" /> {inc}
+                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#526B78]">
+                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#087D8A]" /> {inc}
                           </li>
                         ))}
                       </ul>
@@ -116,7 +116,7 @@ export default function LabuanBajoPage() {
                       <p className="aq-label">Excludes</p>
                       <ul className="space-y-2">
                         {pkg.excludes.map((ex) => (
-                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#5C7D91]">
+                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#657B87]">
                             <X size={12} strokeWidth={1.9} className="mt-1 shrink-0" /> {ex}
                           </li>
                         ))}
@@ -124,11 +124,11 @@ export default function LabuanBajoPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-6">
+                  <div className="flex items-center justify-between gap-4 border-t border-[#173B4D]/10 pt-6">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Starting from</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Starting from</p>
                       <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.price}</p>
-                      <p className="mt-1 text-[11px] text-[#6E90A4]">per person</p>
+                      <p className="mt-1 text-[11px] text-[#657B87]">per person</p>
                     </div>
                     <a
                       href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I'm interested in the ${pkg.title}. Can you share availability and pricing?`)}`}
@@ -151,14 +151,14 @@ export default function LabuanBajoPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Labuan Bajo in Photos" light />
           <div className="grid h-[420px] grid-cols-3 gap-3">
-            <div className="col-span-2 overflow-hidden rounded-[20px] border border-white/10">
+            <div className="col-span-2 overflow-hidden rounded-[20px] border border-[#173B4D]/10">
               <img src={dummyImage("labuan-1")} alt="Labuan Bajo 1" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
             </div>
             <div className="flex flex-col gap-3">
-              <div className="flex-1 overflow-hidden rounded-[20px] border border-white/10">
+              <div className="flex-1 overflow-hidden rounded-[20px] border border-[#173B4D]/10">
                 <img src={dummyImage("labuan-2")} alt="Labuan Bajo 2" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
               </div>
-              <div className="flex-1 overflow-hidden rounded-[20px] border border-white/10">
+              <div className="flex-1 overflow-hidden rounded-[20px] border border-[#173B4D]/10">
                 <img src={dummyImage("labuan-3")} alt="Labuan Bajo 3" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
               </div>
             </div>

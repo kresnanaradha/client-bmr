@@ -48,7 +48,7 @@ export default function NusaPenidaPage() {
           <div className="flex flex-wrap gap-2">
             {spots.map((s) => (
               <span key={s} className="aq-chip">
-                <MapPin size={10} className="text-[#FFC48A]" /> {s}
+                <MapPin size={10} className="text-[#A84914]" /> {s}
               </span>
             ))}
           </div>
@@ -56,17 +56,17 @@ export default function NusaPenidaPage() {
       </section>
 
       {/* Highlights strip */}
-      <section className="border-y border-white/10 bg-white/[0.025]">
+      <section className="border-y border-[#173B4D]/10 bg-[#173B4D]/[0.025]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[#173B4D]/10">
             {highlights.map((h) => (
               <div key={h.label} className="flex items-center gap-3.5 px-2 py-7 md:px-7 md:first:pl-0 md:last:pr-0">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#3ED6E0]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
                   <h.icon size={17} strokeWidth={1.7} />
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-[#EAF4F8]">{h.label}</p>
-                  <p className="text-[11px] text-[#6E90A4]">{h.desc}</p>
+                  <p className="text-[13px] font-semibold text-[#173B4D]">{h.label}</p>
+                  <p className="text-[11px] text-[#657B87]">{h.desc}</p>
                 </div>
               </div>
             ))}
@@ -97,14 +97,14 @@ export default function NusaPenidaPage() {
                       </span>
                     )}
                     <span className="aq-chip absolute bottom-3 left-3 !text-[10px]">
-                      <Clock size={10} className="text-[#FFC48A]" /> {pkg.duration}
+                      <Clock size={10} className="text-[#A84914]" /> {pkg.duration}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col px-6 pb-6 pt-1">
-                  <h2 className="aq-display mb-2 text-[20px] font-medium text-[#EAF4F8]">{pkg.title}</h2>
-                  <p className="mb-6 flex-1 text-[13px] leading-[1.75] text-[#8FB0C2]">{pkg.description}</p>
+                  <h2 className="aq-display mb-2 text-[20px] font-medium text-[#173B4D]">{pkg.title}</h2>
+                  <p className="mb-6 flex-1 text-[13px] leading-[1.75] text-[#526B78]">{pkg.description}</p>
 
                   {/* Destinations */}
                   <div className="mb-6">
@@ -112,20 +112,20 @@ export default function NusaPenidaPage() {
                     <div className="flex flex-wrap gap-1.5">
                       {pkg.destinations.map((d) => (
                         <span key={d} className="aq-chip !text-[10px]">
-                          <MapPin size={9} className="text-[#3ED6E0]" /> {d}
+                          <MapPin size={9} className="text-[#087D8A]" /> {d}
                         </span>
                       ))}
                     </div>
                   </div>
 
                   {/* Includes / Excludes */}
-                  <div className="mb-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-5">
+                  <div className="mb-6 grid grid-cols-2 gap-4 border-t border-[#173B4D]/10 pt-5">
                     <div>
                       <p className="aq-label">Includes</p>
                       <ul className="space-y-1.5">
                         {pkg.includes.map((inc) => (
-                          <li key={inc} className="flex items-start gap-1.5 text-[11px] leading-[1.6] text-[#8FB0C2]">
-                            <CheckCircle size={11} strokeWidth={1.9} className="mt-0.5 shrink-0 text-[#3ED6E0]" /> {inc}
+                          <li key={inc} className="flex items-start gap-1.5 text-[11px] leading-[1.6] text-[#526B78]">
+                            <CheckCircle size={11} strokeWidth={1.9} className="mt-0.5 shrink-0 text-[#087D8A]" /> {inc}
                           </li>
                         ))}
                       </ul>
@@ -134,7 +134,7 @@ export default function NusaPenidaPage() {
                       <p className="aq-label">Excludes</p>
                       <ul className="space-y-1.5">
                         {pkg.excludes.map((ex) => (
-                          <li key={ex} className="flex items-start gap-1.5 text-[11px] leading-[1.6] text-[#5C7D91]">
+                          <li key={ex} className="flex items-start gap-1.5 text-[11px] leading-[1.6] text-[#657B87]">
                             <X size={11} strokeWidth={1.9} className="mt-0.5 shrink-0" /> {ex}
                           </li>
                         ))}
@@ -142,9 +142,9 @@ export default function NusaPenidaPage() {
                     </div>
                   </div>
 
-                  <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-5">
+                  <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#173B4D]/10 pt-5">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#6E90A4]">Per person</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Per person</p>
                       <p className="aq-accent-text font-display text-[22px] font-semibold leading-none">{pkg.price}</p>
                     </div>
                     <a
@@ -171,7 +171,7 @@ export default function NusaPenidaPage() {
             {gallery.map((src, i) => (
               <div
                 key={i}
-                className={`overflow-hidden rounded-[20px] border border-white/10 ${
+                className={`overflow-hidden rounded-[20px] border border-[#173B4D]/10 ${
                   i === 0 ? "row-span-2 h-full min-h-[280px]" : "h-40 md:h-[134px]"
                 }`}
               >
