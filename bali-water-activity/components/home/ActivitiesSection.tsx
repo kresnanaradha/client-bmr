@@ -6,7 +6,7 @@ import { watersportActivities } from "@/lib/activities";
 import { ArrowRight } from "lucide-react";
 
 export default function ActivitiesSection() {
-  const featured = watersportActivities.slice(0, 4);
+  const featured = watersportActivities.slice(0, 6);
 
   return (
     <section id="activities" className="section-gap relative">
@@ -18,7 +18,7 @@ export default function ActivitiesSection() {
           light
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((act, i) => (
             <Reveal key={act.slug} delay={(i % 4) * 0.08} className="h-full">
               <ActivityCard

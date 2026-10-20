@@ -53,7 +53,7 @@ export default function ActivityCard({
 
       {/* Body */}
       <div className="flex flex-1 flex-col px-5 pb-5 pt-1">
-        <h3 className="aq-display mb-2 text-[21px] font-medium text-[#173B4D] transition-colors group-hover:text-[#A84914]">
+        <h3 className="aq-display mb-2 text-[21px] font-bold text-[#173B4D] transition-colors group-hover:text-[#A84914]">
           {title}
         </h3>
         <p className="mb-6 line-clamp-2 text-[13px] leading-relaxed text-[#526B78]">
@@ -72,7 +72,7 @@ export default function ActivityCard({
           <div className="flex items-center gap-1.5">
             <Link
               href={`/activity/${slug}`}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[#173B4D]/12 text-[#526B78] transition-all duration-200 hover:border-[#173B4D]/30 hover:bg-[#173B4D]/5 hover:text-[#173B4D]"
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[#173B4D]/12 text-[#173B4D] transition-all duration-200 hover:border-[#173B4D]/30 hover:bg-[#173B4D]/5 hover:text-[#173B4D]"
               aria-label={`Details for ${title}`}
             >
               <ArrowUpRight size={14} />
@@ -81,7 +81,7 @@ export default function ActivityCard({
               href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex cursor-pointer items-center gap-1.5 rounded-full bg-linear-to-br from-[#FFC48A] to-[#F9913E] px-4 py-2.5 text-[11px] font-bold text-[#1B0E02] transition-all duration-200 hover:shadow-[0_10px_28px_-6px_rgba(249,145,62,0.6)]"
+              className="flex cursor-pointer items-center gap-1.5 rounded-full bg-linear-to-br from-[#FFC48A] to-[#F9913E] px-4 py-2.5 text-[11px] font-bold text-[#ffffff] transition-all duration-200 hover:shadow-[0_10px_28px_-6px_rgba(249,145,62,0.6)]"
             >
               <MessageCircle size={12} />
               Book
