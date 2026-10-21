@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!activity) return {};
   return {
     title: `${activity.title} Bali – Book via WhatsApp`,
-    description: `${activity.description} Price: ${activity.price}. Age: ${activity.ageRange} years. Book instantly via WhatsApp with Bali Water Activity.`,
+    description: `${activity.description} Price: ${activity.publishPrice}. Age: ${activity.ageRange} years. Book instantly via WhatsApp with Bali Water Activity.`,
   };
 }
 
@@ -52,7 +52,7 @@ export default async function ActivityDetailPage({ params }: Props) {
           </Link>
 
           {activity.badge && (
-            <span className="mb-4 block w-fit rounded-full bg-gradient-to-br from-[#FFC48A] to-[#F9913E] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
+            <span className="mb-4 block w-fit rounded-full bg-[#FFC200] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
               {activity.badge}
             </span>
           )}
@@ -63,13 +63,16 @@ export default async function ActivityDetailPage({ params }: Props) {
       </section>
 
       {/* Quick info bar */}
-      <div className="sticky top-16 z-30 border-b border-[#173B4D]/10 bg-white/90 backdrop-blur-xl">
+      <div className="border-b border-[#173B4D]/10 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-4 py-3.5 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-5 text-[13px] text-[#526B78]">
             <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#087D8A]" /> {activity.duration}</span>
             <span className="flex items-center gap-1.5"><Users size={14} className="text-[#087D8A]" /> Age {activity.ageRange}</span>
             <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#087D8A]" /> Insured</span>
-            <span className="aq-accent-text font-display text-[18px] font-semibold">{activity.price}</span>
+            <span className="flex items-baseline gap-2">
+              <span className="text-xs text-[#657B87] line-through">{activity.publishPrice}</span>
+              <span className="aq-accent-text font-display text-[18px] font-semibold">{activity.netPrice}</span>
+            </span>
           </div>
           <a
             href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
@@ -177,9 +180,12 @@ export default async function ActivityDetailPage({ params }: Props) {
 
           {/* Sidebar */}
           <div>
-            <div className="aq-panel sticky top-32 p-7">
+            <div className="aq-panel p-7">
               <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Starting from</p>
-              <p className="aq-accent-text my-2 font-display text-[38px] font-semibold leading-none">{activity.price}</p>
+              <div className="my-2 flex flex-wrap items-baseline gap-2">
+                <span className="text-sm text-[#657B87] line-through">{activity.publishPrice}</span>
+                <span className="aq-accent-text font-display text-[38px] font-semibold leading-none">{activity.netPrice}</span>
+              </div>
               <p className="mb-7 text-[12px] text-[#657B87]">per person · pay on arrival</p>
 
               <a
@@ -239,7 +245,10 @@ export default async function ActivityDetailPage({ params }: Props) {
                   </div>
                   <div className="p-3.5">
                     <p className="text-[14px] font-semibold text-[#173B4D]">{rel.title}</p>
-                    <p className="aq-accent-text mt-1 font-display text-[16px] font-semibold">{rel.price}</p>
+                    <p className="mt-1 flex items-baseline gap-2">
+                      <span className="text-xs text-[#657B87] line-through">{rel.publishPrice}</span>
+                      <span className="aq-accent-text font-display text-[16px] font-semibold">{rel.netPrice}</span>
+                    </p>
                   </div>
                 </Link>
               ))}

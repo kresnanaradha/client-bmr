@@ -70,7 +70,7 @@ html {
 body {
   font-family: var(--font-body), sans-serif;
   color: var(--aq-text);
-  background: #f5fbfc;
+  background: #f8f7f3;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -142,10 +142,10 @@ h6 {
 
 /* ─── Gradients (Point 03 ─── 5 colors only) ──────────────────── */
 .gradient-hero {
-  background: linear-gradient(135deg, #eaf6f7 0%, #bfe7eb 50%, #70cbd1 100%);
+  background: #f8f7f3;
 }
 .gradient-ocean {
-  background: linear-gradient(160deg, #f5fbfc 0%, #c8e9ed 100%);
+  background: #f8f7f3;
 }
 .gradient-card {
   background: linear-gradient(135deg, #0052cc 0%, #0fa3b1 100%);
@@ -154,7 +154,7 @@ h6 {
   background: linear-gradient(135deg, #ff9500 0%, #ffd700 100%);
 }
 .gradient-dark {
-  background: linear-gradient(160deg, #eaf6f7 0%, #c8e9ed 100%);
+  background: #f8f7f3;
 }
 
 /* ─── Section breathing room (Point 04) ─────────────────────── */
@@ -465,7 +465,7 @@ h6 {
 
 /* Ocean deep */
 .bg-ocean-deep {
-  background: linear-gradient(180deg, #c8e9ed 0%, #f5fbfc 100%);
+  background: #f8f7f3;
 }
 
 /* Golden water */
@@ -475,7 +475,7 @@ h6 {
 
 /* Midnight blue */
 .bg-midnight-blue {
-  background: linear-gradient(180deg, #f5fbfc 0%, #c8e9ed 100%);
+  background: #f8f7f3;
 }
 
 /* Glass gradient text */
@@ -492,9 +492,9 @@ h6 {
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --aq-abyss: #f5fbfc;
-  --aq-deep: #eaf6f7;
-  --aq-reef: #d9eff1;
+  --aq-abyss: #f8f7f3;
+  --aq-deep: #f8f7f3;
+  --aq-reef: #f8f7f3;
   --aq-glass: rgba(255, 255, 255, 0.78);
   --aq-line: rgba(23, 59, 77, 0.12);
   --aq-text: #173b4d;
@@ -510,63 +510,7 @@ h6 {
   isolation: isolate;
   overflow: clip; /* the drifting light shafts scale past the edges */
   color: var(--aq-text);
-  background:
-    radial-gradient(
-      120% 60% at 50% 0%,
-      rgba(8, 125, 138, 0.1),
-      transparent 60%
-    ),
-    radial-gradient(
-      90% 50% at 12% 32%,
-      rgba(191, 84, 33, 0.06),
-      transparent 62%
-    ),
-    radial-gradient(
-      90% 55% at 88% 68%,
-      rgba(8, 125, 138, 0.07),
-      transparent 62%
-    ),
-    linear-gradient(
-      180deg,
-      var(--aq-abyss) 0%,
-      var(--aq-deep) 38%,
-      var(--aq-reef) 62%,
-      var(--aq-deep) 82%,
-      var(--aq-abyss) 100%
-    );
-}
-
-/* Slow drifting light shafts, like sun through water. */
-.ocean-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.5;
-  background: repeating-linear-gradient(
-    104deg,
-    transparent 0 90px,
-    rgba(23, 59, 77, 0.025) 90px 130px,
-    transparent 130px 240px
-  );
-  mask-image: linear-gradient(
-    180deg,
-    transparent,
-    #000 18%,
-    #000 72%,
-    transparent
-  );
-  animation: caustics 24s ease-in-out infinite alternate;
-}
-
-@keyframes caustics {
-  from {
-    transform: translate3d(-3%, 0, 0) scale(1.05);
-  }
-  to {
-    transform: translate3d(3%, 0, 0) scale(1.12);
-  }
+  background: #f8f7f3;
 }
 
 /* ─── Surfaces ──────────────────────────────────────────────── */
@@ -629,7 +573,7 @@ h6 {
   -webkit-backdrop-filter: blur(6px);
 }
 
-/* Warm accent button — the one loud element per section. */
+/* Primary action button. */
 .aq-btn {
   display: inline-flex;
   align-items: center;
@@ -638,14 +582,15 @@ h6 {
   padding: 0.95rem 1.8rem;
   border-radius: 999px;
   font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--aq-sand), var(--aq-coral));
-  box-shadow: 0 14px 40px rgba(249, 145, 62, 0.28);
+  color: #173b4d;
+  background: #ffc200;
+  box-shadow: 0 14px 40px rgba(255, 194, 0, 0.22);
 }
 
 .aq-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 54px rgba(249, 145, 62, 0.38);
+  background: #ffc200;
+  box-shadow: 0 20px 54px rgba(213, 215, 215, 0.3);
 }
 
 .aq-btn-ghost {
@@ -662,7 +607,7 @@ h6 {
 }
 
 .aq-btn-ghost:hover {
-  border-color: rgba(249, 145, 62, 0.4);
+  border-color: rgba(8, 125, 138, 0.4);
   background: rgba(255, 255, 255, 0.96);
 }
 

@@ -266,7 +266,7 @@ const ScrollExpandMedia = ({
       </div>
 
       <motion.section
-        className='relative z-10 flex min-h-screen w-full flex-col justify-center bg-linear-to-b from-[#F5FBFC] via-[#EAF6F7] to-[#D9EFF1] px-8 py-10 md:px-16 lg:py-20'
+        className='relative z-10 flex min-h-screen w-full flex-col justify-center bg-[#F8F7F3] px-8 py-10 md:px-16 lg:py-20'
         initial={{ opacity: 0 }}
         animate={{ opacity: showContent ? 1 : 0 }}
         transition={{ duration: 0.7 }}

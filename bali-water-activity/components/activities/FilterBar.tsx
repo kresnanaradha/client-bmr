@@ -62,8 +62,8 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
               onClick={() => setMinRating(r)}
               className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[12px] font-semibold transition-all duration-200 ${
                 minRating === r
-                  ? "border-transparent bg-gradient-to-br from-[#FFC48A] to-[#F9913E] text-[#1B0E02]"
-                  : "border-[#173B4D]/12 bg-[#173B4D]/4 text-[#526B78] hover:border-[#173B4D]/25 hover:text-white"
+                  ? "border-transparent bg-[#FFC200] text-[#173B4D]"
+                  : "border-[#173B4D]/12 bg-[#173B4D]/4 text-[#526B78] hover:border-[#FFC200]/70 hover:bg-[#FFC200]/15 hover:text-[#173B4D]"
               }`}
             >
               {r === 0 ? "Any" : `${r}★+`}

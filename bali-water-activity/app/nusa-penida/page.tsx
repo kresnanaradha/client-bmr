@@ -92,7 +92,7 @@ export default function NusaPenidaPage() {
                     <img src={pkg.image} alt={pkg.title} className="h-full w-full object-cover" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#04131F] via-[#04131F]/20 to-transparent" />
                     {i === 0 && (
-                      <span className="absolute left-3 top-3 rounded-full bg-gradient-to-br from-[#FFC48A] to-[#F9913E] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
+                      <span className="absolute left-3 top-3 rounded-full bg-[#FFC200] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
                         Most Popular
                       </span>
                     )}

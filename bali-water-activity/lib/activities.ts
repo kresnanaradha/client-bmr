@@ -6,7 +6,8 @@ export interface Activity {
   category: "watersport" | "rafting" | "nusa-penida" | "labuan-bajo";
   description: string;
   longDescription: string;
-  price: string;
+  publishPrice: string;
+  netPrice: string;
   duration: string;
   ageRange: string;
   minAge: number;
@@ -34,7 +35,8 @@ export const watersportActivities: Activity[] = [
       "Hold tight and enjoy the thrilling ride on a giant inflatable banana boat pulled by a speedboat across the beautiful Bali sea.",
     longDescription:
       "One of the most popular watersport activities in Bali! Hop on our giant inflatable banana boat with your friends or family and get pulled by a powerful speedboat across the crystal-clear waters of Tanjung Benoa. Expect lots of splashing, laughing, and unforgettable memories.",
-    price: "Rp50K",
+    publishPrice: "Rp420K",
+    netPrice: "Rp125K",
     duration: "15 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -62,7 +64,12 @@ export const watersportActivities: Activity[] = [
       "Do not remove life jacket during activity",
       "Do not participate if feeling unwell",
     ],
-    includes: ["Life jacket", "Safety briefing", "Certified instructor"],
+    includes: [
+      "Water Sport Activity",
+      "Life jacket",
+      "Safety briefing",
+      "Certified instructor",
+    ],
     excludes: ["Personal travel insurance", "Towel", "Sunscreen"],
     insuranceInfo:
       "All participants are covered by our partner's activity insurance during the session. Coverage includes accidental injury during the activity.",
@@ -75,7 +82,8 @@ export const watersportActivities: Activity[] = [
       "Spin and splash on the famous donut-shaped tube pulled by a speedboat — perfect for thrill seekers of all ages.",
     longDescription:
       "Sit inside a giant inflatable donut ring and hold on as our speedboat whips you around the waves! The circular design creates wild spins and exciting splashes that will leave you screaming with joy.",
-    price: "Rp50K",
+    publishPrice: "Rp520K",
+    netPrice: "Rp175K",
     duration: "15 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -109,7 +117,8 @@ export const watersportActivities: Activity[] = [
       "Race across the waves on a high-powered jet ski. Feel the speed and freedom of the open Bali sea.",
     longDescription:
       "Take the wheel of a powerful jet ski and zoom across the shimmering waters of Bali. Whether you're a first-timer or experienced rider, our instructors will guide you for a safe and exhilarating experience.",
-    price: "Rp150K",
+    publishPrice: "Rp700K",
+    netPrice: "Rp250K",
     duration: "15 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -148,8 +157,9 @@ export const watersportActivities: Activity[] = [
       "Soar high above the Bali coastline and enjoy breathtaking aerial views while being towed by a speedboat.",
     longDescription:
       "Experience the ultimate freedom as you glide through the sky 50 meters above the sea! Parasailing in Bali offers stunning panoramic views of the coastline, ocean, and tropical landscape. Perfect for thrill-seekers and photographers alike.",
-    price: "Rp150K",
-    duration: "15 minutes",
+    publishPrice: "Rp800K",
+    netPrice: "Rp400K",
+    duration: "06 minutes",
     ageRange: "8–65",
     minAge: 8,
     maxAge: 65,
@@ -195,7 +205,8 @@ export const watersportActivities: Activity[] = [
       "Dance on the water! A fun inflatable disco ride that spins, bounces, and plays music for an epic group experience.",
     longDescription:
       "Get the party started on the water with the Disco Boat! This wild inflatable platform spins and bounces while music plays, creating a unique dance-party-meets-watersport experience. Great for groups and families.",
-    price: "Rp75K",
+    publishPrice: "Rp650K",
+    netPrice: "Rp225K",
     duration: "15 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -223,7 +234,8 @@ export const watersportActivities: Activity[] = [
       "Get airborne on a flying fish tube towed by a speedboat — a unique experience that literally lifts you out of the water.",
     longDescription:
       "The Fly Fish is a specially designed inflatable tube shaped like a fish that can be tilted to make riders fly above the water surface. Hold on tight as you become a human flying fish across the Bali sea!",
-    price: "Rp100K",
+    publishPrice: "Rp700K",
+    netPrice: "Rp250K",
     duration: "15 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -253,7 +265,8 @@ export const watersportActivities: Activity[] = [
       "Master the Flyboard — shoot up to 10 meters above the water powered by hydro jets. The ultimate water adventure.",
     longDescription:
       "Flyboarding is the most thrilling watersport in Bali! Powered by high-pressure water jets attached to a jet ski, you'll be propelled up to 10 meters into the air. With practice, you can perform spins, dives, and acrobatics over the water. Our certified instructors will get you flying in minutes!",
-    price: "Rp350K",
+    publishPrice: "Rp1500K",
+    netPrice: "Rp750K",
     duration: "20 minutes",
     ageRange: "8–65",
     minAge: 8,
@@ -301,7 +314,8 @@ export const watersportActivities: Activity[] = [
       "Walk on the ocean floor wearing a special helmet and breathe normally — no diving experience needed!",
     longDescription:
       "Sea Walker (also called Helmet Diving) lets you literally walk on the seabed at 3–5 meters depth while wearing a specially designed helmet that supplies fresh air. No swimming or diving experience required. You'll be surrounded by tropical fish, coral reefs, and the magical underwater world of Bali.",
-    price: "Rp350K",
+    publishPrice: "Rp350K",
+    netPrice: "Rp300K",
     duration: "30 minutes",
     ageRange: "9–60",
     minAge: 9,
@@ -347,7 +361,8 @@ export const raftingPackages = [
     title: "Ayung River Rafting",
     description:
       "Navigate the famous Ayung River through lush jungle, waterfalls, and traditional Balinese rice terraces.",
-    price: "Rp350K",
+    publishPrice: "Rp350K",
+    netPrice: "Rp300K",
     duration: "2 hours on water",
     level: "Beginner–Intermediate",
     distance: "9 km",
@@ -376,7 +391,8 @@ export const raftingPackages = [
     title: "Telaga Waja River Rafting",
     description:
       "For thrill-seekers! The Telaga Waja offers Grade III–IV rapids through spectacular East Bali scenery.",
-    price: "Rp400K",
+    publishPrice: "Rp400K",
+    netPrice: "Rp350K",
     duration: "2.5 hours on water",
     level: "Intermediate–Advanced",
     distance: "13 km",

@@ -14,7 +14,7 @@ export default function ActivitiesSection() {
         <SectionHeader
           eyebrow="Popular Activities"
           title="Thrill Starts Here"
-          subtitle="From adrenaline-pumping rides to serene underwater walks — we have the perfect Bali water activity for every traveler."
+          subtitle="From adrenaline pumping rides to serene underwater walks, we have the perfect Bali water activity for every traveler."
           light
         />
 
@@ -24,7 +24,8 @@ export default function ActivitiesSection() {
               <ActivityCard
                 title={act.title}
                 description={act.description}
-                price={act.price}
+                publishPrice={act.publishPrice}
+                netPrice={act.netPrice}
                 duration={act.duration}
                 ageRange={act.ageRange}
                 image={act.image}

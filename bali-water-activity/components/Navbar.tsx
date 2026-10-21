@@ -74,7 +74,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-        ? "bg-white/90 backdrop-blur-xl border-[#173B4D]/10 py-3 shadow-sm"
+          ? "bg-white/90 backdrop-blur-xl border-[#173B4D]/10 py-3 shadow-sm"
           : "bg-transparent border-transparent py-2"
       }`}
     >
@@ -106,7 +106,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav
-          className={`hidden md:flex items-center gap-7 font-semibold ${scrolled ? "text-[#173B4D]" : "text-white"}`}
+          className={`hidden md:flex items-center gap-7 font-semibold ${scrolled ? "text-[#081352]" : "text-white"}`}
         >
           {navLinks.map((link) =>
             link.children ? (

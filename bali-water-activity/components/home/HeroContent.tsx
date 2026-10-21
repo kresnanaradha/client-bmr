@@ -91,7 +91,7 @@ export default function HeroContent() {
         </a>
         <Link
           href="/watersport"
-          className="aq-btn-ghost !bg-white/80 backdrop-blur-md"
+          className="aq-btn-ghost backdrop-blur-md"
         >
           View All Activities
         </Link>

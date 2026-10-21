@@ -123,7 +123,7 @@ export default function WatersportPage() {
                   <span
                     className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] ${
                       pkg.highlight
-                        ? "bg-gradient-to-br from-[#FFC48A] to-[#F9913E] text-[#1B0E02]"
+                        ? "bg-[#FFC200] text-[#1B0E02]"
                         : "border border-[#173B4D]/12 bg-[#173B4D]/5 text-[#526B78]"
                     }`}
                   >
@@ -157,7 +157,7 @@ export default function WatersportPage() {
                   </div>
 
                   <a
-                    href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book the ${pkg.name} combo package.`)}`}
+                    href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book the ${pkg.name} combo package for ${pkg.price}.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={
