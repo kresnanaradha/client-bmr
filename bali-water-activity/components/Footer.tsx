@@ -25,14 +25,14 @@ function FooterLogo() {
   if (err) {
     return (
       <div className="flex items-center gap-2 mb-4">
-        <div className="w-10 h-10 bg-[#173B4D]/10 rounded-xl flex items-center justify-center border border-[#173B4D]/10">
-          <Waves size={20} className="text-[#FFC200]" />
+        <div className="w-10 h-10 bg-[#10245E]/10 rounded-xl flex items-center justify-center border border-[#10245E]/10">
+          <Waves size={20} className="text-[#FFD52A]" />
         </div>
         <div>
-          <p className="text-[#173B4D] font-bold text-base leading-tight">
+          <p className="text-[#10245E] font-bold text-base leading-tight">
             Bali Water
           </p>
-          <p className="text-[#FFC200] font-bold text-base leading-tight">
+          <p className="text-[#FFD52A] font-bold text-base leading-tight">
             Activity
           </p>
         </div>
@@ -53,7 +53,7 @@ function FooterLogo() {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#173B4D]/10 bg-[#081352] pt-12 text-[#ffffff]">
+    <footer className="relative overflow-hidden border-t border-[#10245E]/10 bg-[#10245E] pt-12 text-[#ffffff]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -69,7 +69,7 @@ export default function Footer() {
                   key={s.label}
                   href="#"
                   aria-label={s.label}
-                  className="w-9 h-9 glass hover:bg-[#FFC48A] hover:text-[#1B0E02] border-[#173B4D]/10 hover:border-[#FFC48A] rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 hover:shadow-lg hover:shadow-[#F9913E]/25"
+                  className="w-9 h-9 glass hover:bg-[#FFD52A] hover:text-[#10245E] border-[#10245E]/10 hover:border-[#FFD52A] rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 hover:shadow-lg hover:shadow-[#FF9B28]/25"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Activities */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC200] mb-4">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD52A] mb-4">
               Activities
             </h3>
             <ul className="space-y-2.5">
@@ -98,9 +98,9 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-[#526B78] hover:text-[#FFC200] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-[#34436C] hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFC200] group-hover:bg-[#A84914] transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD52A] group-hover:bg-[#FF9B28] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC200] mb-4">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD52A] mb-4">
               Company
             </h3>
             <ul className="space-y-2.5">
@@ -123,9 +123,9 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-[#526B78] hover:text-[#FFC200] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-[#34436C] hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFC200] group-hover:bg-[#A84914] transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD52A] group-hover:bg-[#FF9B28] transition-colors" />
                     {l.label}
                   </Link>
                 </li>
@@ -135,36 +135,36 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFC200] mb-4">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-[#FFD52A] mb-4">
               Contact Us
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <div className="w-7 h-7 bg-[#173B4D]/5 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-[#173B4D]/10">
-                  <MapPin size={13} className="text-[#FFC200]" />
+                <div className="w-7 h-7 bg-[#10245E]/5 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-[#10245E]/10">
+                  <MapPin size={13} className="text-[#FFD52A]" />
                 </div>
                 <span className="text-sm leading-snug">
                   Tropic Residence C/7, Jimbaran, Kuta Selatan, Bali, Indonesia
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-7 h-7 bg-[#173B4D]/5 rounded-lg flex items-center justify-center shrink-0 border border-[#173B4D]/10">
-                  <Phone size={13} className="text-[#FFC200]" />
+                <div className="w-7 h-7 bg-[#10245E]/5 rounded-lg flex items-center justify-center shrink-0 border border-[#10245E]/10">
+                  <Phone size={13} className="text-[#FFD52A]" />
                 </div>
                 <a
                   href={`https://wa.me/${WA_NUMBER}`}
-                  className="text-sm text-[#526B78] hover:text-[#FFC200] cursor-pointer transition-colors"
+                  className="text-sm text-[#34436C] hover:text-[#1239C8] cursor-pointer transition-colors"
                 >
                   +62 812-4600-378
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-7 h-7 bg-[#173B4D]/5 rounded-lg flex items-center justify-center shrink-0 border border-[#173B4D]/10">
-                  <Mail size={13} className="text-[#FFC200]" />
+                <div className="w-7 h-7 bg-[#10245E]/5 rounded-lg flex items-center justify-center shrink-0 border border-[#10245E]/10">
+                  <Mail size={13} className="text-[#FFD52A]" />
                 </div>
                 <a
                   href="mailto:hello@baliwateractivity.com"
-                  className="text-sm text-[#526B78] hover:text-[#FFC200] cursor-pointer transition-colors"
+                  className="text-sm text-[#34436C] hover:text-[#FFD52A] cursor-pointer transition-colors"
                 >
                   hello@baliwateractivity.com
                 </a>
@@ -174,14 +174,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#173B4D]/10 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="border-t border-[#10245E]/10 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-xs text-[#ffffff]">
             © {new Date().getFullYear()} Bali Water Activity. All rights
             reserved.
           </p>
           <Link
             href="/credits"
-            className="text-xs text-[#657B87] hover:text-[#A84914] transition-colors"
+            className="text-xs text-[#58658C] hover:text-[#1239C8] transition-colors"
           >
             Photo credits
           </Link>

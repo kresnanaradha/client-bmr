@@ -24,11 +24,11 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
 
   return (
     <div className="aq-panel space-y-8 p-7 lg:sticky lg:top-28">
-      <div className="flex items-center justify-between border-b border-[#173B4D]/10 pb-5">
-        <h3 className="text-[16px] font-semibold text-[#173B4D]">Filters</h3>
+      <div className="flex items-center justify-between border-b border-[#10245E]/10 pb-5">
+        <h3 className="text-[16px] font-semibold text-[#10245E]">Filters</h3>
         <button
           onClick={handleReset}
-          className="cursor-pointer text-[12px] text-[#657B87] transition-colors hover:text-[#A84914]"
+          className="cursor-pointer text-[12px] text-[#58658C] transition-colors hover:text-[#1239C8]"
         >
           Reset All
         </button>
@@ -44,11 +44,11 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
           step="50000"
           value={maxPrice}
           onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-          className="h-1 w-full cursor-pointer appearance-none rounded-full bg-[#173B4D]/12 accent-[#F9913E]"
+          className="h-1 w-full cursor-pointer appearance-none rounded-full bg-[#10245E]/12 accent-[#FF9B28]"
         />
-        <div className="mt-3 flex justify-between text-[12px] text-[#657B87]">
+        <div className="mt-3 flex justify-between text-[12px] text-[#58658C]">
           <span>IDR 50k</span>
-          <span className="font-semibold text-[#A84914]">Under IDR {maxPrice.toLocaleString("en-US")}</span>
+          <span className="font-semibold text-[#FF9B28]">Under IDR {maxPrice.toLocaleString("en-US")}</span>
         </div>
       </div>
 
@@ -62,8 +62,8 @@ export default function FilterBar({ onFilter }: FilterBarProps) {
               onClick={() => setMinRating(r)}
               className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[12px] font-semibold transition-all duration-200 ${
                 minRating === r
-                  ? "border-transparent bg-[#FFC200] text-[#173B4D]"
-                  : "border-[#173B4D]/12 bg-[#173B4D]/4 text-[#526B78] hover:border-[#FFC200]/70 hover:bg-[#FFC200]/15 hover:text-[#173B4D]"
+                  ? "border-transparent bg-[#1239C8] text-white"
+                  : "border-[#10245E]/12 bg-[#10245E]/4 text-[#34436C] hover:border-[#1239C8]/40 hover:bg-[#1239C8]/8 hover:text-[#1239C8]"
               }`}
             >
               {r === 0 ? "Any" : `${r}★+`}

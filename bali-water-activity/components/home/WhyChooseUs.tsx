@@ -54,16 +54,16 @@ export default function WhyChooseUs() {
               className="aq-panel aq-panel-hover group relative flex h-full flex-col overflow-hidden p-7"
             >
               {/* Oversized index number, barely there */}
-              <span className="pointer-events-none absolute -top-3 right-4 font-display text-[86px] font-bold leading-none text-white/[0.035] transition-colors duration-500 group-hover:text-[#F9913E]/10">
+              <span className="pointer-events-none absolute -top-3 right-4 font-display text-[86px] font-bold leading-none text-white/[0.035] transition-colors duration-500 group-hover:text-[#FF9B28]/10">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              <div className="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A] transition-colors duration-300 group-hover:border-[#F9913E]/40 group-hover:bg-[#F9913E]/12 group-hover:text-[#A84914]">
+              <div className="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#1239C8]/25 bg-[#1239C8]/10 text-[#1239C8] transition-colors duration-300 group-hover:border-[#FF9B28]/40 group-hover:bg-[#FF9B28]/12 group-hover:text-[#FF9B28]">
                 <r.icon size={20} strokeWidth={1.6} />
               </div>
 
-              <h3 className="relative mb-2.5 text-[17px] font-semibold text-[#173B4D]">{r.title}</h3>
-              <p className="relative flex-1 text-[13px] leading-[1.75] text-[#526B78]">{r.desc}</p>
+              <h3 className="relative mb-2.5 text-[17px] font-semibold text-[#10245E]">{r.title}</h3>
+              <p className="relative flex-1 text-[13px] leading-[1.75] text-[#34436C]">{r.desc}</p>
             </Reveal>
           ))}
         </div>

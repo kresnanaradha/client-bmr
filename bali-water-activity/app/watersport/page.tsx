@@ -75,7 +75,7 @@ export default function WatersportPage() {
               { icon: Shield, text: "Insurance included" },
             ].map((item) => (
               <span key={item.text} className="aq-chip">
-                <item.icon size={12} className="text-[#A84914]" /> {item.text}
+                <item.icon size={12} className="text-[#FF9B28]" /> {item.text}
               </span>
             ))}
           </div>
@@ -111,36 +111,36 @@ export default function WatersportPage() {
                 key={pkg.name}
                 className={`aq-panel relative overflow-hidden p-8 ${
                   pkg.highlight
-                    ? "border-[#F9913E]/35 bg-white/[0.07] md:-mt-4 md:pb-12"
+                    ? "border-[#FF9B28]/35 bg-white/[0.07] md:-mt-4 md:pb-12"
                     : "aq-panel-hover"
                 }`}
               >
                 {pkg.highlight && (
-                  <div className="pointer-events-none absolute -bottom-28 left-1/2 h-[240px] w-[420px] max-w-[140%] -translate-x-1/2 rounded-full bg-[#F9913E]/16 blur-[80px]" />
+                  <div className="pointer-events-none absolute -bottom-28 left-1/2 h-[240px] w-[420px] max-w-[140%] -translate-x-1/2 rounded-full bg-[#FF9B28]/16 blur-[80px]" />
                 )}
 
                 <div className="relative z-10">
                   <span
                     className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] ${
                       pkg.highlight
-                        ? "bg-[#FFC200] text-[#1B0E02]"
-                        : "border border-[#173B4D]/12 bg-[#173B4D]/5 text-[#526B78]"
+                        ? "bg-[#FFD52A] text-[#10245E]"
+                        : "border border-[#10245E]/12 bg-[#10245E]/5 text-[#34436C]"
                     }`}
                   >
                     {pkg.tag}
                   </span>
 
-                  <h3 className="aq-display mb-6 mt-5 text-[24px] text-[#173B4D]">
+                  <h3 className="aq-display mb-6 mt-5 text-[24px] text-[#10245E]">
                     {pkg.name}
                   </h3>
 
-                  <ul className="mb-8 space-y-2.5 text-[13px] text-[#526B78]">
+                  <ul className="mb-8 space-y-2.5 text-[13px] text-[#34436C]">
                     {pkg.activities.map((a) => (
                       <li key={a} className="flex items-center gap-2.5">
                         <CheckCircle
                           size={14}
                           strokeWidth={1.8}
-                          className="shrink-0 text-[#087D8A]"
+                          className="shrink-0 text-[#1239C8]"
                         />{" "}
                         {a}
                       </li>
@@ -151,7 +151,7 @@ export default function WatersportPage() {
                     <p className="aq-accent-text font-display text-[30px] font-semibold leading-none">
                       {pkg.price}
                     </p>
-                    <p className="mt-1.5 text-[13px] text-[#657B87] line-through">
+                    <p className="mt-1.5 text-[13px] text-[#58658C] line-through">
                       {pkg.original}
                     </p>
                   </div>
@@ -162,8 +162,8 @@ export default function WatersportPage() {
                     rel="noopener noreferrer"
                     className={
                       pkg.highlight
-                        ? "aq-btn !w-full !py-3.5"
-                        : "aq-btn-ghost !w-full !py-3.5"
+                        ? "aq-btn aq-btn-whatsapp !w-full !py-3.5"
+                        : "aq-btn-ghost aq-btn-whatsapp !w-full !py-3.5"
                     }
                   >
                     Book This Package
@@ -179,13 +179,13 @@ export default function WatersportPage() {
       <section className="section-gap">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="aq-panel relative overflow-hidden px-8 py-20 text-center md:px-16">
-            <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[300px] w-[600px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#F9913E]/16 blur-[90px]" />
+            <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[300px] w-[600px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#FF9B28]/16 blur-[90px]" />
             <div className="relative z-10">
               <span className="aq-eyebrow mb-7">Need Help Choosing?</span>
-              <h2 className="aq-display mb-6 text-display-md text-[#173B4D]">
+              <h2 className="aq-display mb-6 text-display-md text-[#10245E]">
                 We&apos;ll Find the Perfect Activity for You
               </h2>
-              <p className="mx-auto mb-10 max-w-lg text-[15px] leading-[1.8] text-[#526B78]">
+              <p className="mx-auto mb-10 max-w-lg text-[15px] leading-[1.8] text-[#34436C]">
                 Our team is ready to help you pick the perfect activity. Chat
                 with us on WhatsApp!
               </p>
@@ -193,7 +193,7 @@ export default function WatersportPage() {
                 href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="aq-btn"
+                className="aq-btn aq-btn-whatsapp"
               >
                 <MessageCircle size={18} />
                 Chat on WhatsApp

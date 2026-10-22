@@ -51,26 +51,26 @@ export default function FaqSection() {
           light
         />
 
-        <div className="aq-panel divide-y divide-[#173B4D]/10 overflow-hidden !rounded-[28px] p-0">
+        <div className="aq-panel divide-y divide-[#10245E]/10 overflow-hidden !rounded-[28px] p-0">
           {faqs.map((faq, i) => (
-            <div key={i} className={open === i ? "bg-[#173B4D]/[0.035]" : ""}>
+            <div key={i} className={open === i ? "bg-[#10245E]/[0.035]" : ""}>
               <button
-                className="flex w-full cursor-pointer items-center justify-between gap-6 px-7 py-6 text-left transition-colors duration-200 hover:bg-[#173B4D]/[0.03]"
+                className="flex w-full cursor-pointer items-center justify-between gap-6 px-7 py-6 text-left transition-colors duration-200 hover:bg-[#10245E]/[0.03]"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
-                <span className={`text-[15px] font-medium transition-colors ${open === i ? "text-[#A84914]" : "text-[#173B4D]"}`}>
+                <span className={`text-[15px] font-medium transition-colors ${open === i ? "text-[#FF9B28]" : "text-[#10245E]"}`}>
                   {faq.q}
                 </span>
                 <ChevronDown
                   size={18}
                   strokeWidth={1.8}
-                  className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-[#A84914]" : "text-[#657B87]"}`}
+                  className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-[#FF9B28]" : "text-[#58658C]"}`}
                 />
               </button>
               {open === i && (
                 <div className="px-7 pb-7">
-                  <p className="max-w-2xl text-[14px] leading-[1.8] text-[#526B78]">{faq.a}</p>
+                  <p className="max-w-2xl text-[14px] leading-[1.8] text-[#34436C]">{faq.a}</p>
                 </div>
               )}
             </div>

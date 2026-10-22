@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-blue: #0052cc;
-  --color-secondary-blue: #0fa3b1;
-  --color-dark-navy: #1a3d8c;
-  --color-teal: #0fa3b1;
-  --color-golden: #ffd700;
-  --color-orange: #ff9500;
+  --color-primary-blue: #1239c8;
+  --color-secondary-blue: #1239c8;
+  --color-dark-navy: #10245e;
+  --color-teal: #1239c8;
+  --color-golden: #ffd52a;
+  --color-orange: #ff9b28;
 
   --animate-wave: wave 15s linear infinite;
   --animate-wave-slow: wave-slow 20s linear infinite reverse;
@@ -48,15 +48,15 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --navy: #123347;
-  --blue: #0052cc;
-  --ocean: #0fa3b1;
-  --gold: #ffd700;
-  --gold-dark: #ff9500;
-  --smoke: #f5fbfc;
-  --ink: #173b4d;
-  --muted: #526b78;
-  --border: #d7e7eb;
+  --navy: #10245e;
+  --blue: #1239c8;
+  --ocean: #1239c8;
+  --gold: #ffd52a;
+  --gold-dark: #ff9b28;
+  --smoke: #f8f7f3;
+  --ink: #10245e;
+  --muted: #34436c;
+  --border: rgba(16, 36, 94, 0.14);
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -78,7 +78,7 @@ body {
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: #b95725 #e5f1f3;
+  scrollbar-color: #1239c8 #f8f7f3;
 }
 
 body::-webkit-scrollbar {
@@ -86,21 +86,21 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #e5f1f3;
+  background: #f8f7f3;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ffc48a, #f9913e);
+  background: #1239c8;
   border-radius: 999px;
-  border: 3px solid #e5f1f3;
+  border: 3px solid #f8f7f3;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: #f9913e;
+  background: #ff9b28;
 }
 
 ::selection {
-  background: rgba(249, 145, 62, 0.28);
+  background: rgba(255, 213, 42, 0.35);
   color: #fff;
 }
 
@@ -148,10 +148,10 @@ h6 {
   background: #f8f7f3;
 }
 .gradient-card {
-  background: linear-gradient(135deg, #0052cc 0%, #0fa3b1 100%);
+  background: linear-gradient(135deg, #1239c8 0%, #10245e 100%);
 }
 .gradient-sunset {
-  background: linear-gradient(135deg, #ff9500 0%, #ffd700 100%);
+  background: linear-gradient(135deg, #ff9b28 0%, #ffd52a 100%);
 }
 .gradient-dark {
   background: #f8f7f3;
@@ -174,8 +174,8 @@ h6 {
 .card-hover:hover {
   transform: translateY(-10px);
   box-shadow:
-    0 26px 72px rgba(0, 82, 204, 0.18),
-    0 8px 18px rgba(0, 82, 204, 0.08);
+    0 26px 72px rgba(18, 57, 200, 0.18),
+    0 8px 18px rgba(18, 57, 200, 0.08);
   border-color: rgba(255, 255, 255, 0.18);
 }
 
@@ -186,15 +186,16 @@ h6 {
   gap: 0.85rem;
   padding: 0.9rem 1.6rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--blue), var(--ocean));
+  background: var(--blue);
   color: white;
   font-weight: 700;
-  box-shadow: 0 22px 60px rgba(0, 82, 204, 0.22);
+  box-shadow: 0 22px 60px rgba(18, 57, 200, 0.22);
 }
 
 .button-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 26px 80px rgba(0, 82, 204, 0.25);
+  background: var(--navy);
+  box-shadow: 0 26px 80px rgba(18, 57, 200, 0.25);
 }
 
 .button-secondary {
@@ -204,7 +205,7 @@ h6 {
   gap: 0.75rem;
   padding: 0.9rem 1.6rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 82, 204, 0.18);
+  border: 1px solid rgba(18, 57, 200, 0.22);
   background: rgba(255, 255, 255, 0.94);
   color: var(--ink);
   font-weight: 700;
@@ -213,7 +214,7 @@ h6 {
 .button-secondary:hover {
   transform: translateY(-1px);
   background: white;
-  border-color: rgba(0, 82, 204, 0.28);
+  border-color: rgba(18, 57, 200, 0.38);
 }
 
 /* ─── Animations ─────────────────────────────────────────────── */
@@ -338,7 +339,7 @@ h6 {
 
 /* ─── Accessibility (Point 08) ──────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #f9913e;
+  outline: 2px solid #ff9b28;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -386,7 +387,7 @@ h6 {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    0 8px 32px rgba(0, 82, 204, 0.08),
+    0 8px 32px rgba(18, 57, 200, 0.08),
     inset 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
@@ -404,7 +405,7 @@ h6 {
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 16px 48px rgba(0, 82, 204, 0.12);
+  box-shadow: 0 16px 48px rgba(18, 57, 200, 0.12);
   transform: translateY(-6px);
 }
 
@@ -453,14 +454,14 @@ h6 {
   outline: none;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(0, 82, 204, 0.15);
+  box-shadow: 0 0 20px rgba(18, 57, 200, 0.15);
 }
 
 /* ─── COLOR GRADIENT COMBINATIONS ───────────────────────────── */
 
 /* Water gradient */
 .bg-water-gradient {
-  background: linear-gradient(135deg, #0052cc 0%, #0fa3b1 100%);
+  background: linear-gradient(135deg, #1239c8 0%, #10245e 100%);
 }
 
 /* Ocean deep */
@@ -470,7 +471,7 @@ h6 {
 
 /* Golden water */
 .bg-golden-water {
-  background: linear-gradient(135deg, #ffd700 0%, #ff9500 100%);
+  background: linear-gradient(135deg, #ffd52a 0%, #ff9b28 100%);
 }
 
 /* Midnight blue */
@@ -480,7 +481,7 @@ h6 {
 
 /* Glass gradient text */
 .text-gradient {
-  background: linear-gradient(90deg, #ffd700, #ff9500);
+  background: linear-gradient(90deg, #ffd52a, #ff9b28);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -496,12 +497,12 @@ h6 {
   --aq-deep: #f8f7f3;
   --aq-reef: #f8f7f3;
   --aq-glass: rgba(255, 255, 255, 0.78);
-  --aq-line: rgba(23, 59, 77, 0.12);
-  --aq-text: #173b4d;
-  --aq-muted: #526b78;
-  --aq-aqua: #087d8a;
-  --aq-coral: #bf5421;
-  --aq-sand: #a84914;
+  --aq-line: rgba(16, 36, 94, 0.14);
+  --aq-text: #10245e;
+  --aq-muted: #34436c;
+  --aq-aqua: #1239c8;
+  --aq-coral: #ff9b28;
+  --aq-sand: #ffd52a;
 }
 
 /* The continuous ocean surface everything below the hero sits on. */
@@ -528,7 +529,7 @@ h6 {
 
 .aq-panel-hover:hover {
   background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(191, 84, 33, 0.32);
+  border-color: rgba(255, 155, 40, 0.45);
   transform: translateY(-4px);
 }
 
@@ -545,7 +546,7 @@ h6 {
 }
 
 .aq-page-hero .aq-eyebrow {
-  color: #ffc48a;
+  color: #ffd52a;
 }
 
 .aq-eyebrow::before {
@@ -554,7 +555,7 @@ h6 {
   height: 6px;
   border-radius: 999px;
   background: var(--aq-coral);
-  box-shadow: 0 0 0 4px rgba(249, 145, 62, 0.16);
+  box-shadow: 0 0 0 4px rgba(255, 155, 40, 0.16);
 }
 
 /* Chip / tag. */
@@ -564,11 +565,11 @@ h6 {
   gap: 0.4rem;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(23, 59, 77, 0.14);
+  border: 1px solid rgba(16, 36, 94, 0.14);
   background: rgba(255, 255, 255, 0.86);
   font-size: 11px;
   font-weight: 600;
-  color: rgba(23, 59, 77, 0.84);
+  color: rgba(16, 36, 94, 0.84);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -582,15 +583,15 @@ h6 {
   padding: 0.95rem 1.8rem;
   border-radius: 999px;
   font-weight: 700;
-  color: #173b4d;
-  background: #ffc200;
-  box-shadow: 0 14px 40px rgba(255, 194, 0, 0.22);
+  color: #ffffff;
+  background: #1239c8;
+  box-shadow: 0 14px 40px rgba(18, 57, 200, 0.22);
 }
 
 .aq-btn:hover {
   transform: translateY(-2px);
-  background: #ffc200;
-  box-shadow: 0 20px 54px rgba(213, 215, 215, 0.3);
+  background: #10245e;
+  box-shadow: 0 20px 54px rgba(18, 57, 200, 0.3);
 }
 
 .aq-btn-ghost {
@@ -601,19 +602,30 @@ h6 {
   padding: 0.95rem 1.8rem;
   border-radius: 999px;
   font-weight: 600;
-  color: var(--aq-text);
-  border: 1px solid var(--aq-line);
-  background: rgba(255, 255, 255, 0.72);
+  color: #1239c8;
+  border: 1px solid rgba(18, 57, 200, 0.35);
+  background: transparent;
 }
 
 .aq-btn-ghost:hover {
-  border-color: rgba(8, 125, 138, 0.4);
-  background: rgba(255, 255, 255, 0.96);
+  border-color: #1239c8;
+  background: rgba(18, 57, 200, 0.08);
+}
+
+.aq-btn-whatsapp {
+  color: #ffffff;
+  background: #25d366;
+  box-shadow: 0 14px 40px rgba(37, 211, 102, 0.22);
+}
+
+.aq-btn-whatsapp:hover {
+  background: #1ebe59;
+  box-shadow: 0 20px 54px rgba(37, 211, 102, 0.3);
 }
 
 /* Warm gradient text for the emphasised word in a heading. */
 .aq-accent-text {
-  background: linear-gradient(100deg, #a84914, #c15422);
+  background: linear-gradient(100deg, #ff9b28, #ffd52a);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -633,7 +645,7 @@ h6 {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background: #173b4d;
+  background: #10245e;
 }
 
 .aq-page-hero::after {
@@ -666,12 +678,12 @@ h6 {
 }
 
 .aq-input::placeholder {
-  color: #657b87;
+  color: #58658c;
 }
 
 .aq-input:focus {
   outline: none;
-  border-color: rgba(249, 145, 62, 0.5);
+  border-color: rgba(255, 155, 40, 0.5);
   background: #ffffff;
 }
 

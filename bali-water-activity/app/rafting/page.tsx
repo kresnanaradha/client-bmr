@@ -49,7 +49,7 @@ export default function RaftingPage() {
                     <img src={pkg.image} alt={pkg.title} className="h-full w-full object-cover" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#04131F] via-[#04131F]/20 to-transparent" />
                     {i === 1 && (
-                      <span className="absolute left-4 top-4 rounded-full bg-[#FFC200] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1B0E02]">
+                      <span className="absolute left-4 top-4 rounded-full bg-[#FFD52A] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#10245E]">
                         For Thrill Seekers
                       </span>
                     )}
@@ -57,13 +57,13 @@ export default function RaftingPage() {
                 </div>
 
                 <div className="p-7">
-                  <h2 className="aq-display mb-3 text-[24px] text-[#173B4D]">{pkg.title}</h2>
-                  <p className="mb-6 text-[14px] leading-[1.8] text-[#526B78]">{pkg.description}</p>
+                  <h2 className="aq-display mb-3 text-[24px] text-[#10245E]">{pkg.title}</h2>
+                  <p className="mb-6 text-[14px] leading-[1.8] text-[#34436C]">{pkg.description}</p>
 
                   <div className="mb-8 flex flex-wrap gap-2">
-                    <span className="aq-chip"><Clock size={12} className="text-[#087D8A]" /> {pkg.duration}</span>
-                    <span className="aq-chip"><MapPin size={12} className="text-[#087D8A]" /> {pkg.distance}</span>
-                    <span className="aq-chip"><Users size={12} className="text-[#087D8A]" /> {pkg.level}</span>
+                    <span className="aq-chip"><Clock size={12} className="text-[#1239C8]" /> {pkg.duration}</span>
+                    <span className="aq-chip"><MapPin size={12} className="text-[#1239C8]" /> {pkg.distance}</span>
+                    <span className="aq-chip"><Users size={12} className="text-[#1239C8]" /> {pkg.level}</span>
                   </div>
 
                   {/* Itinerary */}
@@ -71,8 +71,8 @@ export default function RaftingPage() {
                     <p className="aq-label">Itinerary</p>
                     <ol className="space-y-3">
                       {pkg.itinerary.map((step, j) => (
-                        <li key={j} className="flex items-start gap-3 text-[13px] leading-[1.7] text-[#526B78]">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[10px] font-bold text-[#087D8A]">
+                        <li key={j} className="flex items-start gap-3 text-[13px] leading-[1.7] text-[#34436C]">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#1239C8]/25 bg-[#1239C8]/10 text-[10px] font-bold text-[#1239C8]">
                             {j + 1}
                           </span>
                           {step}
@@ -87,8 +87,8 @@ export default function RaftingPage() {
                       <p className="aq-label">Includes</p>
                       <ul className="space-y-2">
                         {pkg.includes.map((inc) => (
-                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#526B78]">
-                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#087D8A]" /> {inc}
+                          <li key={inc} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#34436C]">
+                            <CheckCircle size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#1239C8]" /> {inc}
                           </li>
                         ))}
                       </ul>
@@ -97,24 +97,24 @@ export default function RaftingPage() {
                       <p className="aq-label">Excludes</p>
                       <ul className="space-y-2">
                         {pkg.excludes.map((ex) => (
-                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#657B87]">
-                            <X size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#657B87]" /> {ex}
+                          <li key={ex} className="flex items-start gap-2 text-[12px] leading-[1.6] text-[#58658C]">
+                            <X size={12} strokeWidth={1.9} className="mt-1 shrink-0 text-[#58658C]" /> {ex}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-4 border-t border-[#173B4D]/10 pt-6">
+                  <div className="flex items-center justify-between gap-4 border-t border-[#10245E]/10 pt-6">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#657B87]">Per person</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#58658C]">Per person</p>
                       <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.price}</p>
                     </div>
                     <a
                       href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book ${pkg.title}. How many slots are available?`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="aq-btn !px-7 !py-3 text-[14px]"
+                      className="aq-btn aq-btn-whatsapp !px-7 !py-3 text-[14px]"
                     >
                       Book Now
                     </a>
@@ -130,12 +130,12 @@ export default function RaftingPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="aq-panel flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1239C8]/25 bg-[#1239C8]/10 text-[#1239C8]">
               <Shield size={21} strokeWidth={1.6} />
             </div>
             <div>
-              <p className="mb-1.5 text-[17px] font-semibold text-[#173B4D]">Safety Briefing Included</p>
-              <p className="text-[13px] leading-[1.75] text-[#526B78]">
+              <p className="mb-1.5 text-[17px] font-semibold text-[#10245E]">Safety Briefing Included</p>
+              <p className="text-[13px] leading-[1.75] text-[#34436C]">
                 All participants receive a full safety briefing before entering the water. Helmets, life jackets, and certified guides are always provided.
               </p>
             </div>

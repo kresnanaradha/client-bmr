@@ -64,10 +64,10 @@ export default function ContactClient() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(60%_100%_at_50%_0%,rgba(62,214,224,0.14),transparent_70%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <span className="aq-eyebrow mb-6">Get In Touch</span>
-          <h1 className="aq-display mb-5 text-display-lg text-[#173B4D]">
+          <h1 className="aq-display mb-5 text-display-lg text-[#10245E]">
             Contact Us
           </h1>
-          <p className="mx-auto max-w-lg text-[15px] leading-[1.8] text-[#526B78]">
+          <p className="mx-auto max-w-lg text-[15px] leading-[1.8] text-[#34436C]">
             Have a question or ready to book? Reach out via WhatsApp, email, or
             the form below — we respond fast!
           </p>
@@ -87,17 +87,17 @@ export default function ContactClient() {
                   rel="noopener noreferrer"
                   className="aq-panel aq-panel-hover flex items-start gap-4 p-5"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#3ED6E0]/25 bg-[#3ED6E0]/10 text-[#087D8A]">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#1239C8]/25 bg-[#1239C8]/10 text-[#1239C8]">
                     <c.icon size={17} strokeWidth={1.7} />
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.16em] text-[#657B87]">
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-[#58658C]">
                       {c.label}
                     </p>
-                    <p className="mt-1 text-[14px] font-semibold text-[#173B4D]">
+                    <p className="mt-1 text-[14px] font-semibold text-[#10245E]">
                       {c.value}
                     </p>
-                    <p className="mt-0.5 text-[12px] text-[#657B87]">{c.sub}</p>
+                    <p className="mt-0.5 text-[12px] text-[#58658C]">{c.sub}</p>
                   </div>
                 </a>
               ))}
@@ -106,7 +106,7 @@ export default function ContactClient() {
                 href={`https://wa.me/${WA_NUMBER}?text=Hi%20Bali%20Water%20Activity!%20I%20have%20a%20question.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="aq-btn !w-full"
+                className="aq-btn aq-btn-whatsapp !w-full"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -130,13 +130,13 @@ export default function ContactClient() {
 
               {sent ? (
                 <div className="py-16 text-center">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-[#F9913E]/35 bg-[#F9913E]/12 text-[#A84914]">
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-[#FF9B28]/35 bg-[#FF9B28]/12 text-[#FF9B28]">
                     <Send size={24} strokeWidth={1.6} />
                   </div>
-                  <h3 className="aq-display mb-3 text-[24px] text-[#173B4D]">
+                  <h3 className="aq-display mb-3 text-[24px] text-[#10245E]">
                     Message Sent!
                   </h3>
-                  <p className="text-[14px] text-[#526B78]">
+                  <p className="text-[14px] text-[#34436C]">
                     Your message was redirected to WhatsApp. We&apos;ll respond
                     shortly!
                   </p>
@@ -225,11 +225,11 @@ export default function ContactClient() {
                     />
                   </div>
 
-                  <button type="submit" className="aq-btn !w-full">
+                  <button type="submit" className="aq-btn aq-btn-whatsapp !w-full">
                     <Send size={16} /> Send via WhatsApp
                   </button>
 
-                  <p className="text-center text-[12px] text-[#657B87]">
+                  <p className="text-center text-[12px] text-[#58658C]">
                     Your message will be sent via WhatsApp for fastest response
                   </p>
                 </form>
@@ -240,7 +240,7 @@ export default function ContactClient() {
       </section>
 
       {/* Google Maps — dimmed so it sits in the same water as the rest of the page */}
-      <section className="relative h-80 overflow-hidden border-t border-[#173B4D]/10">
+      <section className="relative h-80 overflow-hidden border-t border-[#10245E]/10">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0898!2d115.2283!3d-8.7562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDUnMjIuMyJTIDExNcKwMTMnNDIuMSJF!5e0!3m2!1sen!2sid!4v1234567890"
           className="h-full w-full border-0 grayscale-[0.4] contrast-[1.05] [filter:invert(0.92)_hue-rotate(180deg)_saturate(0.7)]"

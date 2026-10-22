@@ -18,7 +18,7 @@ export default function SectionHeader({
       <h2
         className={`aq-display mb-5 ${
           size === "lg" ? "text-display-lg" : "text-display-md"
-        } ${light ? "text-[color:var(--aq-text)]" : "text-[#0C1A4A]"}`}
+        } ${light ? "text-[color:var(--aq-text)]" : "text-[#10245E]"}`}
       >
         {title}
       </h2>

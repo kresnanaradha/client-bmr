@@ -57,7 +57,7 @@ export default function DestinationsSection() {
             <Link
               key={d.href}
               href={d.href}
-              className={`group relative overflow-hidden rounded-[28px] border border-[#173B4D]/10 transition-all duration-500 hover:border-[#F9913E]/35 ${span[i]}`}
+              className={`group relative overflow-hidden rounded-[28px] border border-[#10245E]/10 transition-all duration-500 hover:border-[#FF9B28]/35 ${span[i]}`}
             >
               <div className="relative h-[380px] lg:h-[420px]">
                 <img
@@ -70,7 +70,7 @@ export default function DestinationsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#04131F] via-[#04131F]/55 to-[#04131F]/10" />
 
                 <div className="absolute inset-x-0 bottom-0 z-10 p-7">
-                  <span className="aq-eyebrow mb-3 text-[#FFC48A]">{d.subtitle}</span>
+                  <span className="aq-eyebrow mb-3 text-[#FFD52A]">{d.subtitle}</span>
                   <h3 className="aq-display mb-2 text-[26px] font-medium text-white">{d.title}</h3>
                   <p className="mb-5 max-w-md text-[13px] leading-relaxed text-white/80">{d.description}</p>
 
@@ -80,7 +80,7 @@ export default function DestinationsSection() {
                     ))}
                   </div>
 
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#FFC48A] transition-all duration-300 group-hover:gap-3.5">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#FFD52A] transition-all duration-300 group-hover:gap-3.5">
                     Explore <ArrowRight size={15} />
                   </span>
                 </div>

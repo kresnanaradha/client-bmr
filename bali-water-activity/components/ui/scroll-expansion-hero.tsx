@@ -217,7 +217,7 @@ const ScrollExpandMedia = ({
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
                   {location && (
                     <p
-                      className='text-[11px] font-semibold uppercase tracking-[0.22em] text-[#FFC48A]'
+                      className='text-[11px] font-semibold uppercase tracking-[0.22em] text-[#FFD52A]'
                       style={{ transform: `translateX(-${textTranslateX}vw)` }}
                     >
                       {location}
