@@ -1,3 +1,4 @@
+import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { watersportActivities } from "@/lib/activities";
@@ -7,7 +8,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const WA_NUMBER = "628XXXXXXXXXX";
 
 interface Props {
   params: Promise<{ slug: string }>;
