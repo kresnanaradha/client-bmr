@@ -16,7 +16,7 @@ export default function WatersportClient({ initialActivities }: WatersportClient
     sortBy: "popular",
   });
 
-  // Enrich initialActivities with mock rating & reviews & parsed numerical price
+  // Enrich initialActivities with mock rating & reviews & parsed published price
   const enrichedActivities = useMemo(() => {
     return initialActivities.map((act) => {
       let rating = 4.7;
@@ -54,7 +54,9 @@ export default function WatersportClient({ initialActivities }: WatersportClient
         reviews = 98;
       }
 
-      const numericPrice = parseInt(act.price.replace(/[^0-9]/g, "")) || 0;
+      const numericPrice = Number(
+        act.publishPrice.replace(/[^\d.]/g, ""),
+      ) * (act.publishPrice.toUpperCase().includes("K") ? 1000 : 1);
 
       return {
         ...act,
@@ -108,7 +110,8 @@ export default function WatersportClient({ initialActivities }: WatersportClient
                 key={act.slug}
                 title={act.title}
                 description={act.description}
-                price={act.price}
+                publishPrice={act.publishPrice}
+                netPrice={act.netPrice}
                 duration={act.duration}
                 ageRange={act.ageRange}
                 image={act.image}
@@ -119,8 +122,8 @@ export default function WatersportClient({ initialActivities }: WatersportClient
           </div>
         ) : (
           <div className="aq-panel p-16 text-center">
-            <p className="aq-display mb-3 text-[22px] text-[#EAF4F8]">No Activities Found</p>
-            <p className="text-[14px] text-[#8FB0C2]">Try adjusting your filters to find your perfect adventure.</p>
+            <p className="aq-display mb-3 text-[22px] text-[#10245E]">No Activities Found</p>
+            <p className="text-[14px] text-[#34436C]">Try adjusting your filters to find your perfect adventure.</p>
           </div>
         )}
       </div>
