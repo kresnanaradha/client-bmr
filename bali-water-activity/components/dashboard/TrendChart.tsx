@@ -24,11 +24,11 @@ export default function TrendChart({ points }: { points: TrendPoint[] }) {
 
   if (points.length < 2) {
     return (
-      <section className="rounded-2xl border border-(--aq-line)] bg-(--aq-glass)] p-5">
-        <h2 className="text-sm font-semibold text-(--aq-text)]">
+      <section className="rounded-2xl border border-(--aq-line) bg-(--aq-glass) p-5">
+        <h2 className="text-sm font-semibold text-(--aq-text)">
           Visitors per day
         </h2>
-        <p className="py-10 text-center text-xs text-(--aq-muted)]">
+        <p className="py-10 text-center text-xs text-(--aq-muted)">
           Not enough days of data yet.
         </p>
       </section>
@@ -58,18 +58,18 @@ export default function TrendChart({ points }: { points: TrendPoint[] }) {
   };
 
   return (
-    <section className="rounded-2xl border border-(--aq-line)] bg-(--aq-glass)] p-5">
+    <section className="rounded-2xl border border-(--aq-line) bg-(--aq-glass) p-5">
       <header className="mb-4">
-        <h2 className="text-sm font-semibold text-(--aq-text)]">
+        <h2 className="text-sm font-semibold text-(--aq-text)">
           Visitors per day
         </h2>
-        <p className="mt-0.5 text-xs text-(--aq-muted)]">
+        <p className="mt-0.5 text-xs text-(--aq-muted)">
           Unique people visiting the website each day.
         </p>
       </header>
 
       <div className="flex gap-3">
-        <div className="flex h-[180px] flex-col justify-between text-right text-[10px] tabular-nums text-(--aq-muted)]">
+        <div className="flex h-[180px] flex-col justify-between text-right text-[10px] tabular-nums text-(--aq-muted)">
           <span>{yMax}</span>
           <span>{yMax / 2}</span>
           <span>0</span>
@@ -129,10 +129,10 @@ export default function TrendChart({ points }: { points: TrendPoint[] }) {
                     transform: `translate(${activeLeft > 80 ? "-100%" : activeLeft < 20 ? "0" : "-50%"}, -110%)`,
                   }}
                 >
-                  <span className="text-(--aq-muted)]">
+                  <span className="text-(--aq-muted)">
                     {formatDay(active.date)}
                   </span>
-                  <span className="ml-2 font-semibold text-(--aq-text)]">
+                  <span className="ml-2 font-semibold text-(--aq-text)">
                     {active.visitors.toLocaleString("en-US")} visitors
                   </span>
                 </div>
@@ -140,7 +140,7 @@ export default function TrendChart({ points }: { points: TrendPoint[] }) {
             )}
           </div>
 
-          <div className="mt-2 flex justify-between text-[10px] text-(--aq-muted)]">
+          <div className="mt-2 flex justify-between text-[10px] text-(--aq-muted)">
             <span>{formatDay(points[0].date)}</span>
             <span>{formatDay(points[Math.floor(points.length / 2)].date)}</span>
             <span>{formatDay(points[points.length - 1].date)}</span>

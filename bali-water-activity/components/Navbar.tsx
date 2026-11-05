@@ -51,12 +51,20 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+// Pages that open on a dark full-width image; every other page starts with a
+// light background, so the bar must be solid there from the top.
+const DARK_HERO_PAGES = ["/", "/watersport", "/rafting", "/nusa-penida", "/labuan-bajo", "/about"];
+const hasDarkHero = (pathname: string) =>
+  DARK_HERO_PAGES.includes(pathname) || pathname.startsWith("/activity/");
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolledPastHero, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
   const pathname = usePathname();
+  const scrolled = scrolledPastHero || menuOpen || !hasDarkHero(pathname);
+  const navHover = scrolled ? "hover:text-[#1239C8]" : "hover:text-[#FFD52A]";
 
   useEffect(() => {
     const onScroll = () => {
@@ -80,7 +88,13 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        {/* Over the dark hero images the navy logo needs a light badge to stay legible. */}
+        <Link
+          href="/"
+          className={`flex items-center gap-2 shrink-0 rounded-2xl transition-colors duration-300 ${
+            scrolled || logoError ? "" : "bg-white/90 px-2.5 py-1 shadow-sm backdrop-blur"
+          }`}
+        >
           {!logoError ? (
             <Image
               src="/logo.png"
@@ -117,7 +131,7 @@ export default function Navbar() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className={`flex items-center gap-1 cursor-pointer transition-colors hover:text-[#1239C8]!`}
+                  className={`flex items-center gap-1 cursor-pointer transition-colors ${navHover}`}
                 >
                   {link.label}
                   <ChevronDown
@@ -165,7 +179,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-[#1239C8]!"
+                className={`transition-colors ${navHover}`}
               >
                 {link.label}
               </Link>

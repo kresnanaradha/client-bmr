@@ -150,15 +150,15 @@ export default function LabuanBajoPage() {
       <section className="section-gap">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Labuan Bajo in Photos" light />
-          <div className="grid h-[420px] grid-cols-3 gap-3">
-            <div className="col-span-2 overflow-hidden rounded-[20px] border border-[#10245E]/10">
+          <div className="grid h-[300px] grid-cols-3 grid-rows-1 gap-3 md:h-[420px]">
+            <div className="col-span-2 min-h-0 overflow-hidden rounded-[20px] border border-[#10245E]/10">
               <img src={dummyImage("labuan-1")} alt="Labuan Bajo 1" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
             </div>
-            <div className="flex flex-col gap-3">
-              <div className="flex-1 overflow-hidden rounded-[20px] border border-[#10245E]/10">
+            <div className="flex min-h-0 flex-col gap-3">
+              <div className="min-h-0 flex-1 overflow-hidden rounded-[20px] border border-[#10245E]/10">
                 <img src={dummyImage("labuan-2")} alt="Labuan Bajo 2" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
               </div>
-              <div className="flex-1 overflow-hidden rounded-[20px] border border-[#10245E]/10">
+              <div className="min-h-0 flex-1 overflow-hidden rounded-[20px] border border-[#10245E]/10">
                 <img src={dummyImage("labuan-3")} alt="Labuan Bajo 3" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
               </div>
             </div>

@@ -39,15 +39,18 @@ function FooterLogo() {
       </div>
     );
   }
+  // The logo's lettering is navy, so it needs a light badge on the navy footer.
   return (
-    <Image
-      src="/logo.png"
-      alt="Bali Water Activity"
-      width={180}
-      height={64}
-      className="h-16 w-auto mb-4"
-      onError={() => setErr(true)}
-    />
+    <div className="mb-4 inline-flex rounded-2xl bg-white px-3 py-2">
+      <Image
+        src="/logo.png"
+        alt="Bali Water Activity"
+        width={180}
+        height={64}
+        className="h-14 w-auto"
+        onError={() => setErr(true)}
+      />
+    </div>
   );
 }
 
@@ -98,7 +101,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-[#34436C] hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-white/75 hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FFD52A] group-hover:bg-[#FF9B28] transition-colors" />
                     {l.label}
@@ -123,7 +126,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-[#34436C] hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
+                    className="text-sm text-white/75 hover:text-[#FFD52A] transition-colors duration-150 cursor-pointer flex items-center gap-1.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FFD52A] group-hover:bg-[#FF9B28] transition-colors" />
                     {l.label}
@@ -153,7 +156,7 @@ export default function Footer() {
                 </div>
                 <a
                   href={`https://wa.me/${WA_NUMBER}`}
-                  className="text-sm text-[#34436C] hover:text-[#1239C8] cursor-pointer transition-colors"
+                  className="text-sm text-white/75 hover:text-[#FFD52A] cursor-pointer transition-colors"
                 >
                   +62 812-4600-378
                 </a>
@@ -164,7 +167,7 @@ export default function Footer() {
                 </div>
                 <a
                   href="mailto:hello@baliwateractivity.com"
-                  className="text-sm text-[#34436C] hover:text-[#FFD52A] cursor-pointer transition-colors"
+                  className="text-sm text-white/75 hover:text-[#FFD52A] cursor-pointer transition-colors"
                 >
                   hello@baliwateractivity.com
                 </a>
@@ -181,7 +184,7 @@ export default function Footer() {
           </p>
           <Link
             href="/credits"
-            className="text-xs text-[#58658C] hover:text-[#1239C8] transition-colors"
+            className="text-xs text-white/60 hover:text-[#FFD52A] transition-colors"
           >
             Photo credits
           </Link>

@@ -28,6 +28,9 @@ const gallery = [
   dummyImage("penida-4"),
 ];
 
+// One large, one wide and two small tiles; sized for exactly four photos.
+const GALLERY_TILE = ["col-span-2 h-56 md:row-span-2", "col-span-2 h-40", "h-40", "h-40"];
+
 export default function NusaPenidaPage() {
   return (
     <div className="ocean-page">
@@ -167,13 +170,11 @@ export default function NusaPenidaPage() {
       <section className="section-gap">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Nusa Penida in Photos" light />
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 md:h-[420px] md:grid-cols-4 md:grid-rows-2">
             {gallery.map((src, i) => (
               <div
                 key={i}
-                className={`overflow-hidden rounded-[20px] border border-[#10245E]/10 ${
-                  i === 0 ? "row-span-2 h-full min-h-[280px]" : "h-40 md:h-[134px]"
-                }`}
+                className={`min-h-0 overflow-hidden rounded-[20px] border border-[#10245E]/10 md:h-auto ${GALLERY_TILE[i]}`}
               >
                 <img
                   src={src}

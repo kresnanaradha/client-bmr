@@ -16,7 +16,7 @@ export default function WatersportClient({ initialActivities }: WatersportClient
     sortBy: "popular",
   });
 
-  // Enrich initialActivities with mock rating & reviews & parsed published price
+  // Enrich initialActivities with mock rating & reviews & parsed price
   const enrichedActivities = useMemo(() => {
     return initialActivities.map((act) => {
       let rating = 4.7;
@@ -54,9 +54,10 @@ export default function WatersportClient({ initialActivities }: WatersportClient
         reviews = 98;
       }
 
+      // Filter and sort on the price the customer actually pays.
       const numericPrice = Number(
-        act.publishPrice.replace(/[^\d.]/g, ""),
-      ) * (act.publishPrice.toUpperCase().includes("K") ? 1000 : 1);
+        act.netPrice.replace(/[^\d.]/g, ""),
+      ) * (act.netPrice.toUpperCase().includes("K") ? 1000 : 1);
 
       return {
         ...act,

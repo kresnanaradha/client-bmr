@@ -11,10 +11,10 @@ export default function CreditsPage() {
   return (
     <div className="ocean-page min-h-screen px-4 pb-20 pt-32 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <h1 className="mb-3 text-3xl font-light text-(--aq-text)] md:text-4xl">
+        <h1 className="mb-3 text-3xl font-light text-(--aq-text) md:text-4xl">
           Photo Credits
         </h1>
-        <p className="mb-10 max-w-2xl text-sm leading-relaxed text-(--aq-muted)]">
+        <p className="mb-10 max-w-2xl text-sm leading-relaxed text-(--aq-muted)">
           Watersport photos are our own. The destination and tour photos below
           are by the photographers listed, used under Creative Commons licences
           via Wikimedia Commons, and resized for this site.
@@ -24,7 +24,7 @@ export default function CreditsPage() {
           {PHOTO_CREDITS.map((credit) => (
             <li
               key={credit.file}
-              className="flex gap-4 rounded-2xl border border-(--aq-line)] bg-(--aq-glass)] p-3"
+              className="flex gap-4 rounded-2xl border border-(--aq-line) bg-(--aq-glass) p-3"
             >
               <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-xl">
                 <Image
@@ -40,16 +40,16 @@ export default function CreditsPage() {
                   href={credit.source}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate font-semibold text-(--aq-text)] hover:text-(--aq-sand)]"
+                  className="block truncate font-semibold text-(--aq-text) hover:text-(--aq-sand)"
                 >
                   {credit.title}
                 </a>
-                <p className="text-(--aq-muted)]">by {credit.author}</p>
+                <p className="text-(--aq-muted)">by {credit.author}</p>
                 <a
                   href={credit.licenseUrl || credit.source}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-(--aq-aqua)] hover:underline"
+                  className="text-(--aq-aqua) hover:underline"
                 >
                   {credit.license}
                 </a>
