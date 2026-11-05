@@ -38,7 +38,7 @@ export const watersportActivities: Activity[] = [
     publishPrice: "Rp420K",
     netPrice: "Rp125K",
     duration: "15 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("banana-boat"),
@@ -79,13 +79,13 @@ export const watersportActivities: Activity[] = [
     title: "Donut Boat",
     category: "watersport",
     description:
-      "Spin and splash on the famous donut-shaped tube pulled by a speedboat — perfect for thrill seekers of all ages.",
+      "Spin and splash on the famous donut-shaped tube pulled by a speedboat. Fun for thrill seekers of all ages.",
     longDescription:
       "Sit inside a giant inflatable donut ring and hold on as our speedboat whips you around the waves! The circular design creates wild spins and exciting splashes that will leave you screaming with joy.",
     publishPrice: "Rp520K",
     netPrice: "Rp175K",
     duration: "15 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("donut-boat"),
@@ -120,7 +120,7 @@ export const watersportActivities: Activity[] = [
     publishPrice: "Rp700K",
     netPrice: "Rp250K",
     duration: "15 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("jet-ski"),
@@ -160,7 +160,7 @@ export const watersportActivities: Activity[] = [
     publishPrice: "Rp800K",
     netPrice: "Rp400K",
     duration: "06 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("parasailing"),
@@ -184,7 +184,7 @@ export const watersportActivities: Activity[] = [
     ],
     donts: [
       "Do not unbuckle harness",
-      "Do not panic — stay calm",
+      "Stay calm and follow the crew",
       "Do not bring loose items",
     ],
     includes: [
@@ -208,7 +208,7 @@ export const watersportActivities: Activity[] = [
     publishPrice: "Rp650K",
     netPrice: "Rp225K",
     duration: "15 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("disco-boat"),
@@ -231,13 +231,13 @@ export const watersportActivities: Activity[] = [
     title: "Fly Fish",
     category: "watersport",
     description:
-      "Get airborne on a flying fish tube towed by a speedboat — a unique experience that literally lifts you out of the water.",
+      "Get airborne on a flying fish tube towed by a speedboat. It literally lifts you out of the water.",
     longDescription:
       "The Fly Fish is a specially designed inflatable tube shaped like a fish that can be tilted to make riders fly above the water surface. Hold on tight as you become a human flying fish across the Bali sea!",
     publishPrice: "Rp700K",
     netPrice: "Rp250K",
     duration: "15 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("fly-fish"),
@@ -262,13 +262,13 @@ export const watersportActivities: Activity[] = [
     title: "Fly Board",
     category: "watersport",
     description:
-      "Master the Flyboard — shoot up to 10 meters above the water powered by hydro jets. The ultimate water adventure.",
+      "Master the Flyboard and shoot up to 10 meters above the water powered by hydro jets. The ultimate water adventure.",
     longDescription:
       "Flyboarding is the most thrilling watersport in Bali! Powered by high-pressure water jets attached to a jet ski, you'll be propelled up to 10 meters into the air. With practice, you can perform spins, dives, and acrobatics over the water. Our certified instructors will get you flying in minutes!",
     publishPrice: "Rp1500K",
     netPrice: "Rp750K",
     duration: "20 minutes",
-    ageRange: "8–65",
+    ageRange: "8 to 65",
     minAge: 8,
     maxAge: 65,
     image: dummyImage("fly-board"),
@@ -285,7 +285,7 @@ export const watersportActivities: Activity[] = [
     ],
     dos: [
       "Attend full training session",
-      "Start slow — learn balance first",
+      "Start slow and learn balance first",
       "Listen to instructor at all times",
     ],
     donts: [
@@ -311,13 +311,13 @@ export const watersportActivities: Activity[] = [
     title: "Sea Walker",
     category: "watersport",
     description:
-      "Walk on the ocean floor wearing a special helmet and breathe normally — no diving experience needed!",
+      "Walk on the ocean floor wearing a special helmet and breathe normally. No diving experience needed.",
     longDescription:
-      "Sea Walker (also called Helmet Diving) lets you literally walk on the seabed at 3–5 meters depth while wearing a specially designed helmet that supplies fresh air. No swimming or diving experience required. You'll be surrounded by tropical fish, coral reefs, and the magical underwater world of Bali.",
+      "Sea Walker (also called Helmet Diving) lets you literally walk on the seabed at 3 to 5 meters depth while wearing a specially designed helmet that supplies fresh air. No swimming or diving experience required. You'll be surrounded by tropical fish, coral reefs, and the magical underwater world of Bali.",
     publishPrice: "Rp350K",
     netPrice: "Rp300K",
     duration: "30 minutes",
-    ageRange: "9–60",
+    ageRange: "9 to 60",
     minAge: 9,
     maxAge: 60,
     image: dummyImage("sea-walker"),
@@ -364,7 +364,7 @@ export const raftingPackages = [
     publishPrice: "Rp350K",
     netPrice: "Rp300K",
     duration: "2 hours on water",
-    level: "Beginner–Intermediate",
+    level: "Beginner to intermediate",
     distance: "9 km",
     image: dummyImage("ayung-river-rafting"),
     itinerary: [
@@ -390,11 +390,11 @@ export const raftingPackages = [
     slug: "telaga-waja-rafting",
     title: "Telaga Waja River Rafting",
     description:
-      "For thrill-seekers! The Telaga Waja offers Grade III–IV rapids through spectacular East Bali scenery.",
+      "For thrill-seekers! The Telaga Waja offers grade III to IV rapids through spectacular East Bali scenery.",
     publishPrice: "Rp400K",
     netPrice: "Rp350K",
     duration: "2.5 hours on water",
-    level: "Intermediate–Advanced",
+    level: "Intermediate to advanced",
     distance: "13 km",
     image: dummyImage("telaga-waja-rafting"),
     itinerary: [
@@ -495,7 +495,7 @@ export const labuanBajoPackages = [
     slug: "labuan-bajo-2d1n",
     title: "Labuan Bajo 2D1N Island Hopping",
     description:
-      "A quick getaway to the stunning Komodo National Park — see Komodo Dragons, Pink Beach, and pristine waters.",
+      "A quick getaway to the stunning Komodo National Park. See Komodo dragons, Pink Beach, and pristine waters.",
     price: "Rp1,500K",
     duration: "2 Days / 1 Night",
     image: dummyImage("labuan-bajo-2d1n"),
@@ -506,7 +506,7 @@ export const labuanBajoPackages = [
       "Snorkeling at Manta Point",
     ],
     includes: [
-      "Return flight Bali–Labuan Bajo (optional)",
+      "Return flight Bali to Labuan Bajo (optional)",
       "Boat tour",
       "Accommodation (1 night)",
       "Guide",
@@ -519,7 +519,7 @@ export const labuanBajoPackages = [
     slug: "labuan-bajo-3d2n",
     title: "Labuan Bajo 3D2N Premium Tour",
     description:
-      "The ultimate Komodo experience — liveaboard or hotel-based with comprehensive island exploration.",
+      "The full Komodo experience, liveaboard or hotel-based, with comprehensive island exploration.",
     price: "Rp2,500K",
     duration: "3 Days / 2 Nights",
     image: dummyImage("labuan-bajo-3d2n"),

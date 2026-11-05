@@ -1,583 +1,245 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-blue: #1239c8;
-  --color-secondary-blue: #1239c8;
-  --color-dark-navy: #10245e;
-  --color-teal: #1239c8;
-  --color-golden: #ffd52a;
-  --color-orange: #ff9b28;
+  --color-paper: #fbfaf7;
+  --color-paper-2: #f1efe8;
+  --color-ink: #0e1f4d;
+  --color-muted: #4a5578;
+  --color-mist: #c9d1e6;
+  --color-sun: #ffd52a;
+  --color-blue: #1239c8;
+  --color-whatsapp: #0e7a40;
 
-  --animate-wave: wave 15s linear infinite;
-  --animate-wave-slow: wave-slow 20s linear infinite reverse;
-  --animate-float-bubble: float-bubble 6s linear infinite;
-
-  @keyframes wave {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-1200px);
-    }
-  }
-  @keyframes wave-slow {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(1200px);
-    }
-  }
-  @keyframes float-bubble {
-    0% {
-      transform: translateY(0) translateX(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(-100vh) translateX(100px);
-      opacity: 0;
-    }
-  }
+  --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
 }
 
-/* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --navy: #10245e;
-  --blue: #1239c8;
-  --ocean: #1239c8;
-  --gold: #ffd52a;
-  --gold-dark: #ff9b28;
-  --smoke: #f8f7f3;
-  --ink: #10245e;
-  --muted: #34436c;
-  --border: rgba(16, 36, 94, 0.14);
+  /* One side margin for every section: 20px on phones, up to 48px on wide screens. */
+  --gutter: clamp(20px, 3.2vw, 48px);
+  --line: rgba(14, 31, 77, 0.18);
+  --line-light: rgba(255, 255, 255, 0.22);
 }
 
-/* ─── Base ──────────────────────────────────────────────────── */
-* {
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-body), sans-serif;
-  color: var(--aq-text);
-  background: #f8f7f3;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #1239c8 #f8f7f3;
-}
-
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #f8f7f3;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: #1239c8;
-  border-radius: 999px;
-  border: 3px solid #f8f7f3;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: #ff9b28;
-}
-
-::selection {
-  background: rgba(255, 213, 42, 0.35);
-  color: #fff;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a,
-button {
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Layered so an element's own utilities (text colour, size, weight) can override it. */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
 
   button {
     font: inherit;
   }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-sun);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+  }
 }
 
-/* ─── Display Font (Point 02) ───────────────────────────────── */
-.font-display {
-  font-family: var(--font-heading), sans-serif;
+@utility gutter {
+  padding-inline: var(--gutter);
+}
+
+@utility rule {
+  border-top: 1px solid var(--line);
+}
+
+@utility eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Display sizes for the serif headings. */
+@utility t-hero {
+  font-family: var(--font-serif);
   font-weight: 400;
-  letter-spacing: 0;
+  font-size: clamp(60px, 10.4vw, 156px);
+  line-height: 0.88;
+  letter-spacing: -0.015em;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading), sans-serif;
-  letter-spacing: 0;
+@utility t-page {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(52px, 7.5vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
 }
 
-/* ─── Gradients (Point 03 ─── 5 colors only) ──────────────────── */
-.gradient-hero {
-  background: #f8f7f3;
-}
-.gradient-ocean {
-  background: #f8f7f3;
-}
-.gradient-card {
-  background: linear-gradient(135deg, #1239c8 0%, #10245e 100%);
-}
-.gradient-sunset {
-  background: linear-gradient(135deg, #ff9b28 0%, #ffd52a 100%);
-}
-.gradient-dark {
-  background: #f8f7f3;
+@utility t-section {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(42px, 5vw, 76px);
+  line-height: 1;
 }
 
-/* ─── Section breathing room (Point 04) ─────────────────────── */
-.section-gap {
-  padding-top: clamp(4rem, 6vw, 8rem);
-  padding-bottom: clamp(4rem, 6vw, 8rem);
+@utility t-item {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 2.6vw, 38px);
+  line-height: 1.08;
 }
 
-/* ─── Card interactions (Point 06) ──────────────────────────── */
-.card-hover {
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
   transition:
-    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-  cursor: pointer;
-}
-.card-hover:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    0 26px 72px rgba(18, 57, 200, 0.18),
-    0 8px 18px rgba(18, 57, 200, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.button-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
-  padding: 0.9rem 1.6rem;
-  border-radius: 999px;
-  background: var(--blue);
-  color: white;
-  font-weight: 700;
-  box-shadow: 0 22px 60px rgba(18, 57, 200, 0.22);
+.btn-ink {
+  background: var(--color-ink);
+  color: #fff;
+}
+.btn-ink:hover {
+  background: var(--color-blue);
 }
 
-.button-primary:hover {
-  transform: translateY(-1px);
-  background: var(--navy);
-  box-shadow: 0 26px 80px rgba(18, 57, 200, 0.25);
+.btn-sun {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+.btn-sun:hover {
+  background: #fff;
 }
 
-.button-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.9rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(18, 57, 200, 0.22);
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--ink);
-  font-weight: 700;
+.btn-light {
+  background: #fff;
+  color: var(--color-ink);
+}
+.btn-light:hover {
+  background: var(--color-sun);
 }
 
-.button-secondary:hover {
-  transform: translateY(-1px);
-  background: white;
-  border-color: rgba(18, 57, 200, 0.38);
+.btn-whatsapp {
+  background: var(--color-whatsapp);
+  color: #fff;
+}
+.btn-whatsapp:hover {
+  background: #0a5e31;
 }
 
-/* ─── Animations ─────────────────────────────────────────────── */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn-line {
+  border: 1px solid currentColor;
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes shimmer {
-  from {
-    background-position: -200% center;
-  }
-  to {
-    background-position: 200% center;
-  }
+.btn-line:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
 }
 
-@keyframes splashPulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.06);
-  }
+/* Text link with an underline that sits a little below the baseline. */
+.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+.link:hover {
+  color: var(--color-blue);
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+/* Photos zoom slightly when their link is hovered. */
+.zoom-media img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.animate-fade-in {
-  animation: fadeIn 0.6s ease both;
-}
-.animate-float {
-  animation: float 4s ease-in-out infinite;
+.zoom-media:hover img {
+  transform: scale(1.03);
 }
 
-.delay-100 {
-  animation-delay: 0.1s;
+details > summary {
+  list-style: none;
 }
-.delay-200 {
-  animation-delay: 0.2s;
-}
-.delay-300 {
-  animation-delay: 0.3s;
-}
-.delay-400 {
-  animation-delay: 0.4s;
-}
-.delay-500 {
-  animation-delay: 0.5s;
-}
-.delay-600 {
-  animation-delay: 0.6s;
-}
-
-/* ─── Typography scale (Point 02 + 04) ──────────────────────── */
-.text-display-xl {
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  line-height: 1.05;
-}
-.text-display-lg {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  line-height: 1.1;
-}
-.text-display-md {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  line-height: 1.15;
-}
-
-/* ─── Smooth gold underline for links ───────────────────────── */
-.link-underline {
-  position: relative;
-  display: inline-block;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.3s ease;
-}
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* ─── Noise texture for dark sections ───────────────────────── */
-.noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-}
-
-/* ─── Accessibility (Point 08) ──────────────────────────────── */
-:focus-visible {
-  outline: 2px solid #ff9b28;
-  outline-offset: 3px;
-  border-radius: 4px;
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  html {
+    scroll-behavior: auto;
+  }
+  .zoom-media img {
+    transition: none;
   }
 }
 
-/* ─── GLASSMORPHISM DESIGN SYSTEM ───────────────────────────── */
-
-/* Base glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Strong glass (more opaque) */
-.glass-strong {
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-/* Dark glass (for dark backgrounds) */
-.glass-dark {
-  background: rgba(15, 20, 25, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Glass with glow effect */
-.glass-glow {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 8px 32px rgba(18, 57, 200, 0.08),
-    inset 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-/* Frosted glass card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 16px 48px rgba(18, 57, 200, 0.12);
-  transform: translateY(-6px);
-}
-
-/* Glass button */
-.glass-btn {
-  background: rgba(255, 215, 0, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  color: white;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.glass-btn:hover {
-  background: rgba(255, 215, 0, 0.28);
-  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-/* Glass input */
-.glass-input {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.glass-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.glass-input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(18, 57, 200, 0.15);
-}
-
-/* ─── COLOR GRADIENT COMBINATIONS ───────────────────────────── */
-
-/* Water gradient */
-.bg-water-gradient {
-  background: linear-gradient(135deg, #1239c8 0%, #10245e 100%);
-}
-
-/* Ocean deep */
-.bg-ocean-deep {
-  background: #f8f7f3;
-}
-
-/* Golden water */
-.bg-golden-water {
-  background: linear-gradient(135deg, #ffd52a 0%, #ff9b28 100%);
-}
-
-/* Midnight blue */
-.bg-midnight-blue {
-  background: #f8f7f3;
-}
-
-/* Glass gradient text */
-.text-gradient {
-  background: linear-gradient(90deg, #ffd52a, #ff9b28);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* ═══════════════════════════════════════════════════════════════
-   AQUARIUM SYSTEM — used by the homepage below the hero.
-   One continuous underwater surface instead of alternating slabs.
+   Admin dashboard and login. They keep their own token names so the
+   dashboard components did not need rewriting; the values follow the
+   site palette above.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --aq-abyss: #f8f7f3;
-  --aq-deep: #f8f7f3;
-  --aq-reef: #f8f7f3;
-  --aq-glass: rgba(255, 255, 255, 0.78);
-  --aq-line: rgba(16, 36, 94, 0.14);
-  --aq-text: #10245e;
-  --aq-muted: #34436c;
+  --aq-abyss: #fbfaf7;
+  --aq-deep: #fbfaf7;
+  --aq-reef: #fbfaf7;
+  --aq-glass: #ffffff;
+  --aq-line: rgba(14, 31, 77, 0.14);
+  --aq-text: #0e1f4d;
+  --aq-muted: #4a5578;
   --aq-aqua: #1239c8;
-  --aq-coral: #ff9b28;
+  --aq-coral: #c2600a;
   --aq-sand: #ffd52a;
 }
 
-/* The continuous ocean surface everything below the hero sits on. */
 .ocean-page {
   position: relative;
-  isolation: isolate;
-  overflow: clip; /* the drifting light shafts scale past the edges */
   color: var(--aq-text);
-  background: #f8f7f3;
+  background: var(--aq-abyss);
 }
 
-/* ─── Surfaces ──────────────────────────────────────────────── */
 .aq-panel {
   background: var(--aq-glass);
   border: 1px solid var(--aq-line);
-  border-radius: 28px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition:
-    border-color 0.4s ease,
-    background 0.4s ease,
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
 }
 
-.aq-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(255, 155, 40, 0.45);
-  transform: translateY(-4px);
-}
-
-/* Small uppercase label used above every section title. */
 .aq-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--aq-coral);
+  color: var(--aq-muted);
 }
 
-.aq-page-hero .aq-eyebrow {
-  color: #ffd52a;
-}
-
-.aq-eyebrow::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--aq-coral);
-  box-shadow: 0 0 0 4px rgba(255, 155, 40, 0.16);
-}
-
-/* Chip / tag. */
-.aq-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid rgba(16, 36, 94, 0.14);
-  background: rgba(255, 255, 255, 0.86);
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(16, 36, 94, 0.84);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* Primary action button. */
 .aq-btn {
   display: inline-flex;
   align-items: center;
@@ -585,117 +247,15 @@ h6 {
   gap: 0.6rem;
   padding: 0.95rem 1.8rem;
   border-radius: 999px;
-  font-weight: 700;
-  color: #ffffff;
-  background: #1239c8;
-  box-shadow: 0 14px 40px rgba(18, 57, 200, 0.22);
+  font-weight: 600;
+  color: #fff;
+  background: var(--aq-text);
 }
-
 .aq-btn:hover {
-  transform: translateY(-2px);
-  background: #10245e;
-  box-shadow: 0 20px 54px rgba(18, 57, 200, 0.3);
+  background: var(--aq-aqua);
 }
 
-.aq-btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.95rem 1.8rem;
-  border-radius: 999px;
-  font-weight: 600;
-  color: #1239c8;
-  border: 1px solid rgba(18, 57, 200, 0.35);
-  background: transparent;
-}
-
-.aq-btn-ghost:hover {
-  border-color: #1239c8;
-  background: rgba(18, 57, 200, 0.08);
-}
-
-.aq-btn-whatsapp {
-  color: #ffffff;
-  background: #25d366;
-  box-shadow: 0 14px 40px rgba(37, 211, 102, 0.22);
-}
-
-.aq-btn-whatsapp:hover {
-  background: #1ebe59;
-  box-shadow: 0 20px 54px rgba(37, 211, 102, 0.3);
-}
-
-/* Warm gradient text for the emphasised word in a heading. */
-.aq-accent-text {
-  background: linear-gradient(100deg, #ff9b28, #ffd52a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Airy display type — light weight, tight leading, one bold word. */
-.aq-display {
-  font-family: var(--font-heading), sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.025em;
-  line-height: 1.06;
-}
-
-/* Inner-page hero: image sunk into the same deep water as the rest of the page. */
-.aq-page-hero {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: #10245e;
-}
-
-.aq-page-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(4, 19, 31, 0.72) 0%,
-      rgba(4, 19, 31, 0.35) 45%,
-      rgba(4, 19, 31, 0.84) 100%
-    ),
-    linear-gradient(90deg, rgba(4, 19, 31, 0.7) 0%, transparent 65%);
-}
-
-/* Form fields on the light surface. */
-.aq-input {
-  width: 100%;
-  padding: 0.85rem 1.1rem;
-  border-radius: 14px;
-  border: 1px solid var(--aq-line);
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--aq-text);
-  font-size: 14px;
-  transition:
-    border-color 0.25s ease,
-    background 0.25s ease;
-}
-
-.aq-input::placeholder {
-  color: #58658c;
-}
-
-.aq-input:focus {
-  outline: none;
-  border-color: rgba(255, 155, 40, 0.5);
-  background: #ffffff;
-}
-
-.aq-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--aq-muted);
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
 }

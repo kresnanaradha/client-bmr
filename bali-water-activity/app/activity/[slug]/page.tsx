@@ -1,260 +1,221 @@
-import { WA_NUMBER } from "@/lib/site";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { watersportActivities } from "@/lib/activities";
-import {
-  Clock, Users, Shield, CheckCircle, X, AlertTriangle,
-  Heart, ThumbsUp, ArrowLeft,
-} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-
+import { notFound } from "next/navigation";
+import { ArrowLeft, Check, X } from "lucide-react";
+import JsonLd, { breadcrumbSchema, offerSchema } from "@/components/JsonLd";
+import { PageHeader } from "@/components/sections/Sections";
+import { watersportActivities, type Activity } from "@/lib/activities";
+import { shortDuration } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
+import { waLink } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+const findActivity = (slug: string) => watersportActivities.find((a) => a.slug === slug);
 
 export async function generateStaticParams() {
   return watersportActivities.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const activity = watersportActivities.find((a) => a.slug === slug);
+  const activity = findActivity((await params).slug);
   if (!activity) return {};
-  return {
-    title: `${activity.title} Bali – Book via WhatsApp`,
-    description: `${activity.description} Price: ${activity.publishPrice}. Age: ${activity.ageRange} years. Book instantly via WhatsApp with Bali Water Activity.`,
-  };
+  const name = activity.title.replace(" with Instructor", "");
+  return pageMeta({
+    title: `${name} in Tanjung Benoa, Bali from ${activity.netPrice}`,
+    description: `${activity.description} ${shortDuration(activity.duration)}, ages ${activity.ageRange}. Book on WhatsApp with Bali Water Activity.`,
+    path: `/activity/${activity.slug}`,
+    image: activity.image,
+    imageAlt: `${activity.title} at Tanjung Benoa`,
+  });
+}
+
+function List({ items, kind }: { items: string[]; kind: "yes" | "no" }) {
+  const Icon = kind === "yes" ? Check : X;
+  return (
+    <ul className="space-y-2.5">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3">
+          <Icon size={18} strokeWidth={2} aria-hidden="true" className={`mt-0.5 shrink-0 ${kind === "yes" ? "text-blue" : "text-muted"}`} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Block({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="border-t border-[var(--line)] pt-8">
+      <h2 className="eyebrow mb-5 text-muted">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function BookingCard({ activity, waMessage }: { activity: Activity; waMessage: string }) {
+  return (
+    <div className="border border-ink bg-white p-7">
+      <p className="text-sm text-muted">Per person</p>
+      <p className="mt-1 flex items-baseline gap-3">
+        <span className="font-serif text-6xl leading-none">{activity.netPrice}</span>
+        <span className="text-muted line-through">{activity.publishPrice}</span>
+      </p>
+      <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-[var(--line)] pt-5 text-sm">
+        <div>
+          <dt className="text-muted">Duration</dt>
+          <dd className="font-medium">{shortDuration(activity.duration)}</dd>
+        </div>
+        <div>
+          <dt className="text-muted">Ages</dt>
+          <dd className="font-medium">{activity.ageRange}</dd>
+        </div>
+      </dl>
+      <a href={waLink(waMessage)} className="btn btn-whatsapp mt-7 w-full">
+        Book on WhatsApp
+      </a>
+      <p className="mt-3 text-center text-sm text-muted">No upfront payment. Pay on arrival.</p>
+    </div>
+  );
 }
 
 export default async function ActivityDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const activity = watersportActivities.find((a) => a.slug === slug);
+  const activity = findActivity((await params).slug);
   if (!activity) notFound();
 
-  const waMsg = `Hi! I want to book ${activity.title} in Bali. Can you confirm availability and provide details?`;
+  const path = `/activity/${activity.slug}`;
+  const waMessage = `Hi! I'd like to book ${activity.title}. Is it available on [date] for [number] people?`;
+  const others = watersportActivities.filter((a) => a.slug !== activity.slug).slice(0, 4);
 
   return (
-    <div className="ocean-page">
-      {/* Hero */}
-      <section className="aq-page-hero h-[46vh] min-h-[340px]">
-        <img
-          src={activity.image}
-          alt={activity.title}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-          <Link
-            href="/watersport"
-            className="mb-5 inline-flex cursor-pointer items-center gap-1.5 text-[13px] text-white/60 transition-colors hover:text-[#FFD52A]"
-          >
-            <ArrowLeft size={14} /> Back to Watersport
-          </Link>
+    <>
+      <JsonLd
+        data={[
+          offerSchema({ name: activity.title, description: activity.longDescription, path, image: activity.image, price: activity.netPrice }),
+          breadcrumbSchema([
+            { name: "Watersports", path: "/watersport" },
+            { name: activity.title, path },
+          ]),
+        ]}
+      />
+      <PageHeader
+        image={activity.image}
+        imageAlt={`${activity.title} at Tanjung Benoa`}
+        eyebrow="Watersport · Tanjung Benoa"
+        title={activity.title}
+        intro={activity.description}
+      >
+        <Link href="/watersport" className="mt-8 inline-flex items-center gap-2 text-sm text-white/85 hover:text-sun">
+          <ArrowLeft size={16} aria-hidden="true" /> All watersports
+        </Link>
+      </PageHeader>
 
-          {activity.badge && (
-            <span className="mb-4 block w-fit rounded-full bg-[#FFD52A] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#10245E]">
-              {activity.badge}
-            </span>
-          )}
+      <div className="gutter grid gap-14 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-20 md:py-24">
+        <div className="space-y-12">
+          <section>
+            <h2 className="t-section mb-6">
+              What to <em>expect</em>
+            </h2>
+            <p className="max-w-2xl text-lg leading-relaxed">{activity.longDescription}</p>
+          </section>
 
-          <h1 className="aq-display mb-2 text-display-lg text-white">{activity.title}</h1>
-          <p className="text-[14px] text-white/55">Watersport · Tanjung Benoa, Bali</p>
-        </div>
-      </section>
-
-      {/* Quick info bar */}
-      <div className="border-b border-[#10245E]/10 bg-white/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-4 py-3.5 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-5 text-[13px] text-[#34436C]">
-            <span className="flex items-center gap-1.5"><Clock size={14} className="text-[#1239C8]" /> {activity.duration}</span>
-            <span className="flex items-center gap-1.5"><Users size={14} className="text-[#1239C8]" /> Age {activity.ageRange}</span>
-            <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#1239C8]" /> Insured</span>
-            <span className="flex items-baseline gap-2">
-              <span className="text-xs text-[#58658C] line-through">{activity.publishPrice}</span>
-              <span className="aq-accent-text font-display text-[18px] font-semibold">{activity.netPrice}</span>
-            </span>
+          <div className="lg:hidden">
+            <BookingCard activity={activity} waMessage={waMessage} />
           </div>
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="aq-btn aq-btn-whatsapp !px-6 !py-2.5 text-[13px]"
-          >
-            Book via WhatsApp
-          </a>
-        </div>
-      </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          {/* Main content */}
-          <div className="space-y-4 lg:col-span-2">
-            {/* Overview */}
-            <section className="aq-panel p-8">
-              <h2 className="aq-display mb-4 text-[22px] text-[#10245E]">Overview</h2>
-              <p className="text-[14px] leading-[1.9] text-[#34436C]">{activity.longDescription}</p>
-            </section>
-
-            {/* Operating Hours */}
-            <section className="aq-panel p-8">
-              <h2 className="aq-display mb-6 text-[22px] text-[#10245E]">Operating Hours</h2>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {[
-                  { label: "Opens", value: activity.openHour },
-                  { label: "Closes", value: activity.closeHour },
-                ].map((t) => (
-                  <div key={t.label} className="rounded-2xl border border-[#10245E]/10 bg-[#10245E]/[0.035] p-5 text-center">
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#58658C]">{t.label}</p>
-                    <p className="font-display text-[24px] font-semibold text-[#1239C8]">{t.value}</p>
-                  </div>
-                ))}
-                <div className="col-span-2 rounded-2xl border border-[#FF9B28]/25 bg-[#FF9B28]/8 p-5 text-center sm:col-span-1">
-                  <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#FF9B28]">Check-in</p>
-                  <p className="text-[13px] leading-[1.6] text-[#10245E]">{activity.checkInNote}</p>
-                </div>
-              </div>
-            </section>
-
-            {/* Health Requirements */}
-            <section className="aq-panel border-[#FF9B28]/25 bg-[#FF9B28]/[0.06] p-8">
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#FF9B28]/30 bg-[#FF9B28]/12 text-[#FF9B28]">
-                  <AlertTriangle size={18} strokeWidth={1.7} />
-                </div>
-                <h2 className="text-[19px] font-semibold text-[#10245E]">Health Requirements</h2>
-              </div>
-              <p className="mb-5 text-[13px] leading-[1.75] text-[#34436C]">
-                For safety, participants with the following conditions are advised NOT to join this activity:
-              </p>
-              <ul className="space-y-3">
-                {activity.healthRestrictions.map((r) => (
-                  <li key={r} className="flex items-start gap-2.5 text-[13px] text-[#34436C]">
-                    <Heart size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FF9B28]" /> {r}
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Do's and Don'ts */}
-            <section className="aq-panel p-8">
-              <h2 className="aq-display mb-7 text-[22px] text-[#10245E]">Do&apos;s and Don&apos;ts</h2>
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-                <div>
-                  <p className="aq-label flex items-center gap-2 !text-[#1239C8]">
-                    <ThumbsUp size={14} /> Do
-                  </p>
-                  <ul className="space-y-3">
-                    {activity.dos.map((d) => (
-                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#34436C]">
-                        <CheckCircle size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#1239C8]" /> {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="aq-label flex items-center gap-2 !text-[#FF9B28]">
-                    <X size={14} /> Don&apos;t
-                  </p>
-                  <ul className="space-y-3">
-                    {activity.donts.map((d) => (
-                      <li key={d} className="flex items-start gap-2.5 text-[13px] leading-[1.7] text-[#34436C]">
-                        <X size={14} strokeWidth={1.8} className="mt-0.5 shrink-0 text-[#FF9B28]" /> {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            {/* Insurance */}
-            <section className="aq-panel flex items-start gap-4 p-8">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#1239C8]/25 bg-[#1239C8]/10 text-[#1239C8]">
-                <Shield size={19} strokeWidth={1.6} />
+          <Block title="Times">
+            <dl className="grid gap-6 sm:grid-cols-3">
+              <div>
+                <dt className="text-sm text-muted">First session</dt>
+                <dd className="font-serif text-4xl">{activity.openHour}</dd>
               </div>
               <div>
-                <h2 className="mb-2.5 text-[19px] font-semibold text-[#10245E]">Insurance Coverage</h2>
-                <p className="text-[13px] leading-[1.8] text-[#34436C]">{activity.insuranceInfo}</p>
+                <dt className="text-sm text-muted">Last session</dt>
+                <dd className="font-serif text-4xl">{activity.closeHour}</dd>
               </div>
-            </section>
-          </div>
-
-          {/* Sidebar */}
-          <div>
-            <div className="aq-panel p-7">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#58658C]">Starting from</p>
-              <div className="my-2 flex flex-wrap items-baseline gap-2">
-                <span className="text-sm text-[#58658C] line-through">{activity.publishPrice}</span>
-                <span className="aq-accent-text font-display text-[38px] font-semibold leading-none">{activity.netPrice}</span>
+              <div>
+                <dt className="text-sm text-muted">Check-in</dt>
+                <dd>{activity.checkInNote}</dd>
               </div>
-              <p className="mb-7 text-[12px] text-[#58658C]">per person · pay on arrival</p>
+            </dl>
+          </Block>
 
-              <a
-                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="aq-btn aq-btn-whatsapp !w-full"
-              >
-                Book via WhatsApp
-              </a>
-              <p className="mt-3.5 text-center text-[11px] text-[#58658C]">
-                No upfront payment · Instant confirmation
-              </p>
-
-              <div className="mt-7 border-t border-[#10245E]/10 pt-6">
-                <p className="aq-label">Includes</p>
-                <ul className="space-y-2.5">
-                  {activity.includes.map((inc) => (
-                    <li key={inc} className="flex items-center gap-2 text-[13px] text-[#34436C]">
-                      <CheckCircle size={13} strokeWidth={1.9} className="shrink-0 text-[#1239C8]" /> {inc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-6 border-t border-[#10245E]/10 pt-6">
-                <p className="aq-label">Not Included</p>
-                <ul className="space-y-2.5">
-                  {activity.excludes.map((ex) => (
-                    <li key={ex} className="flex items-center gap-2 text-[13px] text-[#58658C]">
-                      <X size={13} strokeWidth={1.9} className="shrink-0" /> {ex}
-                    </li>
-                  ))}
-                </ul>
+          <Block title="What's included">
+            <div className="grid gap-8 sm:grid-cols-2">
+              <List items={activity.includes} kind="yes" />
+              <div>
+                <h3 className="mb-3 text-sm font-semibold">Not included</h3>
+                <List items={activity.excludes} kind="no" />
               </div>
             </div>
-          </div>
+          </Block>
+
+          <Block title="On the water">
+            <div className="grid gap-8 sm:grid-cols-2">
+              <div>
+                <h3 className="mb-3 text-sm font-semibold">Do</h3>
+                <List items={activity.dos} kind="yes" />
+              </div>
+              <div>
+                <h3 className="mb-3 text-sm font-semibold">Don&apos;t</h3>
+                <List items={activity.donts} kind="no" />
+              </div>
+            </div>
+          </Block>
+
+          <Block title="Health and insurance">
+            <div className="grid gap-8 sm:grid-cols-2">
+              <div>
+                <h3 className="mb-3 text-sm font-semibold">Not advised if you have</h3>
+                <ul className="list-disc space-y-1.5 pl-5">
+                  {activity.healthRestrictions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-3 text-sm font-semibold">Insurance</h3>
+                <p>{activity.insuranceInfo}</p>
+              </div>
+            </div>
+          </Block>
         </div>
+
+        <aside className="hidden lg:block" aria-label="Booking">
+          <div className="sticky top-28">
+            <BookingCard activity={activity} waMessage={waMessage} />
+          </div>
+        </aside>
       </div>
 
-      {/* Related activities */}
-      <section className="section-gap border-t border-[#10245E]/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="aq-display mb-8 text-display-md text-[#10245E]">Other Activities You May Like</h2>
-          <div className="flex gap-4 overflow-x-auto pb-3">
-            {watersportActivities
-              .filter((a) => a.slug !== slug)
-              .slice(0, 4)
-              .map((rel) => (
-                <Link
-                  key={rel.slug}
-                  href={`/activity/${rel.slug}`}
-                  className="aq-panel aq-panel-hover w-56 shrink-0 overflow-hidden !rounded-[24px] p-2.5"
-                >
-                  <div className="h-32 overflow-hidden rounded-[16px]">
-                    <img src={rel.image} alt={rel.title} className="h-full w-full object-cover" loading="lazy" />
-                  </div>
-                  <div className="p-3.5">
-                    <p className="text-[14px] font-semibold text-[#10245E]">{rel.title}</p>
-                    <p className="mt-1 flex items-baseline gap-2">
-                      <span className="text-xs text-[#58658C] line-through">{rel.publishPrice}</span>
-                      <span className="aq-accent-text font-display text-[16px] font-semibold">{rel.netPrice}</span>
-                    </p>
-                  </div>
-                </Link>
-              ))}
-          </div>
+      <section aria-labelledby="more-title" className="gutter border-t border-[var(--line)] py-20 md:py-24">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <h2 id="more-title" className="t-section">
+            More <em>on the water</em>
+          </h2>
+          <Link href="/watersport" className="link hidden shrink-0 sm:inline">
+            See all eight
+          </Link>
         </div>
+        <ul className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
+          {others.map((other) => (
+            <li key={other.slug}>
+              <Link href={`/activity/${other.slug}`} className="group block">
+                <div className="zoom-media relative aspect-[4/5] overflow-hidden rounded-sm bg-paper-2">
+                  <Image src={other.image} alt={`${other.title} at Tanjung Benoa`} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
+                </div>
+                <h3 className="mt-3 font-serif text-2xl leading-tight group-hover:italic">{other.title}</h3>
+                <p className="text-sm text-muted">
+                  {other.netPrice} · {shortDuration(other.duration)}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
-    </div>
+    </>
   );
 }

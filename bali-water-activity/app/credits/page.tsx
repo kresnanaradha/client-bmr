@@ -1,63 +1,43 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { PHOTO_CREDITS } from "@/lib/photoCredits";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Photo Credits – Bali Water Activity",
-  description: "Credits for the photographs used on this website.",
-};
+export const metadata = pageMeta({
+  title: "Photo Credits",
+  description: "Credits and licences for the photographs used on the Bali Water Activity website.",
+  path: "/credits",
+});
 
 export default function CreditsPage() {
   return (
-    <div className="ocean-page min-h-screen px-4 pb-20 pt-32 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="mb-3 text-3xl font-light text-(--aq-text) md:text-4xl">
-          Photo Credits
-        </h1>
-        <p className="mb-10 max-w-2xl text-sm leading-relaxed text-(--aq-muted)">
-          Watersport photos are our own. The destination and tour photos below
-          are by the photographers listed, used under Creative Commons licences
-          via Wikimedia Commons, and resized for this site.
-        </p>
+    <section className="gutter pb-24 pt-36 md:pb-28 md:pt-44">
+      <p className="eyebrow mb-4 text-muted">Credits</p>
+      <h1 className="t-page">
+        Photo <em>credits</em>
+      </h1>
+      <p className="mt-6 max-w-2xl text-lg text-muted">
+        The watersport photos are our own. The destination and tour photos below are by the photographers listed, used
+        under Creative Commons licences via Wikimedia Commons, and resized for this site.
+      </p>
 
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {PHOTO_CREDITS.map((credit) => (
-            <li
-              key={credit.file}
-              className="flex gap-4 rounded-2xl border border-(--aq-line) bg-(--aq-glass) p-3"
-            >
-              <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-xl">
-                <Image
-                  src={credit.file}
-                  alt={credit.title}
-                  fill
-                  sizes="112px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="min-w-0 text-xs leading-relaxed">
-                <a
-                  href={credit.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block truncate font-semibold text-(--aq-text) hover:text-(--aq-sand)"
-                >
-                  {credit.title}
-                </a>
-                <p className="text-(--aq-muted)">by {credit.author}</p>
-                <a
-                  href={credit.licenseUrl || credit.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-(--aq-aqua) hover:underline"
-                >
-                  {credit.license}
-                </a>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+      <ul className="mt-16 grid border-t border-ink sm:grid-cols-2 sm:gap-x-10">
+        {PHOTO_CREDITS.map((credit) => (
+          <li key={credit.file} className="flex gap-5 border-b border-[var(--line)] py-5">
+            <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-sm">
+              <Image src={credit.file} alt={credit.title} fill sizes="112px" className="object-cover" />
+            </div>
+            <div className="min-w-0 text-sm leading-relaxed">
+              <a href={credit.source} target="_blank" rel="noopener noreferrer" className="link block truncate font-medium">
+                {credit.title}
+              </a>
+              <p className="text-muted">by {credit.author}</p>
+              <a href={credit.licenseUrl || credit.source} target="_blank" rel="noopener noreferrer" className="link text-muted">
+                {credit.license}
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

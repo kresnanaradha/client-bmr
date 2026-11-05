@@ -1,248 +1,132 @@
 "use client";
-import { WA_NUMBER } from "@/lib/site";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Waves,
-  Ship,
-  Mountain,
-  MapPin,
-  ArrowUpRight,
-} from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { waLink } from "@/lib/site";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  {
-    label: "Activities",
-    href: "#",
-    children: [
-      {
-        label: "Watersport",
-        href: "/watersport",
-        icon: Waves,
-        desc: "Jet ski, parasailing & more",
-      },
-      {
-        label: "Rafting",
-        href: "/rafting",
-        icon: Ship,
-        desc: "Ayung & Telaga river rapids",
-      },
-      {
-        label: "Nusa Penida Tour",
-        href: "/nusa-penida",
-        icon: MapPin,
-        desc: "Kelingking & island hopping",
-      },
-      {
-        label: "Labuan Bajo Tour",
-        href: "/labuan-bajo",
-        icon: Mountain,
-        desc: "Komodo & Pink Beach",
-      },
-    ],
-  },
-  { label: "About Us", href: "/about" },
+const LINKS = [
+  { label: "Watersports", href: "/watersport" },
+  { label: "Rafting", href: "/rafting" },
+  { label: "Nusa Penida", href: "/nusa-penida" },
+  { label: "Labuan Bajo", href: "/labuan-bajo" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
-// Pages that open on a dark full-width image; every other page starts with a
-// light background, so the bar must be solid there from the top.
+// Pages that open on a dark full-width photo; every other page starts on paper,
+// so the bar is solid there from the top.
 const DARK_HERO_PAGES = ["/", "/watersport", "/rafting", "/nusa-penida", "/labuan-bajo", "/about"];
 const hasDarkHero = (pathname: string) =>
   DARK_HERO_PAGES.includes(pathname) || pathname.startsWith("/activity/");
 
 export default function Navbar() {
-  const [scrolledPastHero, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [logoError, setLogoError] = useState(false);
   const pathname = usePathname();
-  const scrolled = scrolledPastHero || menuOpen || !hasDarkHero(pathname);
-  const navHover = scrolled ? "hover:text-[#1239C8]" : "hover:text-[#FFD52A]";
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      // Use 100vh on the home page so it waits for the video to expand fully + 10px buffer
-      const threshold = pathname === "/" ? window.innerHeight - 10 : 20;
-      setScrolled(window.scrollY > threshold);
+      // The home hero is two screens tall while its video expands.
+      const threshold = pathname === "/" ? window.innerHeight * 2 - 80 : 40;
+      setScrolledPastHero(window.scrollY > threshold);
     };
-
-    onScroll(); // initial check
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const solid = scrolledPastHero || !hasDarkHero(pathname);
+  const isActive = (href: string) => pathname === href || (href === "/watersport" && pathname.startsWith("/activity/"));
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-xl border-[#10245E]/10 py-3 shadow-sm"
-          : "bg-transparent border-transparent py-2"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo: white lettering over the dark hero images, navy on the white bar. */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          {!logoError ? (
-            <Image
-              src={scrolled ? "/logo.png" : "/logo-light.png"}
-              alt="Bali Water Activity"
-              width={256}
-              height={256}
-              className="h-16 w-auto"
-              placeholder="empty"
-              unoptimized
-              priority
-              onError={() => setLogoError(true)}
-            />
-          ) : (
-            <div className="flex items-center gap-2">
-              <h1
-                className={`font-bold text-base leading-tight ${scrolled ? "text-[#10245E]" : "text-white"}`}
-              >
-                Bali Water Activity
-              </h1>
-            </div>
-          )}
+    <>
+      <header
+        className={`gutter fixed inset-x-0 top-0 z-50 flex items-center justify-between transition-[background-color,box-shadow,padding] duration-300 ${
+          solid ? "bg-paper/95 py-2.5 text-ink shadow-[0_1px_0_var(--line)] backdrop-blur" : "py-5 text-white"
+        }`}
+      >
+        <Link href="/" aria-label="Bali Water Activity, home" onClick={() => setMenuOpen(false)}>
+          <Image
+            src={solid ? "/logo.png" : "/logo-light.png"}
+            alt="Bali Water Activity"
+            width={313}
+            height={160}
+            priority
+            className={`w-auto transition-[height] duration-300 ${solid ? "h-12" : "h-14"}`}
+          />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav
-          className={`hidden md:flex items-center gap-7 font-semibold ${scrolled ? "text-[#10245E]" : "text-white"}`}
-        >
-          {navLinks.map((link) =>
-            link.children ? (
-              <div
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => setActiveDropdown(link.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  className={`flex items-center gap-1 cursor-pointer transition-colors ${navHover}`}
-                >
-                  {link.label}
-                  <ChevronDown
-                    size={13}
-                    className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {/* Invisible bridge + dropdown — pt-3 keeps hover continuous (no dead zone) */}
-                <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 transition-all duration-200 ${
-                    activeDropdown === link.label
-                      ? "opacity-100 visible translate-y-0"
-                      : "opacity-0 invisible -translate-y-1 pointer-events-none"
-                  }`}
-                >
-                  <div className="overflow-hidden rounded-2xl border border-[#10245E]/10 bg-white/95 p-2 shadow-[0_24px_60px_-20px_rgba(23,59,77,0.25)] backdrop-blur-xl">
-                    {link.children!.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setActiveDropdown(null)}
-                        className="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-150 hover:bg-[#10245E]/[0.04]"
-                      >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#1239C8]/25 bg-[#1239C8]/10 text-[#1239C8]">
-                          <child.icon size={16} strokeWidth={1.7} />
-                        </span>
-                        <span className="flex-1 min-w-0">
-                          <span className="block text-sm font-semibold text-[#10245E] transition-colors group-hover/item:text-[#1239C8]">
-                            {child.label}
-                          </span>
-                          <span className="block truncate text-[11px] text-[#58658C]">
-                            {child.desc}
-                          </span>
-                        </span>
-                        <ArrowUpRight
-                          size={14}
-                          className="shrink-0 text-[#58658C] opacity-0 transition-all group-hover/item:text-[#1239C8] group-hover/item:opacity-100"
-                        />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors ${navHover}`}
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
+        <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+          {LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={`text-[15px] font-medium underline-offset-[6px] hover:underline ${
+                isActive(link.href) ? "underline decoration-1" : ""
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a href={waLink("Hi Bali Water Activity! I'd like to book an activity.")} className={`btn ${solid ? "btn-ink" : "btn-light"}`}>
+            Book on WhatsApp
+          </a>
         </nav>
 
-        {/* Mobile Toggle */}
         <button
-          className={`md:hidden cursor-pointer p-1.5 rounded-xl transition-all ${scrolled ? "text-[#10245E] hover:bg-[#10245E]/[0.06]" : "text-white hover:bg-[#10245E]/10"}`}
-          onClick={() => {
-            setMenuOpen(!menuOpen);
-            setActiveDropdown(null);
-          }}
-          aria-label="Toggle menu"
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
           aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
+          className="-mr-2 flex h-11 w-11 items-center justify-center lg:hidden"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu size={26} strokeWidth={1.6} />
         </button>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div
-          id="mobile-navigation"
-          className="flex flex-col gap-1 border-t border-[#10245E]/10 bg-white/95 px-4 py-4 text-[#10245E] shadow-lg backdrop-blur-xl md:hidden"
-        >
-          {navLinks.map((link) =>
-            link.children ? (
-              <div key={link.label}>
-                <p className="mt-3 mb-1 px-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#FF9B28]">
-                  {link.label}
-                </p>
-                {link.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block cursor-pointer rounded-xl py-2.5 pl-3 text-sm font-medium text-[#34436C] transition-all hover:bg-[#1239C8]/[0.06] hover:text-[#1239C8]"
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
+        <div className="fixed inset-0 z-[60] flex flex-col bg-paper text-ink lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+          <div className="gutter flex items-center justify-between py-2.5 shadow-[0_1px_0_var(--line)]">
+            <Link href="/" aria-label="Bali Water Activity, home" onClick={() => setMenuOpen(false)}>
+              <Image src="/logo.png" alt="Bali Water Activity" width={313} height={160} className="h-12 w-auto" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="-mr-2 flex h-11 w-11 items-center justify-center"
+            >
+              <X size={26} strokeWidth={1.6} />
+            </button>
+          </div>
+          <nav aria-label="Main" className="gutter flex flex-1 flex-col overflow-y-auto pb-8 pt-4">
+            {LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block cursor-pointer px-1 py-2.5 text-sm font-medium text-[#10245E] hover:text-[#1239C8]"
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className="font-serif border-b border-[var(--line)] py-4 text-[34px] leading-none"
               >
                 {link.label}
               </Link>
-            ),
-          )}
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20an%20activity`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="aq-btn aq-btn-whatsapp mt-3 !w-full"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-            </svg>
-            Book Now via WhatsApp
-          </a>
+            ))}
+            <a href={waLink("Hi Bali Water Activity! I'd like to book an activity.")} className="btn btn-ink mt-8 w-full">
+              Book on WhatsApp
+            </a>
+          </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

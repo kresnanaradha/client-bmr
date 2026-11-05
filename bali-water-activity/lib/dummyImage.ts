@@ -10,7 +10,7 @@ const CLIENT = "/activities";
 const STOCK = "/images/stock";
 
 const IMAGES: Record<string, string> = {
-  // Watersports — client photos
+  // Watersports: client photos
   "banana-boat": `${CLIENT}/banana-boat.webp`,
   "donut-boat": `${CLIENT}/donut-boat.webp`,
   "jet-ski": `${CLIENT}/jet-ski.webp`,

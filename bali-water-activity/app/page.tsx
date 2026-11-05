@@ -1,26 +1,38 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
-import ActivitiesSection from "@/components/home/ActivitiesSection";
-import WhyChooseUs from "@/components/home/WhyChooseUs";
-import DestinationsSection from "@/components/home/DestinationsSection";
-import StatsSection from "@/components/home/StatsSection";
-import SafetySection from "@/components/home/SafetySection";
+import ActivityIndex from "@/components/home/ActivityIndex";
 import FaqSection from "@/components/home/FaqSection";
-import CtaSection from "@/components/home/CtaSection";
+import { BeforeYouGo, BeyondSection, BookingSteps, ClosingCta, SectionHead } from "@/components/sections/Sections";
+import { watersportActivities } from "@/lib/activities";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      {/* Everything below the hero shares one continuous underwater surface. */}
-      <div className="ocean-page">
-        <ActivitiesSection />
-        <WhyChooseUs />
-        <DestinationsSection />
-        <StatsSection />
-        <SafetySection />
-        <FaqSection />
-        <CtaSection />
-      </div>
+
+      <section aria-labelledby="watersports-title" className="gutter py-24 md:py-32">
+        <SectionHead
+          id="watersports-title"
+          eyebrow="The bay, by the minute"
+          title={
+            <>
+              Watersports at <em>Tanjung Benoa</em>
+            </>
+          }
+          intro="Prices per person. Instructor, life jacket and activity insurance are included."
+        />
+        <ActivityIndex activities={watersportActivities} />
+      </section>
+
+      <BeyondSection />
+      <BookingSteps />
+      <BeforeYouGo />
+      <FaqSection />
+      <ClosingCta />
     </>
   );
 }

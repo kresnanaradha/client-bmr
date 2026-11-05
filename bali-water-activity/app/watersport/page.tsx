@@ -1,208 +1,137 @@
-import { WA_NUMBER } from "@/lib/site";
-import type { Metadata } from "next";
-import WatersportClient from "@/components/activities/WatersportClient";
-import SectionHeader from "@/components/SectionHeader";
+import Image from "next/image";
+import Link from "next/link";
+import { Check } from "lucide-react";
+import JsonLd, { breadcrumbSchema } from "@/components/JsonLd";
+import { BeforeYouGo, ClosingCta, PageHeader, SectionHead } from "@/components/sections/Sections";
 import { watersportActivities } from "@/lib/activities";
-import {
-  Shield,
-  Clock,
-  MapPin,
-  CheckCircle,
-  MessageCircle,
-  ArrowRight,
-} from "lucide-react";
+import { shortDuration } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
+import { waLink } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Watersport Bali – Banana Boat, Jet Ski, Parasailing & More",
+export const metadata = pageMeta({
+  title: "Watersports in Tanjung Benoa, Bali",
   description:
-    "Book the best watersport activities in Bali: Banana Boat, Jet Ski, Parasailing, Fly Board, Sea Walker & more at Tanjung Benoa. Safe, fun, pay on arrival.",
-};
+    "Eight watersports at Tanjung Benoa, Bali: jet ski, parasailing, sea walker, banana boat, donut boat, fly fish, disco boat and fly board. Prices from Rp125K. Book on WhatsApp.",
+  path: "/watersport",
+  image: "/activities/parasailing.webp",
+  imageAlt: "Tandem parasailing over Tanjung Benoa",
+});
 
-const WA_MSG =
-  "Hi! I want to book a watersport package in Bali. Can you give me more information?";
-
-const combos = [
-  {
-    name: "Fun Starter Pack",
-    activities: ["Banana Boat", "Donut Boat"],
-    price: "IDR 275,000",
-    original: "IDR 306,000",
-    tag: "Save 10%",
-    highlight: false,
-  },
-  {
-    name: "Thrill Seeker Pack",
-    activities: ["Jet Ski", "Parasailing", "Fly Fish"],
-    price: "IDR 850,000",
-    original: "IDR 971,500",
-    tag: "Save 12.5%",
-    highlight: true,
-  },
-  {
-    name: "Ultimate Pack",
-    activities: ["Banana Boat", "Jet Ski", "Parasailing", "Snorkeling"],
-    price: "IDR 1,000,000",
-    original: "IDR 1,150,000",
-    tag: "Save 14%",
-    highlight: false,
-  },
+const COMBOS = [
+  { name: "Fun Starter Pack", activities: ["Banana Boat", "Donut Boat"], price: "IDR 275,000", original: "IDR 306,000", tag: "Save 10%" },
+  { name: "Thrill Seeker Pack", activities: ["Jet Ski", "Parasailing", "Fly Fish"], price: "IDR 850,000", original: "IDR 971,500", tag: "Save 12.5%" },
+  { name: "Ultimate Pack", activities: ["Banana Boat", "Jet Ski", "Parasailing", "Snorkeling"], price: "IDR 1,000,000", original: "IDR 1,150,000", tag: "Save 14%" },
 ];
 
 export default function WatersportPage() {
   return (
-    <div className="ocean-page">
-      {/* Hero */}
-      <section className="aq-page-hero h-[62vh] min-h-[420px]">
-        <img
-          src="/assets/hero-poster.jpg"
-          alt="Bali Watersport"
-          className="absolute inset-0 h-full w-full scale-105 object-cover"
+    <>
+      <JsonLd data={breadcrumbSchema([{ name: "Watersports", path: "/watersport" }])} />
+      <PageHeader
+        image="/activities/parasailing-2.webp"
+        imageAlt="Parasailing above the bay at Tanjung Benoa"
+        eyebrow="Tanjung Benoa · Nusa Dua"
+        title={
+          <>
+            Watersports <em>in Bali</em>
+          </>
+        }
+        intro="Eight activities from one beach, from a gentle banana boat ride to the fly board. Instructor, life jacket and insurance included."
+      />
+
+      <section aria-labelledby="all-title" className="gutter py-24 md:py-28">
+        <SectionHead
+          id="all-title"
+          eyebrow="All eight"
+          title={
+            <>
+              Choose <em>your water</em>
+            </>
+          }
+          intro="Prices per person. Tap an activity for times, what is included and health notes."
         />
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 lg:px-8">
-          <span className="aq-eyebrow mb-5">Tanjung Benoa, Bali</span>
-          <h1 className="aq-display mb-5 text-display-lg text-white">
-            Watersport Activities
-          </h1>
-          <p className="mb-8 max-w-xl text-[16px] leading-[1.8] text-white/65">
-            8 thrilling activities for all ages — from first-timers to
-            adrenaline junkies.
-          </p>
-          <div className="flex flex-wrap gap-2.5">
-            {[
-              { icon: Clock, text: "Open daily 8:00 – 17:00" },
-              { icon: MapPin, text: "Tanjung Benoa, Nusa Dua" },
-              { icon: Shield, text: "Insurance included" },
-            ].map((item) => (
-              <span key={item.text} className="aq-chip">
-                <item.icon size={12} className="text-[#FF9B28]" /> {item.text}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Activities Grid */}
-      <section className="section-gap">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="8 Activities Available"
-            title="Choose Your Adventure"
-            subtitle="From gentle banana boat rides to extreme flyboarding — there's something for everyone at Bali Water Activity."
-            light
-          />
-          <WatersportClient initialActivities={watersportActivities} />
-        </div>
-      </section>
-
-      {/* Combo Packages */}
-      <section className="section-gap">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Save More"
-            title="Combo Packages"
-            subtitle="Book multiple activities and get the best value. Ask us on WhatsApp for custom packages!"
-            light
-          />
-
-          <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-3">
-            {combos.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`aq-panel relative overflow-hidden p-8 ${
-                  pkg.highlight
-                    ? "border-[#FF9B28]/35 bg-white/[0.07] md:-mt-4 md:pb-12"
-                    : "aq-panel-hover"
-                }`}
-              >
-                {pkg.highlight && (
-                  <div className="pointer-events-none absolute -bottom-28 left-1/2 h-[240px] w-[420px] max-w-[140%] -translate-x-1/2 rounded-full bg-[#FF9B28]/16 blur-[80px]" />
-                )}
-
-                <div className="relative z-10">
-                  <span
-                    className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] ${
-                      pkg.highlight
-                        ? "bg-[#FFD52A] text-[#10245E]"
-                        : "border border-[#10245E]/12 bg-[#10245E]/5 text-[#34436C]"
-                    }`}
-                  >
-                    {pkg.tag}
-                  </span>
-
-                  <h3 className="aq-display mb-6 mt-5 text-[24px] text-[#10245E]">
-                    {pkg.name}
-                  </h3>
-
-                  <ul className="mb-8 space-y-2.5 text-[13px] text-[#34436C]">
-                    {pkg.activities.map((a) => (
-                      <li key={a} className="flex items-center gap-2.5">
-                        <CheckCircle
-                          size={14}
-                          strokeWidth={1.8}
-                          className="shrink-0 text-[#1239C8]"
-                        />{" "}
-                        {a}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mb-7">
-                    <p className="aq-accent-text font-display text-[30px] font-semibold leading-none">
-                      {pkg.price}
-                    </p>
-                    <p className="mt-1.5 text-[13px] text-[#58658C] line-through">
-                      {pkg.original}
-                    </p>
-                  </div>
-
-                  <a
-                    href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book the ${pkg.name} combo package for ${pkg.price}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={
-                      pkg.highlight
-                        ? "aq-btn aq-btn-whatsapp !w-full !py-3.5"
-                        : "aq-btn-ghost aq-btn-whatsapp !w-full !py-3.5"
-                    }
-                  >
-                    Book This Package
-                  </a>
+        <ul className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {watersportActivities.map((activity) => (
+            <li key={activity.slug}>
+              <Link href={`/activity/${activity.slug}`} className="group block">
+                <div className="zoom-media relative aspect-[4/5] overflow-hidden rounded-sm bg-paper-2">
+                  <Image
+                    src={activity.image}
+                    alt={`${activity.title} at Tanjung Benoa`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                <div className="mt-4 flex items-baseline justify-between gap-4">
+                  <h3 className="font-serif text-[28px] leading-tight group-hover:italic">{activity.title}</h3>
+                  <span className="whitespace-nowrap text-lg font-semibold">{activity.netPrice}</span>
+                </div>
+                <p className="mt-1 text-sm text-muted">
+                  {shortDuration(activity.duration)} · ages {activity.ageRange} ·{" "}
+                  <span className="line-through">{activity.publishPrice}</span>
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      {/* CTA */}
-      <section className="section-gap">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="aq-panel relative overflow-hidden px-8 py-20 text-center md:px-16">
-            <div className="pointer-events-none absolute -bottom-24 left-1/2 h-[300px] w-[600px] max-w-[130%] -translate-x-1/2 rounded-full bg-[#FF9B28]/16 blur-[90px]" />
-            <div className="relative z-10">
-              <span className="aq-eyebrow mb-7">Need Help Choosing?</span>
-              <h2 className="aq-display mb-6 text-display-md text-[#10245E]">
-                We&apos;ll Find the Perfect Activity for You
-              </h2>
-              <p className="mx-auto mb-10 max-w-lg text-[15px] leading-[1.8] text-[#34436C]">
-                Our team is ready to help you pick the perfect activity. Chat
-                with us on WhatsApp!
+      <section aria-labelledby="combo-title" className="gutter bg-paper-2 py-24 md:py-28">
+        <SectionHead
+          id="combo-title"
+          eyebrow="Combo packages"
+          title={
+            <>
+              Do more, <em>pay less</em>
+            </>
+          }
+          intro="Book several activities together. Ask us on WhatsApp if you want a different mix."
+        />
+        <ul className="grid border-t border-ink md:grid-cols-3">
+          {COMBOS.map((combo) => (
+            <li
+              key={combo.name}
+              className="flex flex-col border-b border-[var(--line)] py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+            >
+              <p className="eyebrow mb-3 text-muted">{combo.tag}</p>
+              <h3 className="t-item">{combo.name}</h3>
+              <ul className="mt-5 space-y-2">
+                {combo.activities.map((name) => (
+                  <li key={name} className="flex items-center gap-2.5">
+                    <Check size={16} strokeWidth={2} aria-hidden="true" className="text-blue" />
+                    {name}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 flex items-baseline gap-3">
+                <span className="text-2xl font-semibold">{combo.price}</span>
+                <span className="text-sm text-muted line-through">{combo.original}</span>
               </p>
               <a
-                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="aq-btn aq-btn-whatsapp"
+                href={waLink(`Hi! I'd like to book the ${combo.name} (${combo.price}).`)}
+                className="btn btn-line mt-6 self-start"
               >
-                <MessageCircle size={18} />
-                Chat on WhatsApp
-                <ArrowRight size={16} />
+                Book this package
               </a>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
       </section>
-    </div>
+
+      <div className="pt-24 md:pt-28">
+        <BeforeYouGo />
+      </div>
+      <ClosingCta
+        title={
+          <>
+            Not sure which one?
+            <br />
+            <em className="text-sun">Ask us, we&apos;ll suggest one.</em>
+          </>
+        }
+        message="Hi Bali Water Activity! Can you help me choose a watersport?"
+      />
+    </>
   );
 }

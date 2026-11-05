@@ -61,11 +61,11 @@ export function sampleDashboardData(range: DateRange): DashboardData {
     channels: scaled([["Organic Search", 214], ["Direct", 131], ["Organic Social", 102], ["Referral", 38], ["Unassigned", 9]], k),
     sources: scaled([["google", 206], ["(direct)", 131], ["instagram.com", 71], ["tripadvisor.com", 24], ["facebook.com", 23], ["l.wl.co", 14], ["bing", 8]], k),
     pages: scaled(
-      [["Bali Water Activity – Watersport, Rafting & Tour Packages", 402], ["Watersport Bali", 233], ["Sea Walker Bali", 141], ["Parasailing Bali", 118], ["Nusa Penida Tours", 97], ["Jet Ski Bali", 84], ["Rafting in Bali", 66], ["Labuan Bajo Tours", 41]],
+      [["Bali Water Activity | Watersports at Tanjung Benoa, Bali", 402], ["Watersport Bali", 233], ["Sea Walker Bali", 141], ["Parasailing Bali", 118], ["Nusa Penida Tours", 97], ["Jet Ski Bali", 84], ["Rafting in Bali", 66], ["Labuan Bajo Tours", 41]],
       k
     ),
     whatsappByPage: scaled(
-      [["Sea Walker Bali", 11], ["Parasailing Bali", 9], ["Bali Water Activity – Watersport, Rafting & Tour Packages", 8], ["Nusa Penida Tours", 6], ["Jet Ski Bali", 5], ["Contact Us", 3]],
+      [["Sea Walker Bali", 11], ["Parasailing Bali", 9], ["Bali Water Activity | Watersports at Tanjung Benoa, Bali", 8], ["Nusa Penida Tours", 6], ["Jet Ski Bali", 5], ["Contact Us", 3]],
       k
     ),
     whatsappByCountry: scaled([["Australia", 13], ["Singapore", 11], ["Indonesia", 7], ["India", 4], ["Japan", 2]], k),

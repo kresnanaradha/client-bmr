@@ -1,5 +1,5 @@
-import { MetadataRoute } from "next";
-import { ALLOW_INDEXING } from "@/lib/site";
+import type { MetadataRoute } from "next";
+import { ALLOW_INDEXING, SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   if (!ALLOW_INDEXING) {
@@ -7,7 +7,8 @@ export default function robots(): MetadataRoute.Robots {
   }
 
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://baliwateractivity.com/sitemap.xml",
+    rules: { userAgent: "*", allow: "/", disallow: ["/dashboard"] },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

@@ -1,79 +1,67 @@
-"use client";
-import { useState } from "react";
-import SectionHeader from "@/components/SectionHeader";
-import { ChevronDown } from "lucide-react";
+import { Plus } from "lucide-react";
+import JsonLd, { faqSchema } from "@/components/JsonLd";
+import { SectionHead } from "@/components/sections/Sections";
 
-const faqs = [
+export const FAQS = [
   {
     q: "How do I book an activity?",
-    a: "Simply click the 'Book Now' or 'Book via WhatsApp' button on any activity page. You'll be redirected to WhatsApp where our team will confirm your booking within minutes. No complicated forms, no upfront payment.",
+    a: "Tap Book on WhatsApp on any activity page and tell us the date and how many people are coming. Our team confirms the booking on WhatsApp. There are no forms and no upfront payment.",
   },
   {
     q: "When do I pay?",
-    a: "You pay on arrival at the activity location — cash only. There is no upfront payment or deposit required. This means zero financial risk for you.",
+    a: "You pay on arrival at the activity location, in cash. No deposit is needed.",
   },
   {
     q: "Are the activities safe for children?",
-    a: "Yes! Most watersport activities are suitable for children aged 8 and above (Sea Walker from age 9). All children must be accompanied by a guardian and wear appropriate safety equipment provided by us.",
+    a: "Most watersports are open from age 8, and Sea Walker from age 9. Children must be with a guardian and wear the safety equipment we provide.",
   },
   {
-    q: "What should I wear/bring?",
-    a: "Wear comfortable swimwear or quick-dry clothing. Bring sunscreen, a towel, and a change of clothes. Leave valuables in your hotel. Safety equipment (life jackets, helmets where applicable) is provided.",
+    q: "What should I wear or bring?",
+    a: "Swimwear or quick-dry clothes, sunscreen, a towel and a change of clothes. Leave valuables at your hotel. Life jackets, and helmets where needed, are provided.",
   },
   {
     q: "Can I cancel or reschedule?",
-    a: "Yes. Since there's no upfront payment, cancellation is free. To reschedule, simply message us on WhatsApp at least 24 hours before your activity. We'll arrange a new time that suits you.",
+    a: "Yes. As nothing is paid upfront, cancelling costs nothing. To reschedule, message us on WhatsApp at least 24 hours before your activity.",
   },
   {
     q: "Is insurance included?",
-    a: "Yes! All participants are automatically covered by activity insurance for the duration of their session. This is included in the activity price at no extra cost.",
+    a: "Yes. Every participant is covered by activity insurance for the length of their session, at no extra cost.",
   },
   {
-    q: "Do I need swimming skills for Sea Walker?",
-    a: "No swimming or diving experience is required for Sea Walker. You simply walk on the ocean floor with a specially designed helmet that provides fresh air. Our guides will be with you every step of the way.",
+    q: "Do I need to swim for Sea Walker?",
+    a: "No. You walk on the seabed wearing a helmet that supplies fresh air, with a guide beside you the whole time.",
   },
   {
     q: "What happens if the weather is bad?",
-    a: "Safety is our priority. If weather conditions are unsafe, we'll reschedule your activity to another day at no extra charge. Our team monitors weather conditions daily.",
+    a: "If conditions are unsafe, we move your activity to another day at no extra charge.",
   },
 ];
 
 export default function FaqSection() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <section className="section-gap relative">
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          eyebrow="FAQ"
-          title="Frequently Asked Questions"
-          subtitle="Everything you need to know before your Bali water adventure."
-          light
-        />
-
-        <div className="aq-panel divide-y divide-[#10245E]/10 overflow-hidden !rounded-[28px] p-0">
-          {faqs.map((faq, i) => (
-            <div key={i} className={open === i ? "bg-[#10245E]/[0.035]" : ""}>
-              <button
-                className="flex w-full cursor-pointer items-center justify-between gap-6 px-7 py-6 text-left transition-colors duration-200 hover:bg-[#10245E]/[0.03]"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-              >
-                <span className={`text-[15px] font-medium transition-colors ${open === i ? "text-[#FF9B28]" : "text-[#10245E]"}`}>
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  size={18}
-                  strokeWidth={1.8}
-                  className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-[#FF9B28]" : "text-[#58658C]"}`}
-                />
-              </button>
-              {open === i && (
-                <div className="px-7 pb-7">
-                  <p className="max-w-2xl text-[14px] leading-[1.8] text-[#34436C]">{faq.a}</p>
-                </div>
-              )}
-            </div>
+    <section aria-labelledby="faq-title" className="gutter py-24 md:py-28">
+      <JsonLd data={faqSchema(FAQS)} />
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHead
+            id="faq-title"
+            eyebrow="Questions"
+            title={
+              <>
+                Asked <em>often</em>
+              </>
+            }
+          />
+        </div>
+        <div className="border-t border-ink">
+          {FAQS.map((item) => (
+            <details key={item.q} className="group border-b border-[var(--line)]">
+              <summary className="flex cursor-pointer items-center justify-between gap-6 py-5 text-lg font-medium">
+                {item.q}
+                <Plus size={20} strokeWidth={1.6} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-45" />
+              </summary>
+              <p className="max-w-2xl pb-6 text-muted">{item.a}</p>
+            </details>
           ))}
         </div>
       </div>

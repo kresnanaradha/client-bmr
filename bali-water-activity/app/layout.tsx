@@ -1,74 +1,67 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisProvider from "@/app/providers/LenisProvider";
-import SplashScreen from "@/components/SplashScreen";
 import SiteChrome from "@/components/SiteChrome";
 import Analytics from "@/components/Analytics";
-import { ALLOW_INDEXING } from "@/lib/site";
+import JsonLd, { businessSchema } from "@/components/JsonLd";
+import { ALLOW_INDEXING, SITE_URL } from "@/lib/site";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const poppins = Poppins({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
   display: "swap",
 });
+
+const DESCRIPTION =
+  "Jet ski, parasailing, sea walker, banana boat and more at Tanjung Benoa, Bali, plus Ayung River rafting, Nusa Penida day tours and Labuan Bajo trips. Book on WhatsApp.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://baliwateractivity.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bali Water Activity – Watersport, Rafting & Tour Packages",
+    default: "Bali Water Activity | Watersports at Tanjung Benoa, Bali",
     template: "%s | Bali Water Activity",
   },
-  description:
-    "Book premium water activities in Bali: Banana Boat, Jet Ski, Parasailing, Sea Walker, Rafting, Nusa Penida & Labuan Bajo tours. Safe, fun, and affordable. Book via WhatsApp!",
-  keywords: [
-    "Bali Watersport",
-    "Bali Water Activity",
-    "Bali Rafting",
-    "Nusa Penida Tour",
-    "Labuan Bajo Tour",
-    "Sea Walker Bali",
-    "Jet Ski Bali",
-    "Parasailing Bali",
-  ],
+  description: DESCRIPTION,
+  applicationName: "Bali Water Activity",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://baliwateractivity.com",
     siteName: "Bali Water Activity",
-    title: "Bali Water Activity – Premium Watersport & Tours in Bali",
-    description:
-      "Experience the best water activities in Bali. Jet Ski, Parasailing, Sea Walker, Rafting, Nusa Penida & Labuan Bajo tours. Book now via WhatsApp!",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    title: "Bali Water Activity | Watersports at Tanjung Benoa, Bali",
+    description: DESCRIPTION,
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Parasailing over Tanjung Benoa, Bali" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bali Water Activity – Watersport & Tours",
-    description: "Premium water activities in Bali. Book via WhatsApp!",
+    title: "Bali Water Activity | Watersports at Tanjung Benoa, Bali",
+    description: DESCRIPTION,
+    images: ["/og-image.jpg"],
   },
   robots: { index: ALLOW_INDEXING, follow: ALLOW_INDEXING },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  themeColor: "#0e1f4d",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className={inter.className}>
+    <html lang="en" className={`${geist.variable} ${instrument.variable}`}>
+      <body>
         <SiteChrome>
-          <SplashScreen />
+          <JsonLd data={businessSchema()} />
           <LenisProvider />
           <Navbar />
         </SiteChrome>
