@@ -108,7 +108,8 @@ export default function RaftingPage() {
                   <div className="flex items-center justify-between gap-4 border-t border-[#10245E]/10 pt-6">
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.18em] text-[#58658C]">Per person</p>
-                      <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.price}</p>
+                      <p className="text-xs text-[#58658C] line-through">{pkg.publishPrice}</p>
+                      <p className="aq-accent-text font-display text-[26px] font-semibold leading-none">{pkg.netPrice}</p>
                     </div>
                     <a
                       href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi! I want to book ${pkg.title}. How many slots are available?`)}`}
