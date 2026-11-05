@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AlertTriangle, Clock, MessageCircle, UserPlus, Users } from "lucide-react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { AlertTriangle, Clock, LogOut, MessageCircle, UserPlus, Users } from "lucide-react";
 import { DATE_RANGES, IS_GA4_CONFIGURED, fetchDashboardData, type DashboardData, type DateRange } from "@/lib/ga4";
 import { IS_SAMPLE_MODE, sampleDashboardData } from "@/lib/ga4-sample";
 import BarList from "@/components/dashboard/BarList";
 import Funnel from "@/components/dashboard/Funnel";
 import TrendChart from "@/components/dashboard/TrendChart";
+import { SESSION_COOKIE, dashboardConfig, isValidSessionToken } from "@/lib/session";
+import { logout } from "./actions";
 
 export const metadata: Metadata = {
   title: "Visitor Dashboard",
@@ -63,7 +67,7 @@ function Stat({ icon: Icon, label, value, hint }: StatProps) {
 function SectionTitle({ children, note }: { children: React.ReactNode; note?: string }) {
   return (
     <div className="mb-3 mt-10 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aq-sand)]">{children}</h2>
+      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aq-aqua)]">{children}</h2>
       {note && <p className="text-xs text-[var(--aq-muted)]">{note}</p>}
     </div>
   );
@@ -73,7 +77,7 @@ function SetupNotice() {
   return (
     <div className="rounded-2xl border border-[var(--aq-line)] bg-[var(--aq-glass)] p-6">
       <div className="mb-3 flex items-center gap-2">
-        <AlertTriangle size={18} className="text-[var(--aq-sand)]" />
+        <AlertTriangle size={18} className="text-[var(--aq-coral)]" />
         <h2 className="font-semibold text-[var(--aq-text)]">Analytics not connected yet</h2>
       </div>
       <p className="mb-4 text-sm leading-relaxed text-[var(--aq-muted)]">
@@ -82,14 +86,14 @@ function SetupNotice() {
       <ol className="space-y-2 text-sm leading-relaxed text-[var(--aq-muted)]">
         <li>
           1. A GA4 property. Put its measurement ID in{" "}
-          <code className="rounded bg-white/10 px-1 text-[var(--aq-text)]">NEXT_PUBLIC_GA_ID</code> so the site starts
+          <code className="rounded bg-[var(--aq-text)]/5 px-1 text-[var(--aq-text)]">NEXT_PUBLIC_GA_ID</code> so the site starts
           collecting visits.
         </li>
         <li>
           2. A read-only Google Cloud service account added to that property as a Viewer, set in{" "}
-          <code className="rounded bg-white/10 px-1 text-[var(--aq-text)]">GA4_PROPERTY_ID</code>,{" "}
-          <code className="rounded bg-white/10 px-1 text-[var(--aq-text)]">GA4_CLIENT_EMAIL</code> and{" "}
-          <code className="rounded bg-white/10 px-1 text-[var(--aq-text)]">GA4_PRIVATE_KEY</code>.
+          <code className="rounded bg-[var(--aq-text)]/5 px-1 text-[var(--aq-text)]">GA4_PROPERTY_ID</code>,{" "}
+          <code className="rounded bg-[var(--aq-text)]/5 px-1 text-[var(--aq-text)]">GA4_CLIENT_EMAIL</code> and{" "}
+          <code className="rounded bg-[var(--aq-text)]/5 px-1 text-[var(--aq-text)]">GA4_PRIVATE_KEY</code>.
         </li>
       </ol>
     </div>
@@ -97,6 +101,12 @@ function SetupNotice() {
 }
 
 export default async function DashboardPage({ searchParams }: Props) {
+  // The proxy already gates this route; checked again here so the data never
+  // depends on the proxy matcher alone.
+  const config = dashboardConfig();
+  const token = (await cookies()).get(SESSION_COOKIE)?.value;
+  if (!config || !(await isValidSessionToken(token, config.secret))) redirect("/dashboard/login");
+
   const params = await searchParams;
   const range: DateRange = params.range === "28d" || params.range === "90d" ? params.range : "7d";
 
@@ -120,7 +130,7 @@ export default async function DashboardPage({ searchParams }: Props) {
       <div className="mx-auto max-w-6xl">
         <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--aq-sand)]">
+            <p className="aq-eyebrow">
               Bali Water Activity · Admin
             </p>
             <h1 className="mt-1 text-3xl font-light text-[var(--aq-text)]">Visitor Dashboard</h1>
@@ -128,9 +138,19 @@ export default async function DashboardPage({ searchParams }: Props) {
               Who visits the website, where they come from, and who contacts you.
             </p>
           </div>
-          <Link href="/" className="text-xs text-[var(--aq-muted)] hover:text-[var(--aq-text)]">
-            ← Back to website
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-xs text-[var(--aq-muted)] hover:text-[var(--aq-aqua)]">
+              ← Back to website
+            </Link>
+            <form action={logout}>
+              <button
+                type="submit"
+                className="flex items-center gap-1.5 rounded-full border border-[var(--aq-line)] px-3.5 py-1.5 text-xs font-semibold text-[var(--aq-text)] hover:border-[var(--aq-aqua)] hover:text-[var(--aq-aqua)]"
+              >
+                <LogOut size={13} /> Log out
+              </button>
+            </form>
+          </div>
         </header>
 
         <nav className="mb-6 flex flex-wrap gap-2" aria-label="Date range">
@@ -141,7 +161,7 @@ export default async function DashboardPage({ searchParams }: Props) {
               aria-current={range === key ? "page" : undefined}
               className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors ${
                 range === key
-                  ? "border-[var(--aq-aqua)] bg-[var(--aq-aqua)] text-[var(--aq-abyss)]"
+                  ? "border-[var(--aq-aqua)] bg-[var(--aq-aqua)] text-white"
                   : "border-[var(--aq-line)] text-[var(--aq-muted)] hover:text-[var(--aq-text)]"
               }`}
             >
