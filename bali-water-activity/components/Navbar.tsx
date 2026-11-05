@@ -87,17 +87,11 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        {/* Over the dark hero images the navy logo needs a light badge to stay legible. */}
-        <Link
-          href="/"
-          className={`flex items-center gap-2 shrink-0 rounded-2xl transition-colors duration-300 ${
-            scrolled || logoError ? "" : "bg-white/90 px-2.5 py-1 shadow-sm backdrop-blur"
-          }`}
-        >
+        {/* Logo: white lettering over the dark hero images, navy on the white bar. */}
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           {!logoError ? (
             <Image
-              src="/logo.png"
+              src={scrolled ? "/logo.png" : "/logo-light.png"}
               alt="Bali Water Activity"
               width={256}
               height={256}

@@ -39,18 +39,15 @@ function FooterLogo() {
       </div>
     );
   }
-  // The logo's lettering is navy, so it needs a light badge on the navy footer.
   return (
-    <div className="mb-4 inline-flex rounded-2xl bg-white px-3 py-2">
-      <Image
-        src="/logo.png"
-        alt="Bali Water Activity"
-        width={180}
-        height={64}
-        className="h-14 w-auto"
-        onError={() => setErr(true)}
-      />
-    </div>
+    <Image
+      src="/logo-light.png"
+      alt="Bali Water Activity"
+      width={180}
+      height={64}
+      className="h-16 w-auto mb-4"
+      onError={() => setErr(true)}
+    />
   );
 }
 
